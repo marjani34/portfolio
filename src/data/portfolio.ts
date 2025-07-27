@@ -22,6 +22,41 @@ export interface SocialLink {
   icon: string
 }
 
+export interface Book {
+  id: string
+  title: string
+  author: string
+  description: string
+  category: 'technical' | 'business' | 'philosophy' | 'fiction' | 'biography'
+  rating: number // 1-5
+  coverImage?: string
+  amazonUrl?: string
+  goodreadsUrl?: string
+}
+
+export interface Certificate {
+  id: string
+  title: string
+  issuer: string
+  issueDate: string
+  expiryDate?: string
+  credentialId?: string
+  image?: string
+  url?: string
+  category: 'development' | 'cloud' | 'design' | 'management' | 'other'
+}
+
+export interface Award {
+  id: string
+  title: string
+  organization: string
+  date: string
+  description: string
+  category: 'hackathon' | 'competition' | 'recognition' | 'achievement'
+  image?: string
+  url?: string
+}
+
 export const personalInfo = {
   name: 'Your Name',
   title: 'Full Stack Developer & UI/UX Designer',
@@ -119,5 +154,142 @@ export const socialLinks: SocialLink[] = [
     name: 'Dribbble',
     url: 'https://dribbble.com/yourusername',
     icon: 'dribbble'
+  }
+]
+
+export const books: Book[] = [
+  {
+    id: '1',
+    title: 'Clean Code',
+    author: 'Robert C. Martin',
+    description: 'A handbook of agile software craftsmanship that teaches how to write clean, maintainable code.',
+    category: 'technical',
+    rating: 5,
+    amazonUrl: 'https://amazon.com/clean-code',
+    goodreadsUrl: 'https://goodreads.com/clean-code'
+  },
+  {
+    id: '2',
+    title: 'Designing Data-Intensive Applications',
+    author: 'Martin Kleppmann',
+    description: 'The big ideas behind reliable, scalable, and maintainable systems.',
+    category: 'technical',
+    rating: 5,
+    amazonUrl: 'https://amazon.com/designing-data-intensive-applications',
+    goodreadsUrl: 'https://goodreads.com/designing-data-intensive-applications'
+  },
+  {
+    id: '3',
+    title: 'Atomic Habits',
+    author: 'James Clear',
+    description: 'An easy and proven way to build good habits and break bad ones.',
+    category: 'business',
+    rating: 5,
+    amazonUrl: 'https://amazon.com/atomic-habits',
+    goodreadsUrl: 'https://goodreads.com/atomic-habits'
+  },
+  {
+    id: '4',
+    title: 'The Pragmatic Programmer',
+    author: 'David Thomas & Andrew Hunt',
+    description: 'Your journey to mastery in software development.',
+    category: 'technical',
+    rating: 5,
+    amazonUrl: 'https://amazon.com/pragmatic-programmer',
+    goodreadsUrl: 'https://goodreads.com/pragmatic-programmer'
+  },
+  {
+    id: '5',
+    title: 'Deep Work',
+    author: 'Cal Newport',
+    description: 'Rules for focused success in a distracted world.',
+    category: 'business',
+    rating: 4,
+    amazonUrl: 'https://amazon.com/deep-work',
+    goodreadsUrl: 'https://goodreads.com/deep-work'
+  }
+]
+
+export const certificates: Certificate[] = [
+  {
+    id: '1',
+    title: 'AWS Certified Solutions Architect',
+    issuer: 'Amazon Web Services',
+    issueDate: '2024-01-15',
+    credentialId: 'AWS-123456789',
+    category: 'cloud',
+    url: 'https://aws.amazon.com/certification/'
+  },
+  {
+    id: '2',
+    title: 'Google Cloud Professional Developer',
+    issuer: 'Google Cloud',
+    issueDate: '2023-11-20',
+    credentialId: 'GCP-987654321',
+    category: 'cloud',
+    url: 'https://cloud.google.com/certification/'
+  },
+  {
+    id: '3',
+    title: 'React Developer Certification',
+    issuer: 'Meta',
+    issueDate: '2023-08-10',
+    category: 'development',
+    url: 'https://react.dev/'
+  },
+  {
+    id: '4',
+    title: 'TypeScript Fundamentals',
+    issuer: 'Microsoft',
+    issueDate: '2023-06-05',
+    category: 'development',
+    url: 'https://typescript.org/'
+  },
+  {
+    id: '5',
+    title: 'UI/UX Design Fundamentals',
+    issuer: 'Coursera',
+    issueDate: '2023-03-15',
+    category: 'design',
+    url: 'https://coursera.org/'
+  }
+]
+
+export const awards: Award[] = [
+  {
+    id: '1',
+    title: 'Best Web Application',
+    organization: 'TechCrunch Disrupt Hackathon',
+    date: '2024-02-15',
+    description: 'Won first place for developing an innovative AI-powered productivity tool.',
+    category: 'hackathon',
+    url: 'https://techcrunch.com/'
+  },
+  {
+    id: '2',
+    title: 'Developer of the Year',
+    organization: 'Local Tech Community',
+    date: '2023-12-10',
+    description: 'Recognized for outstanding contributions to the local developer community.',
+    category: 'recognition',
+    url: 'https://example.com/'
+  },
+  {
+    id: '3',
+    title: 'Open Source Contributor Award',
+    organization: 'GitHub',
+    date: '2023-09-20',
+    description: 'Awarded for significant contributions to popular open source projects.',
+    category: 'achievement',
+    url: 'https://github.com/'
+  },
+  {
+    id: '4',
+    title: 'Innovation Award',
+    organization: 'Startup Weekend',
+    date: '2023-07-08',
+    description: 'Best innovative solution for sustainable technology.',
+    category: 'competition',
+    url: 'https://startupweekend.org/'
   }
 ] 
