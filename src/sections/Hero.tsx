@@ -16,15 +16,23 @@ const Hero = () => {
           </h1>
           
           {/* Title */}
-          <h2 className="text-2xl md:text-3xl text-secondary-600 dark:text-secondary-300 mb-8 animate-slide-up">
+          <h2 className="text-2xl md:text-3xl text-secondary-600 dark:text-secondary-300 mb-4 animate-slide-up">
             Front End Manager & Full Stack Developer
           </h2>
           
+          {/* PhD Badge */}
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-600 text-white rounded-full text-sm font-semibold mb-8 animate-slide-up">
+            <span className="mr-2">🎓</span>
+            PhD in Artificial Intelligence
+          </div>
+          
           {/* Description */}
           <p className="text-lg text-secondary-600 dark:text-secondary-400 mb-12 max-w-2xl mx-auto leading-relaxed animate-slide-up">
-            Experienced Front-End Developer specializing in cloud-based, scalable solutions for the banking and 
-            finance sector. Proficient in Angular, React.js, and Next.js. Leading teams dedicated to clean architecture, 
-            quality, and innovation.
+            Experienced Front-End Developer with a <strong className="text-primary-600 dark:text-primary-400">PhD in Artificial Intelligence</strong>, 
+            specializing in cloud-based, scalable solutions for the banking and finance sector. 
+            Combining deep AI knowledge with modern web technologies (Angular, React.js, Next.js) 
+            to create intelligent, innovative applications. Leading teams dedicated to clean architecture, 
+            quality, and cutting-edge development practices.
           </p>
           
           {/* CTA Buttons */}
