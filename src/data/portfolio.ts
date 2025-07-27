@@ -71,7 +71,7 @@ export const personalInfo = {
   avatar: '/avatar.jpg',
   experience: '8+ Years',
   education: 'Doctor of Science (PhD), Artificial Intelligence - Islamic Azad University',
-  languages: ['English', 'Persian', 'Arabic'],
+  languages: ['English (Advanced)', 'Persian (Native)', 'French (Beginner)', 'Turkish (Intermediate)'],
   linkedin: 'https://linkedin.com/in/amir-marjani',
   github: 'https://github.com/amir-marjani'
 }
