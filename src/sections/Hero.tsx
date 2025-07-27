@@ -12,18 +12,19 @@ const Hero = () => {
           
           {/* Name */}
           <h1 className="text-5xl md:text-7xl font-bold text-secondary-900 dark:text-white mb-6 animate-slide-up">
-            Your Name
+            Amir Marjani
           </h1>
           
           {/* Title */}
           <h2 className="text-2xl md:text-3xl text-secondary-600 dark:text-secondary-300 mb-8 animate-slide-up">
-            Full Stack Developer & UI/UX Designer
+            Front End Manager & Full Stack Developer
           </h2>
           
           {/* Description */}
           <p className="text-lg text-secondary-600 dark:text-secondary-400 mb-12 max-w-2xl mx-auto leading-relaxed animate-slide-up">
-            I create beautiful, functional, and user-centered digital experiences. 
-            Passionate about clean code, innovative design, and building products that make a difference.
+            Experienced Front-End Developer specializing in cloud-based, scalable solutions for the banking and 
+            finance sector. Proficient in Angular, React.js, and Next.js. Leading teams dedicated to clean architecture, 
+            quality, and innovation.
           </p>
           
           {/* CTA Buttons */}
