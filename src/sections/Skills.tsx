@@ -6,7 +6,8 @@ const Skills = () => {
     backend: skills.filter(skill => skill.category === 'backend'),
     database: skills.filter(skill => skill.category === 'database'),
     tools: skills.filter(skill => skill.category === 'tools'),
-    design: skills.filter(skill => skill.category === 'design')
+    design: skills.filter(skill => skill.category === 'design'),
+    management: skills.filter(skill => skill.category === 'management')
   }
 
   const getSkillIcon = (skillName: string) => {
@@ -187,6 +188,35 @@ const Skills = () => {
               </div>
               <div className="space-y-4">
                 {skillCategories.design.map((skill) => (
+                  <div key={skill.name} className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <span className="text-lg mr-3">{getSkillIcon(skill.name)}</span>
+                      <span className="font-medium text-secondary-900 dark:text-white">
+                        {skill.name}
+                      </span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className={`text-sm font-medium ${getSkillLevelColor(skill.level)}`}>
+                        {skill.level}/5
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Management */}
+            <div className="card p-6">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-2xl">👥</span>
+                </div>
+                <h3 className="text-xl font-semibold text-secondary-900 dark:text-white">
+                  Management
+                </h3>
+              </div>
+              <div className="space-y-4">
+                {skillCategories.management.map((skill) => (
                   <div key={skill.name} className="flex items-center justify-between">
                     <div className="flex items-center">
                       <span className="text-lg mr-3">{getSkillIcon(skill.name)}</span>

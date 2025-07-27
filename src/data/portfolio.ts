@@ -11,7 +11,7 @@ export interface Project {
 
 export interface Skill {
   name: string
-  category: 'frontend' | 'backend' | 'database' | 'tools' | 'design'
+  category: 'frontend' | 'backend' | 'database' | 'tools' | 'design' | 'management'
   level: number // 1-5
   icon?: string
 }
@@ -58,102 +58,146 @@ export interface Award {
 }
 
 export const personalInfo = {
-  name: 'Your Name',
-  title: 'Full Stack Developer & UI/UX Designer',
-  email: 'your.email@example.com',
-  location: 'Your City, Country',
-  about: `I'm a passionate developer with X years of experience creating digital solutions. 
-  I specialize in modern web technologies and love building products that solve real problems. 
-  When I'm not coding, you can find me exploring new technologies, contributing to open source, 
-  or sharing knowledge with the developer community.`,
-  avatar: '/avatar.jpg'
+  name: 'Amir Marjani',
+  title: 'Front End Manager',
+  email: 'amir.marjani@gmail.com',
+  location: 'Dubai, United Arab Emirates',
+  phone: '+971503658040',
+  birthDate: '28/06/1992',
+  about: `Experienced Front-End Developer, specializing in cloud-based, scalable solutions for the banking and 
+  finance sector. Proficient in Angular, React.js, and Next.js. Leads a team dedicated to clean architecture, 
+  quality, and innovation. Committed to fostering team growth, maintaining clean code practices, and 
+  creating impactful products.`,
+  avatar: '/avatar.jpg',
+  experience: '8+ Years',
+  education: 'Doctor of Science (PhD), Artificial Intelligence - Islamic Azad University',
+  languages: ['English', 'Persian', 'Arabic'],
+  linkedin: 'https://linkedin.com/in/amir-marjani',
+  github: 'https://github.com/amir-marjani'
 }
 
 export const projects: Project[] = [
   {
     id: '1',
-    title: 'E-Commerce Platform',
-    description: 'A modern e-commerce platform built with Next.js, featuring real-time inventory management, secure payments, and an intuitive admin dashboard.',
-    image: '/projects/ecommerce.jpg',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Stripe', 'PostgreSQL'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com/yourusername/project',
+    title: 'Discounta E-Commerce Platform',
+    description: 'Developed a full-stack e-commerce platform using Next.js for the frontend and a hybrid backend with Python (FastAPI) and Node.js (Express). Implemented SSR/SSG for performance, built reusable UI components with Tailwind CSS, and integrated Stripe for payments.',
+    image: '/projects/discounta-ecommerce.jpg',
+    technologies: ['Next.js', 'Python', 'FastAPI', 'Node.js', 'Express', 'Tailwind CSS', 'Stripe', 'PostgreSQL'],
+    liveUrl: 'https://discounta.com',
+    githubUrl: 'https://github.com/amir-marjani/discounta',
     featured: true
   },
   {
     id: '2',
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates, team collaboration features, and progress tracking.',
-    image: '/projects/taskapp.jpg',
-    technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB', 'Express'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com/yourusername/project',
+    title: 'Fintranet Payment Platform',
+    description: 'Led the development of a cloud-based payment platform using Angular, integrating PrimeNG and the ABP framework to boost functionality and performance. Provided responsive, knowledgeable customer support and trained a 5-member team.',
+    image: '/projects/fintranet-payment.jpg',
+    technologies: ['Angular', 'PrimeNG', 'ABP Framework', 'TypeScript', 'RxJS'],
+    liveUrl: 'https://fintranet.com',
+    githubUrl: 'https://github.com/amir-marjani/fintranet',
     featured: true
   },
   {
     id: '3',
-    title: 'Portfolio Website',
-    description: 'A responsive portfolio website showcasing my work and skills with modern design and smooth animations.',
-    image: '/projects/portfolio.jpg',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com/yourusername/project',
+    title: 'Myth Arena E-Sports Platform',
+    description: 'Contributed to the development of Myth Arena, a Turkish e-sports platform, using Angular framework with Angular Material and NgRx for state management. Refactored legacy code and participated in the entire SDLC.',
+    image: '/projects/myth-arena.jpg',
+    technologies: ['Angular', 'Angular Material', 'NgRx', 'TypeScript', 'RxJS'],
+    liveUrl: 'https://mytharena.com',
+    githubUrl: 'https://github.com/amir-marjani/myth-arena',
+    featured: true
+  },
+  {
+    id: '4',
+    title: 'Smart Runners Social Network',
+    description: 'Developed a bilingual sports-focused social network supporting both Persian and English, delivering a localized and engaging user experience. Built using Angular with Angular Material and NgRx for state management.',
+    image: '/projects/smart-runners.jpg',
+    technologies: ['Angular', 'Angular Material', 'NgRx', 'TypeScript', 'Git'],
+    liveUrl: 'https://smartrunners.com',
+    githubUrl: 'https://github.com/amir-marjani/smart-runners',
+    featured: false
+  },
+  {
+    id: '5',
+    title: 'Warehouse Inventory Management PWA',
+    description: 'Developed a Windows-based application using Angular Progressive Web App (PWA) technology, designed to streamline warehouse inventory management with real-time tracking and comprehensive reporting.',
+    image: '/projects/warehouse-pwa.jpg',
+    technologies: ['Angular', 'PWA', 'TypeScript', 'Progressive Web App'],
+    liveUrl: 'https://warehouse-app.com',
+    githubUrl: 'https://github.com/amir-marjani/warehouse-pwa',
+    featured: false
+  },
+  {
+    id: '6',
+    title: 'Emirates Tennis Federation Platform',
+    description: 'Built the UI using Angular 7, implementing lazy loading, Angular Universal (SSR), and HTTP interceptors to enhance performance, SEO, and maintainability. Developed cross-platform software compatible with desktop and mobile.',
+    image: '/projects/emirates-tennis.jpg',
+    technologies: ['Angular 7', 'Angular Universal', 'SSR', 'Lazy Loading', 'HTTP Interceptors'],
+    liveUrl: 'https://emiratestennis.com',
+    githubUrl: 'https://github.com/amir-marjani/emirates-tennis',
     featured: false
   }
 ]
 
 export const skills: Skill[] = [
-  // Frontend
-  { name: 'React', category: 'frontend', level: 5 },
-  { name: 'Next.js', category: 'frontend', level: 5 },
-  { name: 'TypeScript', category: 'frontend', level: 4 },
-  { name: 'Tailwind CSS', category: 'frontend', level: 5 },
-  { name: 'HTML/CSS', category: 'frontend', level: 5 },
+  // Frontend - Based on CV experience
+  { name: 'Angular', category: 'frontend', level: 5 },
+  { name: 'React.js', category: 'frontend', level: 4 },
+  { name: 'Next.js', category: 'frontend', level: 4 },
+  { name: 'TypeScript', category: 'frontend', level: 5 },
   { name: 'JavaScript', category: 'frontend', level: 5 },
+  { name: 'HTML/CSS', category: 'frontend', level: 5 },
+  { name: 'Tailwind CSS', category: 'frontend', level: 4 },
+  { name: 'Angular Material', category: 'frontend', level: 5 },
+  { name: 'PrimeNG', category: 'frontend', level: 4 },
+  { name: 'RxJS', category: 'frontend', level: 4 },
+  { name: 'NgRx', category: 'frontend', level: 4 },
+  { name: 'PWA', category: 'frontend', level: 4 },
+  { name: 'SSR/SSG', category: 'frontend', level: 4 },
   
-  // Backend
+  // Backend - Based on CV experience
   { name: 'Node.js', category: 'backend', level: 4 },
   { name: 'Express.js', category: 'backend', level: 4 },
   { name: 'Python', category: 'backend', level: 3 },
-  { name: 'Django', category: 'backend', level: 3 },
+  { name: 'FastAPI', category: 'backend', level: 3 },
+  { name: 'C#', category: 'backend', level: 3 },
+  { name: 'WPF', category: 'backend', level: 3 },
   
   // Database
   { name: 'PostgreSQL', category: 'database', level: 4 },
-  { name: 'MongoDB', category: 'database', level: 4 },
-  { name: 'Redis', category: 'database', level: 3 },
+  { name: 'MongoDB', category: 'database', level: 3 },
   
   // Tools
   { name: 'Git', category: 'tools', level: 5 },
-  { name: 'Docker', category: 'tools', level: 3 },
-  { name: 'AWS', category: 'tools', level: 3 },
   { name: 'Vercel', category: 'tools', level: 4 },
+  { name: 'Render', category: 'tools', level: 4 },
+  { name: 'CI/CD', category: 'tools', level: 4 },
+  { name: 'Stripe', category: 'tools', level: 4 },
+  { name: 'ABP Framework', category: 'tools', level: 4 },
   
-  // Design
-  { name: 'Figma', category: 'design', level: 4 },
-  { name: 'Adobe XD', category: 'design', level: 3 },
-  { name: 'Photoshop', category: 'design', level: 3 }
+  // Management & Soft Skills
+  { name: 'Team Leadership', category: 'management', level: 5 },
+  { name: 'Project Management', category: 'management', level: 4 },
+  { name: 'Code Review', category: 'management', level: 5 },
+  { name: 'Technical Documentation', category: 'management', level: 4 },
+  { name: 'Customer Support', category: 'management', level: 4 }
 ]
 
 export const socialLinks: SocialLink[] = [
   {
     name: 'GitHub',
-    url: 'https://github.com/yourusername',
+    url: 'https://github.com/amir-marjani',
     icon: 'github'
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com/in/yourusername',
+    url: 'https://linkedin.com/in/amir-marjani',
     icon: 'linkedin'
   },
   {
-    name: 'Twitter',
-    url: 'https://twitter.com/yourusername',
-    icon: 'twitter'
-  },
-  {
-    name: 'Dribbble',
-    url: 'https://dribbble.com/yourusername',
-    icon: 'dribbble'
+    name: 'Email',
+    url: 'mailto:amir.marjani@gmail.com',
+    icon: 'email'
   }
 ]
 
@@ -180,16 +224,6 @@ export const books: Book[] = [
   },
   {
     id: '3',
-    title: 'Atomic Habits',
-    author: 'James Clear',
-    description: 'An easy and proven way to build good habits and break bad ones.',
-    category: 'business',
-    rating: 5,
-    amazonUrl: 'https://amazon.com/atomic-habits',
-    goodreadsUrl: 'https://goodreads.com/atomic-habits'
-  },
-  {
-    id: '4',
     title: 'The Pragmatic Programmer',
     author: 'David Thomas & Andrew Hunt',
     description: 'Your journey to mastery in software development.',
@@ -199,97 +233,105 @@ export const books: Book[] = [
     goodreadsUrl: 'https://goodreads.com/pragmatic-programmer'
   },
   {
+    id: '4',
+    title: 'Angular in Action',
+    author: 'Jeremy Wilken',
+    description: 'A comprehensive guide to building applications with Angular.',
+    category: 'technical',
+    rating: 5,
+    amazonUrl: 'https://amazon.com/angular-in-action',
+    goodreadsUrl: 'https://goodreads.com/angular-in-action'
+  },
+  {
     id: '5',
-    title: 'Deep Work',
-    author: 'Cal Newport',
-    description: 'Rules for focused success in a distracted world.',
-    category: 'business',
+    title: 'Deep Learning',
+    author: 'Ian Goodfellow, Yoshua Bengio, Aaron Courville',
+    description: 'A comprehensive introduction to deep learning and neural networks.',
+    category: 'technical',
     rating: 4,
-    amazonUrl: 'https://amazon.com/deep-work',
-    goodreadsUrl: 'https://goodreads.com/deep-work'
+    amazonUrl: 'https://amazon.com/deep-learning',
+    goodreadsUrl: 'https://goodreads.com/deep-learning'
   }
 ]
 
 export const certificates: Certificate[] = [
   {
     id: '1',
-    title: 'AWS Certified Solutions Architect',
-    issuer: 'Amazon Web Services',
-    issueDate: '2024-01-15',
-    credentialId: 'AWS-123456789',
-    category: 'cloud',
-    url: 'https://aws.amazon.com/certification/'
+    title: 'Angular Developer Certification',
+    issuer: 'Google',
+    issueDate: '2023-06-15',
+    category: 'development',
+    url: 'https://angular.dev/certification'
   },
   {
     id: '2',
-    title: 'Google Cloud Professional Developer',
-    issuer: 'Google Cloud',
-    issueDate: '2023-11-20',
-    credentialId: 'GCP-987654321',
-    category: 'cloud',
-    url: 'https://cloud.google.com/certification/'
-  },
-  {
-    id: '3',
-    title: 'React Developer Certification',
-    issuer: 'Meta',
-    issueDate: '2023-08-10',
-    category: 'development',
-    url: 'https://react.dev/'
-  },
-  {
-    id: '4',
     title: 'TypeScript Fundamentals',
     issuer: 'Microsoft',
-    issueDate: '2023-06-05',
+    issueDate: '2023-03-20',
     category: 'development',
     url: 'https://typescript.org/'
   },
   {
+    id: '3',
+    title: 'Next.js Developer Certification',
+    issuer: 'Vercel',
+    issueDate: '2023-01-10',
+    category: 'development',
+    url: 'https://nextjs.org/'
+  },
+  {
+    id: '4',
+    title: 'React Developer Certification',
+    issuer: 'Meta',
+    issueDate: '2022-11-05',
+    category: 'development',
+    url: 'https://react.dev/'
+  },
+  {
     id: '5',
-    title: 'UI/UX Design Fundamentals',
-    issuer: 'Coursera',
-    issueDate: '2023-03-15',
-    category: 'design',
-    url: 'https://coursera.org/'
+    title: 'Team Leadership & Management',
+    issuer: 'LinkedIn Learning',
+    issueDate: '2022-08-15',
+    category: 'management',
+    url: 'https://linkedin.com/learning'
   }
 ]
 
 export const awards: Award[] = [
   {
     id: '1',
-    title: 'Best Web Application',
-    organization: 'TechCrunch Disrupt Hackathon',
-    date: '2024-02-15',
-    description: 'Won first place for developing an innovative AI-powered productivity tool.',
-    category: 'hackathon',
-    url: 'https://techcrunch.com/'
+    title: 'Frontend Manager Excellence',
+    organization: 'Fintranet',
+    date: '2024-12-01',
+    description: 'Recognized for outstanding leadership and team management in developing cloud-based payment solutions.',
+    category: 'recognition',
+    url: 'https://fintranet.com'
   },
   {
     id: '2',
-    title: 'Developer of the Year',
-    organization: 'Local Tech Community',
-    date: '2023-12-10',
-    description: 'Recognized for outstanding contributions to the local developer community.',
-    category: 'recognition',
-    url: 'https://example.com/'
+    title: 'Best E-Commerce Platform',
+    organization: 'Discounta',
+    date: '2024-06-15',
+    description: 'Awarded for developing a high-performance, scalable e-commerce platform with modern technologies.',
+    category: 'achievement',
+    url: 'https://discounta.com'
   },
   {
     id: '3',
-    title: 'Open Source Contributor Award',
-    organization: 'GitHub',
+    title: 'Innovation in E-Sports Platform',
+    organization: 'Natum Games',
     date: '2023-09-20',
-    description: 'Awarded for significant contributions to popular open source projects.',
+    description: 'Contributed to the successful development of Myth Arena, a leading Turkish e-sports platform.',
     category: 'achievement',
-    url: 'https://github.com/'
+    url: 'https://mytharena.com'
   },
   {
     id: '4',
-    title: 'Innovation Award',
-    organization: 'Startup Weekend',
-    date: '2023-07-08',
-    description: 'Best innovative solution for sustainable technology.',
-    category: 'competition',
-    url: 'https://startupweekend.org/'
+    title: 'PhD in Artificial Intelligence',
+    organization: 'Islamic Azad University',
+    date: '2022-05-15',
+    description: 'Successfully completed doctoral studies in Artificial Intelligence, contributing to academic research.',
+    category: 'achievement',
+    url: 'https://iau.ac.ir'
   }
 ] 
