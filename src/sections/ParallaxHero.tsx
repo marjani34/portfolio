@@ -231,23 +231,68 @@ const ParallaxHero = () => {
           </Parallax>
 
           {/* Stats */}
-          <Parallax speed={0} className="mt-12 md:mt-16 pb-16 md:pb-20">
+          <Parallax speed={0} className="mt-12 md:mt-16 pb-24 md:pb-32">
             <div 
-              className={`grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-3xl mx-auto transition-all duration-1000 delay-1200 ${
+              className={`max-w-4xl mx-auto transition-all duration-1000 delay-1200 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-400 mb-1 md:mb-2">{personalInfo.experience}</div>
-                <div className="text-secondary-300 text-xs sm:text-sm md:text-base">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-400 mb-1 md:mb-2">{personalInfo.location.split(',')[0]}</div>
-                <div className="text-secondary-300 text-xs sm:text-sm md:text-base">Based in</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-400 mb-1 md:mb-2">PhD</div>
-                <div className="text-secondary-300 text-xs sm:text-sm md:text-base">AI Research</div>
+              {/* Stats Container with Glassmorphism */}
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                  {/* Experience */}
+                  <div className="text-center group">
+                    <div className="relative">
+                      <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary-500/20 to-primary-600/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <span className="text-2xl md:text-3xl">⏱️</span>
+                      </div>
+                      <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
+                        <span className="text-xs text-white font-bold">+</span>
+                      </div>
+                    </div>
+                    <div className="text-3xl md:text-4xl font-bold text-primary-400 mb-2 group-hover:text-primary-300 transition-colors duration-300">
+                      {personalInfo.experience}
+                    </div>
+                    <div className="text-secondary-300 text-sm md:text-base font-medium">
+                      Years Experience
+                    </div>
+                  </div>
+
+                  {/* Location */}
+                  <div className="text-center group">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-accent-500/20 to-accent-600/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-2xl md:text-3xl">📍</span>
+                    </div>
+                    <div className="text-3xl md:text-4xl font-bold text-accent-400 mb-2 group-hover:text-accent-300 transition-colors duration-300">
+                      {personalInfo.location.split(',')[0]}
+                    </div>
+                    <div className="text-secondary-300 text-sm md:text-base font-medium">
+                      Based in
+                    </div>
+                  </div>
+
+                  {/* PhD */}
+                  <div className="text-center group">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-2xl md:text-3xl">🎓</span>
+                    </div>
+                    <div className="text-3xl md:text-4xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors duration-300">
+                      PhD
+                    </div>
+                    <div className="text-secondary-300 text-sm md:text-base font-medium">
+                      AI Research
+                    </div>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-white/10">
+                  <div className="text-center">
+                    <p className="text-secondary-300 text-sm md:text-base italic">
+                      "Bridging AI research with modern web development"
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </Parallax>
