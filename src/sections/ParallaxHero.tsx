@@ -1,333 +1,230 @@
 'use client'
 
 import { Parallax } from 'react-scroll-parallax'
-import { useEffect, useState } from 'react'
 import { personalInfo } from '@/data/portfolio'
+import { useEffect, useState } from 'react'
 
 const ParallaxHero = () => {
-  const [isVisible, setIsVisible] = useState(false)
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
+  const titles = [
+    "AI Researcher & Software Engineer",
+    "Artificial Intelligence Scientist & Full Stack Developer",
+    "AI-Focused Frontend & Full Stack Developer",
+    "Human-Centered AI Engineer & Web Creator"
+  ];
+
+  // Typewriter effect
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
+    const currentTitle = titles[currentTitleIndex];
+    
+    if (!isDeleting) {
+      // Typing
+      if (currentText.length < currentTitle.length) {
+        const timeout = setTimeout(() => {
+          setCurrentText(currentTitle.slice(0, currentText.length + 1));
+        }, 100);
+        return () => clearTimeout(timeout);
+      } else {
+        // Wait before starting to delete
+        const timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2000);
+        return () => clearTimeout(timeout);
+      }
+    } else {
+      // Deleting
+      if (currentText.length > 0) {
+        const timeout = setTimeout(() => {
+          setCurrentText(currentTitle.slice(0, currentText.length - 1));
+        }, 50);
+        return () => clearTimeout(timeout);
+      } else {
+        // Move to next title
+        setIsDeleting(false);
+        setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+      }
+    }
+  }, [currentText, currentTitleIndex, isDeleting, titles]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20">
-      {/* Multiple Parallax Background Layers */}
-      <Parallax speed={-15} className="absolute inset-0 z-0">
-        <div 
-          className="w-full h-full bg-cover bg-center bg-no-repeat opacity-80"
-          style={{
-            backgroundImage: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2306366f;stop-opacity:1" /><stop offset="50%" style="stop-color:%231e40af;stop-opacity:1" /><stop offset="100%" style="stop-color:%233b82f6;stop-opacity:1" /></linearGradient><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="%23ffffff" stroke-width="1" opacity="0.08"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grad1)"/><rect width="100%" height="100%" fill="url(%23grid)"/></svg>')`,
-          }}
-        />
+    <section className="relative min-h-screen flex items-center justify-center pt-16 md:pt-20 overflow-hidden">
+      {/* Parallax Background Layers */}
+      <Parallax speed={-20} className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900"></div>
+      </Parallax>
+      
+      <Parallax speed={-10} className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-purple-900/30 to-indigo-900/50 opacity-30"></div>
       </Parallax>
 
-      {/* Floating Elements */}
-      <Parallax speed={-8} className="absolute inset-0 z-0">
-        <div className="absolute top-20 left-10 w-16 h-16 md:w-32 md:h-32 bg-primary-500/20 rounded-full blur-xl"></div>
-        <div className="absolute top-40 right-20 w-12 h-12 md:w-24 md:h-24 bg-accent-500/20 rounded-full blur-xl"></div>
-        <div className="absolute bottom-32 left-1/4 w-20 h-20 md:w-40 md:h-40 bg-secondary-500/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-1/3 w-14 h-14 md:w-28 md:h-28 bg-primary-400/15 rounded-full blur-xl"></div>
+      {/* Floating Blur Circles */}
+      <Parallax speed={-5} className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl"></div>
       </Parallax>
 
-      {/* AI-Themed Floating Images - Left Side */}
-      <Parallax speed={-12} className="absolute left-2 md:left-8 top-1/4 z-5">
-        <div className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 opacity-40 md:opacity-60 hover:opacity-80 transition-opacity duration-300">
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <defs>
-              <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor: '#3b82f6', stopOpacity: 0.8}} />
-                <stop offset="100%" style={{stopColor: '#8b5cf6', stopOpacity: 0.6}} />
-              </linearGradient>
-            </defs>
-            <path d="M50 20 C30 20 15 35 15 55 C15 75 30 90 50 90 C70 90 85 75 85 55 C85 35 70 20 50 20 Z" fill="url(#brainGradient)" />
-            <circle cx="35" cy="45" r="3" fill="#ffffff" opacity="0.8" />
-            <circle cx="65" cy="45" r="3" fill="#ffffff" opacity="0.8" />
-            <path d="M40 60 Q50 70 60 60" stroke="#ffffff" strokeWidth="2" fill="none" opacity="0.8" />
-          </svg>
-        </div>
+      {/* AI-themed Floating SVG Images */}
+      <Parallax speed={-15} className="absolute top-20 left-10 opacity-20 md:opacity-30">
+        <svg className="w-16 h-16 md:w-20 md:h-20 text-blue-300" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
       </Parallax>
 
-      <Parallax speed={-6} className="absolute left-4 md:left-16 bottom-1/3 z-5">
-        <div className="w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 opacity-30 md:opacity-50 hover:opacity-70 transition-opacity duration-300">
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <defs>
-              <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor: '#06b6d4', stopOpacity: 0.7}} />
-                <stop offset="100%" style={{stopColor: '#3b82f6', stopOpacity: 0.5}} />
-              </linearGradient>
-            </defs>
-            <circle cx="30" cy="30" r="8" fill="url(#neuralGradient)" />
-            <circle cx="70" cy="30" r="8" fill="url(#neuralGradient)" />
-            <circle cx="30" cy="70" r="8" fill="url(#neuralGradient)" />
-            <circle cx="70" cy="70" r="8" fill="url(#neuralGradient)" />
-            <circle cx="50" cy="50" r="8" fill="url(#neuralGradient)" />
-            <line x1="30" y1="30" x2="50" y2="50" stroke="#ffffff" strokeWidth="1" opacity="0.6" />
-            <line x1="70" y1="30" x2="50" y2="50" stroke="#ffffff" strokeWidth="1" opacity="0.6" />
-            <line x1="30" y1="70" x2="50" y2="50" stroke="#ffffff" strokeWidth="1" opacity="0.6" />
-            <line x1="70" y1="70" x2="50" y2="50" stroke="#ffffff" strokeWidth="1" opacity="0.6" />
-          </svg>
-        </div>
+      <Parallax speed={-8} className="absolute top-32 right-20 opacity-20 md:opacity-30">
+        <svg className="w-12 h-12 md:w-16 md:h-16 text-purple-300" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+        </svg>
       </Parallax>
 
-      {/* AI-Themed Floating Images - Right Side */}
-      <Parallax speed={-10} className="absolute right-3 md:right-12 top-1/3 z-5">
-        <div className="w-18 h-18 md:w-28 md:h-28 lg:w-36 lg:h-36 opacity-35 md:opacity-55 hover:opacity-75 transition-opacity duration-300">
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <defs>
-              <linearGradient id="chipGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor: '#10b981', stopOpacity: 0.7}} />
-                <stop offset="100%" style={{stopColor: '#3b82f6', stopOpacity: 0.5}} />
-              </linearGradient>
-            </defs>
-            <rect x="20" y="20" width="60" height="60" rx="8" fill="url(#chipGradient)" />
-            <rect x="25" y="25" width="50" height="50" rx="4" fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.8" />
-            <circle cx="35" cy="35" r="2" fill="#ffffff" opacity="0.9" />
-            <circle cx="65" cy="35" r="2" fill="#ffffff" opacity="0.9" />
-            <circle cx="35" cy="65" r="2" fill="#ffffff" opacity="0.9" />
-            <circle cx="65" cy="65" r="2" fill="#ffffff" opacity="0.9" />
-            <rect x="40" y="40" width="20" height="20" fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.6" />
-          </svg>
-        </div>
+      <Parallax speed={-12} className="absolute bottom-32 left-20 opacity-20 md:opacity-30">
+        <svg className="w-14 h-14 md:w-18 md:h-18 text-indigo-300" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
       </Parallax>
 
-      <Parallax speed={-4} className="absolute right-2 md:right-8 bottom-1/4 z-5">
-        <div className="w-10 h-10 md:w-16 md:h-16 lg:w-24 lg:h-24 opacity-25 md:opacity-45 hover:opacity-65 transition-opacity duration-300">
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <defs>
-              <linearGradient id="dataGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor: '#f59e0b', stopOpacity: 0.6}} />
-                <stop offset="100%" style={{stopColor: '#ef4444', stopOpacity: 0.4}} />
-              </linearGradient>
-            </defs>
-            <rect x="15" y="80" width="8" height="20" fill="url(#dataGradient)" />
-            <rect x="30" y="60" width="8" height="40" fill="url(#dataGradient)" />
-            <rect x="45" y="40" width="8" height="60" fill="url(#dataGradient)" />
-            <rect x="60" y="20" width="8" height="80" fill="url(#dataGradient)" />
-            <rect x="75" y="30" width="8" height="70" fill="url(#dataGradient)" />
-            <line x1="15" y1="80" x2="85" y2="80" stroke="#ffffff" strokeWidth="1" opacity="0.7" />
-          </svg>
-        </div>
+      <Parallax speed={-6} className="absolute bottom-20 right-10 opacity-20 md:opacity-30">
+        <svg className="w-10 h-10 md:w-14 md:h-14 text-green-300" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
       </Parallax>
 
-      {/* Additional Floating Code Elements */}
-      <Parallax speed={-7} className="absolute left-1/4 top-8 md:top-16 z-5">
-        <div className="w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 opacity-25 md:opacity-40 hover:opacity-60 transition-opacity duration-300">
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <defs>
-              <linearGradient id="codeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor: '#8b5cf6', stopOpacity: 0.5}} />
-                <stop offset="100%" style={{stopColor: '#ec4899', stopOpacity: 0.3}} />
-              </linearGradient>
-            </defs>
-            <rect x="20" y="20" width="60" height="60" fill="none" stroke="url(#codeGradient)" strokeWidth="2" />
-            <text x="30" y="35" fill="#ffffff" fontSize="8" opacity="0.8">&lt;/&gt;</text>
-            <text x="25" y="50" fill="#ffffff" fontSize="6" opacity="0.6">AI</text>
-            <text x="25" y="65" fill="#ffffff" fontSize="6" opacity="0.6">ML</text>
-          </svg>
-        </div>
+      <Parallax speed={-10} className="absolute top-1/2 left-1/4 opacity-20 md:opacity-30">
+        <svg className="w-8 h-8 md:w-12 md:h-12 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+        </svg>
       </Parallax>
 
-      <Parallax speed={-9} className="absolute right-1/4 bottom-12 md:bottom-20 z-5">
-        <div className="w-14 h-14 md:w-24 md:h-24 lg:w-32 lg:h-32 opacity-30 md:opacity-50 hover:opacity-70 transition-opacity duration-300">
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <defs>
-              <linearGradient id="robotGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor: '#06b6d4', stopOpacity: 0.6}} />
-                <stop offset="100%" style={{stopColor: '#3b82f6', stopOpacity: 0.4}} />
-              </linearGradient>
-            </defs>
-            <rect x="25" y="30" width="50" height="40" rx="8" fill="url(#robotGradient)" />
-            <rect x="30" y="35" width="15" height="15" rx="3" fill="#ffffff" opacity="0.8" />
-            <rect x="55" y="35" width="15" height="15" rx="3" fill="#ffffff" opacity="0.8" />
-            <rect x="40" y="55" width="20" height="8" rx="4" fill="#ffffff" opacity="0.6" />
-            <rect x="35" y="20" width="30" height="8" rx="4" fill="url(#robotGradient)" />
-          </svg>
-        </div>
+      <Parallax speed={-7} className="absolute top-1/3 right-1/4 opacity-20 md:opacity-30">
+        <svg className="w-6 h-6 md:w-10 md:h-10 text-pink-300" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
       </Parallax>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40 z-0" />
+      {/* Main Content */}
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        {/* Name */}
+        <Parallax speed={-5} className="mb-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight">
+            {personalInfo.name}
+          </h1>
+        </Parallax>
 
-      {/* Content */}
-      <div className="relative z-10 container-custom text-center px-4">
-        <div className="max-w-5xl mx-auto">
-          {/* Animated Greeting */}
-          <Parallax speed={8} className="mb-4 md:mb-8">
-            <p 
-              className={`text-primary-300 font-medium text-base md:text-lg lg:text-xl xl:text-2xl transition-all duration-1000 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              Welcome to my digital space
-            </p>
-          </Parallax>
+        {/* Title with Typewriter Animation */}
+        <Parallax speed={-3} className="mb-8">
+          <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-200 font-medium min-h-[2.5rem] md:min-h-[3rem] lg:min-h-[3.5rem] flex items-center justify-center">
+            <span className="mr-2">{currentText}</span>
+            <span className={`inline-block w-0.5 h-6 md:h-8 lg:h-10 bg-blue-200 animate-pulse`}></span>
+          </h2>
+        </Parallax>
 
-          {/* Main Heading */}
-          <Parallax speed={5} className="mb-4 md:mb-8">
-            <h1 
-              className={`text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-3 md:mb-6 transition-all duration-1000 delay-200 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-              }`}
-            >
-              {personalInfo.name}
-            </h1>
-          </Parallax>
+        {/* Education */}
+        <Parallax speed={-2} className="mb-8">
+          <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-base font-semibold">
+            <span className="mr-3 text-xl">🎓</span>
+            PhD in Artificial Intelligence
+          </div>
+        </Parallax>
 
-          {/* Subheading */}
-          <Parallax speed={3} className="mb-6 md:mb-10">
-            <h2 
-              className={`text-lg sm:text-xl md:text-2xl lg:text-3xl text-secondary-200 mb-4 md:mb-8 transition-all duration-1000 delay-400 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              {personalInfo.title} & Full Stack Developer
-            </h2>
-          </Parallax>
+        {/* About */}
+        <Parallax speed={-1} className="mb-12">
+          <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-3xl mx-auto">
+            {personalInfo.about}
+          </p>
+        </Parallax>
 
-          {/* PhD Badge */}
-          <Parallax speed={2} className="mb-6 md:mb-8">
-            <div 
-              className={`inline-flex items-center px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-purple-500 to-blue-600 text-white rounded-full text-sm md:text-lg font-semibold transition-all duration-1000 delay-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              <span className="mr-2 md:mr-3 text-lg md:text-2xl">🎓</span>
-              <span className="hidden sm:inline">{personalInfo.education}</span>
-              <span className="sm:hidden">PhD in AI</span>
-            </div>
-          </Parallax>
-
-          {/* Description */}
-          <Parallax speed={2} className="mb-12 md:mb-16">
-            <p 
-              className={`text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-secondary-300 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-600 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              {personalInfo.about}
-            </p>
-          </Parallax>
-
-          {/* CTA Buttons */}
-          <Parallax speed={1} className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
-            <button 
-              className={`btn-primary text-sm md:text-base py-2 px-4 md:py-3 md:px-6 transition-all duration-1000 delay-800 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              View My Work
-            </button>
-            <button 
-              className={`btn-secondary text-sm md:text-base py-2 px-4 md:py-3 md:px-6 transition-all duration-1000 delay-1000 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Let&apos;s Connect
-            </button>
-          </Parallax>
-
-          {/* Stats */}
-          <Parallax speed={0} className="mt-12 md:mt-16 pb-24 md:pb-32">
-            <div 
-              className={`max-w-4xl mx-auto transition-all duration-1000 delay-1200 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              {/* Stats Container with Glassmorphism */}
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                  {/* Experience */}
-                  <div className="text-center group">
-                    <div className="relative">
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary-500/20 to-primary-600/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-2xl md:text-3xl">⏱️</span>
-                      </div>
-                      <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
-                        <span className="text-xs text-white font-bold">+</span>
-                      </div>
-                    </div>
-                    <div className="text-3xl md:text-4xl font-bold text-primary-400 mb-2 group-hover:text-primary-300 transition-colors duration-300">
-                      {personalInfo.experience}
-                    </div>
-                    <div className="text-secondary-300 text-sm md:text-base font-medium">
-                      Years Experience
-                    </div>
-                  </div>
-
-                  {/* Location */}
-                  <div className="text-center group">
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-accent-500/20 to-accent-600/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <span className="text-2xl md:text-3xl">📍</span>
-                    </div>
-                    <div className="text-3xl md:text-4xl font-bold text-accent-400 mb-2 group-hover:text-accent-300 transition-colors duration-300">
-                      {personalInfo.location.split(',')[0]}
-                    </div>
-                    <div className="text-secondary-300 text-sm md:text-base font-medium">
-                      Based in
-                    </div>
-                  </div>
-
-                  {/* PhD */}
-                  <div className="text-center group">
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <span className="text-2xl md:text-3xl">🎓</span>
-                    </div>
-                    <div className="text-3xl md:text-4xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors duration-300">
-                      PhD
-                    </div>
-                    <div className="text-secondary-300 text-sm md:text-base font-medium">
-                      AI Research
-                    </div>
-                  </div>
+        {/* Stats Section */}
+        <Parallax speed={0} className="mb-16">
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Years Experience */}
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-2xl">⏱️</span>
                 </div>
-
-                {/* Divider */}
-                <div className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-white/10">
-                  <div className="text-center">
-                    <p className="text-secondary-300 text-sm md:text-base italic">
-                      "Bridging AI research with modern web development"
-                    </p>
-                  </div>
+                <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                  {personalInfo.experience}
                 </div>
+                <div className="text-blue-200 font-medium">Years Experience</div>
+              </div>
+
+              {/* Based in */}
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-2xl">📍</span>
+                </div>
+                <div className="text-xl md:text-2xl font-bold text-white mb-2">
+                  {personalInfo.location}
+                </div>
+                <div className="text-blue-200 font-medium">Based in</div>
+              </div>
+
+              {/* PhD AI Research */}
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-2xl">🧠</span>
+                </div>
+                <div className="text-xl md:text-2xl font-bold text-white mb-2">
+                  PhD
+                </div>
+                <div className="text-blue-200 font-medium">AI Research</div>
               </div>
             </div>
-          </Parallax>
-        </div>
+            
+            {/* Inspirational Quote */}
+            <div className="mt-8 pt-8 border-t border-white/20">
+              <p className="text-blue-100 italic text-lg">
+                "The future belongs to those who believe in the beauty of their dreams." - Eleanor Roosevelt
+              </p>
+            </div>
+          </div>
+        </Parallax>
+
+        {/* CTA Buttons */}
+        <Parallax speed={1} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="#projects" 
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            View My Work
+            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a 
+            href="#contact" 
+            className="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+          >
+            Get In Touch
+            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          </a>
+        </Parallax>
       </div>
 
-      {/* Scroll Indicator */}
-      <Parallax speed={-3} className="absolute bottom-4 md:bottom-8 left-0 right-0 z-10 flex justify-center">
-        <div className="animate-bounce-slow">
-          <div className="relative group cursor-pointer" onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
-            {/* Main Arrow */}
-            <div className="w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
-              <svg
-                className="w-5 h-5 md:w-6 md:h-6 text-white/80 group-hover:text-primary-400 transition-colors duration-200"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
+      {/* Scroll Down Indicator */}
+      <Parallax speed={2} className="absolute bottom-8 left-0 right-0 flex justify-center">
+        <div className="group cursor-pointer" onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}>
+          <div className="relative">
+            {/* Pulsing Rings */}
+            <div className="absolute inset-0 bg-white/20 rounded-full animate-ping"></div>
+            <div className="absolute inset-2 bg-white/10 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+            
+            {/* Main Circle */}
+            <div className="relative w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300">
+              <svg className="w-6 h-6 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>
-            
-            {/* Pulsing Ring Effect */}
-            <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 border-2 border-white/20 rounded-full animate-ping"></div>
-            <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 border-2 border-primary-400/30 rounded-full animate-pulse"></div>
-            
-            {/* Text Label */}
-            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="text-xs text-white/70 font-medium whitespace-nowrap">Scroll Down</span>
-            </div>
+          </div>
+          
+          {/* Text Label */}
+          <div className="mt-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p className="text-white/80 text-sm font-medium">Scroll Down</p>
           </div>
         </div>
       </Parallax>
