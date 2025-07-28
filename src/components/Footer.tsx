@@ -18,8 +18,8 @@ const Footer = () => {
           
           <div className="mb-8">
             <p className="text-secondary-400 max-w-2xl mx-auto">
-              Thank you for visiting my portfolio. I'm passionate about creating amazing digital experiences 
-              and always excited to work on new projects. Let's build something incredible together!
+              Thank you for visiting my portfolio. I&apos;m passionate about creating amazing digital experiences 
+              and always excited to work on new projects. Let&apos;s build something incredible together!
             </p>
           </div>
           

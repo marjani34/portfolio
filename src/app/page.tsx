@@ -1,5 +1,6 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import ParallaxHero from '@/sections/ParallaxHero'
 import Hero from '@/sections/Hero'
 import About from '@/sections/About'
 import Projects from '@/sections/Projects'
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Header />
+      <ParallaxHero />
       <Hero />
       <About />
       <Projects />

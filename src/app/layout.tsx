@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
+import ParallaxWrapper from '@/components/ParallaxWrapper'
 import './globals.css'
 
 const inter = Inter({ 
@@ -41,7 +42,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${jetbrainsMono.variable} ${inter.className} bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white`}>
-        {children}
+        <ParallaxWrapper>
+          {children}
+        </ParallaxWrapper>
       </body>
     </html>
   )

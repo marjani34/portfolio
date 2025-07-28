@@ -163,7 +163,7 @@ const Certificates = () => {
               href="#contact" 
               className="btn-primary"
             >
-              Let's Discuss Your Project
+              Let&apos;s Discuss Your Project
             </a>
           </div>
         </div>

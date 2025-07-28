@@ -7,7 +7,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
           {/* Greeting */}
           <p className="text-primary-600 dark:text-primary-400 font-medium mb-4 animate-fade-in">
-            Hello, I'm
+            Hello, I&apos;m
           </p>
           
           {/* Name */}
@@ -45,24 +45,7 @@ const Hero = () => {
             </Link>
           </div>
           
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
-            <Link href="#about" className="text-secondary-400 hover:text-primary-600 transition-colors duration-200">
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </Link>
-          </div>
+
         </div>
       </div>
     </section>

@@ -139,13 +139,13 @@ const Awards = () => {
           {/* Call to Action */}
           <div className="text-center mt-12">
             <p className="text-secondary-600 dark:text-secondary-300 mb-6">
-              Always striving for excellence and pushing the boundaries of what's possible.
+              Always striving for excellence and pushing the boundaries of what&apos;s possible.
             </p>
             <a 
               href="#contact" 
               className="btn-primary"
             >
-              Let's Work Together
+              Let&apos;s Work Together
             </a>
           </div>
         </div>

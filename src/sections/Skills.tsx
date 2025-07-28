@@ -53,8 +53,8 @@ const Skills = () => {
           {/* Skills Overview */}
           <div className="text-center mb-12">
             <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
-              I've worked with a variety of technologies to create robust and scalable applications. 
-              Here's a breakdown of my technical skills and proficiency levels.
+              I&apos;ve worked with a variety of technologies to create robust and scalable applications. 
+              Here&apos;s a breakdown of my technical skills and proficiency levels.
             </p>
           </div>
 
