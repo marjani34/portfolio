@@ -104,10 +104,12 @@ const Hero = () => {
                   : "opacity-0 -translate-x-8"
               }`}
             >
-              <h2 className="text-xl md:text-2xl lg:text-3xl text-secondary-600 dark:text-secondary-300 font-medium min-h-[2.5rem] md:min-h-[3rem] lg:min-h-[3.5rem] flex items-center">
-                <span className="mr-2">{currentText}</span>
-                <span className={`inline-block w-0.5 h-6 md:h-8 lg:h-10 bg-secondary-600 dark:bg-secondary-300 animate-pulse`}></span>
-              </h2>
+              <div className="h-16 md:h-20 lg:h-24 flex items-center">
+                <h2 className="text-xl md:text-2xl lg:text-3xl text-secondary-600 dark:text-secondary-300 font-medium flex items-center">
+                  <span className="mr-2">{currentText}</span>
+                  <span className={`inline-block w-0.5 h-6 md:h-8 lg:h-10 bg-secondary-600 dark:bg-secondary-300 animate-pulse`}></span>
+                </h2>
+              </div>
             </div>
 
             {/* PhD Badge with Animation */}
@@ -349,18 +351,18 @@ const Hero = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-primary-500/20 to-accent-500/20 rounded-3xl blur-xl"></div>
               
               {/* Floating Tech Icons */}
-              <div className="absolute -top-4 -left-4 w-12 h-12 bg-white/80 dark:bg-secondary-800/80 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow">
+              <div className="absolute -top-4 -left-4 w-12 h-12 bg-white/80 dark:bg-secondary-800/80 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow z-20">
                 <span className="text-2xl">⚛️</span>
               </div>
-              <div className="absolute -top-2 -right-2 w-10 h-10 bg-white/80 dark:bg-secondary-800/80 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow" style={{ animationDelay: '1s' }}>
+              <div className="absolute -top-2 -right-2 w-10 h-10 bg-white/80 dark:bg-secondary-800/80 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow z-20" style={{ animationDelay: '1s' }}>
                 <span className="text-xl">🅰️</span>
               </div>
-              <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-white/80 dark:bg-secondary-800/80 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow" style={{ animationDelay: '2s' }}>
+              <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-white/80 dark:bg-secondary-800/80 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow z-20" style={{ animationDelay: '2s' }}>
                 <span className="text-xl">⚡</span>
               </div>
               
               {/* Main Image Container */}
-              <div className="relative bg-white dark:bg-secondary-800 rounded-3xl p-4 shadow-2xl">
+              <div className="relative bg-white dark:bg-secondary-800 rounded-3xl p-4 shadow-2xl z-10">
                 <Image
                   src={profileImage}
                   alt={`${personalInfo.name} - Professional Headshot`}
@@ -369,7 +371,7 @@ const Hero = () => {
                 />
                 
                 {/* Experience Badge */}
-                <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-primary-600 to-accent-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-primary-600 to-accent-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg z-30">
                   {personalInfo.experience}+ Years
                 </div>
               </div>
