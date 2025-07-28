@@ -74,7 +74,7 @@ const ParallaxHero = () => {
   }, [currentText, currentTitleIndex, isDeleting, titles]);
 
   return (
-    <section id="parallax-hero" className="relative min-h-screen flex items-center justify-center pt-16 md:pt-20 overflow-hidden bg-gradient-to-br from-secondary-900 via-primary-900 to-accent-900 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800">
+    <section id="parallax-hero" className="relative min-h-screen md:min-h-screen flex items-center justify-center pt-20 pb-16 md:pt-16 md:pb-8 overflow-hidden bg-gradient-to-br from-secondary-900 via-primary-900 to-accent-900 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800">
       {/* Parallax Background Layers */}
       <Parallax speed={-20} className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary-900/80 via-primary-900/60 to-accent-900/80 dark:from-secondary-800/80 dark:via-primary-800/60 dark:to-accent-800/80"></div>
@@ -260,8 +260,8 @@ const ParallaxHero = () => {
         </Parallax>
       </div>
 
-      {/* Scroll Down Indicator */}
-      <Parallax speed={2} className={`absolute bottom-8 left-0 right-0 flex justify-center transition-all duration-1000 delay-1400 ${
+      {/* Scroll Down Indicator - Moved to bottom right */}
+      <Parallax speed={2} className={`absolute bottom-4 md:bottom-8 right-4 md:right-8 transition-all duration-1000 delay-1400 hidden md:block ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
         <div className="group cursor-pointer" onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}>
@@ -271,15 +271,15 @@ const ParallaxHero = () => {
             <div className="absolute inset-2 bg-white/10 dark:bg-white/5 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
             
             {/* Main Circle */}
-            <div className="relative w-12 h-12 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 dark:group-hover:bg-white/10 transition-all duration-300">
-              <svg className="w-6 h-6 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="relative w-10 h-10 md:w-12 md:h-12 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 dark:group-hover:bg-white/10 transition-all duration-300">
+              <svg className="w-4 h-4 md:w-6 md:h-6 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>
           </div>
           
-          {/* Text Label */}
-          <div className="mt-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {/* Text Label - Hidden on mobile */}
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap hidden md:block">
             <p className="text-white/80 dark:text-white/70 text-sm font-medium">Scroll Down</p>
           </div>
         </div>
