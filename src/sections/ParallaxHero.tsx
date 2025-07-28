@@ -25,15 +25,15 @@ const ParallaxHero = () => {
 
       {/* Floating Elements */}
       <Parallax speed={-8} className="absolute inset-0 z-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-500/20 rounded-full blur-xl"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-accent-500/20 rounded-full blur-xl"></div>
-        <div className="absolute bottom-32 left-1/4 w-40 h-40 bg-secondary-500/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-1/3 w-28 h-28 bg-primary-400/15 rounded-full blur-xl"></div>
+        <div className="absolute top-20 left-10 w-16 h-16 md:w-32 md:h-32 bg-primary-500/20 rounded-full blur-xl"></div>
+        <div className="absolute top-40 right-20 w-12 h-12 md:w-24 md:h-24 bg-accent-500/20 rounded-full blur-xl"></div>
+        <div className="absolute bottom-32 left-1/4 w-20 h-20 md:w-40 md:h-40 bg-secondary-500/10 rounded-full blur-xl"></div>
+        <div className="absolute bottom-20 right-1/3 w-14 h-14 md:w-28 md:h-28 bg-primary-400/15 rounded-full blur-xl"></div>
       </Parallax>
 
       {/* AI-Themed Floating Images - Left Side */}
-      <Parallax speed={-12} className="absolute left-8 top-1/4 z-5">
-        <div className="w-24 h-24 md:w-32 md:h-32 opacity-60 hover:opacity-80 transition-opacity duration-300">
+      <Parallax speed={-12} className="absolute left-2 md:left-8 top-1/4 z-5">
+        <div className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 opacity-40 md:opacity-60 hover:opacity-80 transition-opacity duration-300">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <defs>
               <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -49,8 +49,8 @@ const ParallaxHero = () => {
         </div>
       </Parallax>
 
-      <Parallax speed={-6} className="absolute left-16 bottom-1/3 z-5">
-        <div className="w-20 h-20 md:w-28 md:h-28 opacity-50 hover:opacity-70 transition-opacity duration-300">
+      <Parallax speed={-6} className="absolute left-4 md:left-16 bottom-1/3 z-5">
+        <div className="w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 opacity-30 md:opacity-50 hover:opacity-70 transition-opacity duration-300">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <defs>
               <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -72,8 +72,8 @@ const ParallaxHero = () => {
       </Parallax>
 
       {/* AI-Themed Floating Images - Right Side */}
-      <Parallax speed={-10} className="absolute right-12 top-1/3 z-5">
-        <div className="w-28 h-28 md:w-36 md:h-36 opacity-55 hover:opacity-75 transition-opacity duration-300">
+      <Parallax speed={-10} className="absolute right-3 md:right-12 top-1/3 z-5">
+        <div className="w-18 h-18 md:w-28 md:h-28 lg:w-36 lg:h-36 opacity-35 md:opacity-55 hover:opacity-75 transition-opacity duration-300">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <defs>
               <linearGradient id="chipGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -92,8 +92,8 @@ const ParallaxHero = () => {
         </div>
       </Parallax>
 
-      <Parallax speed={-4} className="absolute right-8 bottom-1/4 z-5">
-        <div className="w-16 h-16 md:w-24 md:h-24 opacity-45 hover:opacity-65 transition-opacity duration-300">
+      <Parallax speed={-4} className="absolute right-2 md:right-8 bottom-1/4 z-5">
+        <div className="w-10 h-10 md:w-16 md:h-16 lg:w-24 lg:h-24 opacity-25 md:opacity-45 hover:opacity-65 transition-opacity duration-300">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <defs>
               <linearGradient id="dataGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -112,8 +112,8 @@ const ParallaxHero = () => {
       </Parallax>
 
       {/* Additional Floating Code Elements */}
-      <Parallax speed={-7} className="absolute left-1/4 top-16 z-5">
-        <div className="w-20 h-20 md:w-28 md:h-28 opacity-40 hover:opacity-60 transition-opacity duration-300">
+      <Parallax speed={-7} className="absolute left-1/4 top-8 md:top-16 z-5">
+        <div className="w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 opacity-25 md:opacity-40 hover:opacity-60 transition-opacity duration-300">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <defs>
               <linearGradient id="codeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -129,8 +129,8 @@ const ParallaxHero = () => {
         </div>
       </Parallax>
 
-      <Parallax speed={-9} className="absolute right-1/4 bottom-20 z-5">
-        <div className="w-24 h-24 md:w-32 md:h-32 opacity-50 hover:opacity-70 transition-opacity duration-300">
+      <Parallax speed={-9} className="absolute right-1/4 bottom-12 md:bottom-20 z-5">
+        <div className="w-14 h-14 md:w-24 md:h-24 lg:w-32 lg:h-32 opacity-30 md:opacity-50 hover:opacity-70 transition-opacity duration-300">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <defs>
               <linearGradient id="robotGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -154,9 +154,9 @@ const ParallaxHero = () => {
       <div className="relative z-10 container-custom text-center px-4">
         <div className="max-w-5xl mx-auto">
           {/* Animated Greeting */}
-          <Parallax speed={8} className="mb-8">
+          <Parallax speed={8} className="mb-4 md:mb-8">
             <p 
-              className={`text-primary-300 font-medium text-lg md:text-xl lg:text-2xl transition-all duration-1000 ${
+              className={`text-primary-300 font-medium text-base md:text-lg lg:text-xl xl:text-2xl transition-all duration-1000 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -165,9 +165,9 @@ const ParallaxHero = () => {
           </Parallax>
 
           {/* Main Heading */}
-          <Parallax speed={5} className="mb-8">
+          <Parallax speed={5} className="mb-4 md:mb-8">
             <h1 
-              className={`text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 transition-all duration-1000 delay-200 ${
+              className={`text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-3 md:mb-6 transition-all duration-1000 delay-200 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
@@ -176,9 +176,9 @@ const ParallaxHero = () => {
           </Parallax>
 
           {/* Subheading */}
-          <Parallax speed={3} className="mb-10">
+          <Parallax speed={3} className="mb-6 md:mb-10">
             <h2 
-              className={`text-xl md:text-2xl lg:text-3xl text-secondary-200 mb-8 transition-all duration-1000 delay-400 ${
+              className={`text-lg sm:text-xl md:text-2xl lg:text-3xl text-secondary-200 mb-4 md:mb-8 transition-all duration-1000 delay-400 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -187,21 +187,22 @@ const ParallaxHero = () => {
           </Parallax>
 
           {/* PhD Badge */}
-          <Parallax speed={2} className="mb-8">
+          <Parallax speed={2} className="mb-6 md:mb-8">
             <div 
-              className={`inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-600 text-white rounded-full text-lg font-semibold transition-all duration-1000 delay-500 ${
+              className={`inline-flex items-center px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-purple-500 to-blue-600 text-white rounded-full text-sm md:text-lg font-semibold transition-all duration-1000 delay-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              <span className="mr-3 text-2xl">🎓</span>
-              {personalInfo.education}
+              <span className="mr-2 md:mr-3 text-lg md:text-2xl">🎓</span>
+              <span className="hidden sm:inline">{personalInfo.education}</span>
+              <span className="sm:hidden">PhD in AI</span>
             </div>
           </Parallax>
 
           {/* Description */}
-          <Parallax speed={2} className="mb-16">
+          <Parallax speed={2} className="mb-12 md:mb-16">
             <p 
-              className={`text-lg md:text-xl lg:text-2xl text-secondary-300 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-600 ${
+              className={`text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-secondary-300 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-600 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -210,9 +211,9 @@ const ParallaxHero = () => {
           </Parallax>
 
           {/* CTA Buttons */}
-          <Parallax speed={1} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <Parallax speed={1} className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
             <button 
-              className={`btn-primary transition-all duration-1000 delay-800 ${
+              className={`btn-primary text-sm md:text-base py-2 px-4 md:py-3 md:px-6 transition-all duration-1000 delay-800 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
@@ -220,7 +221,7 @@ const ParallaxHero = () => {
               View My Work
             </button>
             <button 
-              className={`btn-secondary transition-all duration-1000 delay-1000 ${
+              className={`btn-secondary text-sm md:text-base py-2 px-4 md:py-3 md:px-6 transition-all duration-1000 delay-1000 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
@@ -230,23 +231,23 @@ const ParallaxHero = () => {
           </Parallax>
 
           {/* Stats */}
-          <Parallax speed={0} className="mt-16">
+          <Parallax speed={0} className="mt-12 md:mt-16 pb-16 md:pb-20">
             <div 
-              className={`grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto transition-all duration-1000 delay-1200 ${
+              className={`grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-3xl mx-auto transition-all duration-1000 delay-1200 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary-400 mb-2">{personalInfo.experience}</div>
-                <div className="text-secondary-300 text-sm md:text-base">Years Experience</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-400 mb-1 md:mb-2">{personalInfo.experience}</div>
+                <div className="text-secondary-300 text-xs sm:text-sm md:text-base">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary-400 mb-2">{personalInfo.location.split(',')[0]}</div>
-                <div className="text-secondary-300 text-sm md:text-base">Based in</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-400 mb-1 md:mb-2">{personalInfo.location.split(',')[0]}</div>
+                <div className="text-secondary-300 text-xs sm:text-sm md:text-base">Based in</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary-400 mb-2">PhD</div>
-                <div className="text-secondary-300 text-sm md:text-base">AI Research</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-400 mb-1 md:mb-2">PhD</div>
+                <div className="text-secondary-300 text-xs sm:text-sm md:text-base">AI Research</div>
               </div>
             </div>
           </Parallax>
@@ -254,22 +255,35 @@ const ParallaxHero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <Parallax speed={-3} className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+      <Parallax speed={-3} className="absolute bottom-4 md:bottom-8 left-0 right-0 z-10 flex justify-center">
         <div className="animate-bounce-slow">
-          <svg
-            className="w-8 h-8 text-white/70 hover:text-primary-400 transition-colors duration-200 cursor-pointer"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
+          <div className="relative group cursor-pointer" onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
+            {/* Main Arrow */}
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
+              <svg
+                className="w-5 h-5 md:w-6 md:h-6 text-white/80 group-hover:text-primary-400 transition-colors duration-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </div>
+            
+            {/* Pulsing Ring Effect */}
+            <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 border-2 border-white/20 rounded-full animate-ping"></div>
+            <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 border-2 border-primary-400/30 rounded-full animate-pulse"></div>
+            
+            {/* Text Label */}
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="text-xs text-white/70 font-medium whitespace-nowrap">Scroll Down</span>
+            </div>
+          </div>
         </div>
       </Parallax>
     </section>
