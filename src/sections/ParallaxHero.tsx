@@ -17,14 +17,14 @@ const ParallaxHero = () => {
     "Human-Centered AI Engineer & Web Creator"
   ];
 
-  // Scroll animations for different elements
-  const nameAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
-  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
-  const educationAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
-  const aboutAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
-  const statsAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false });
-  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
-  const scrollIndicatorAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
+  // Scroll animations for different elements with delays
+  const nameAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
+  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
+  const educationAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 700 });
+  const aboutAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 900 });
+  const statsAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 1100 });
+  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 1300 });
+  const scrollIndicatorAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 1500 });
 
   // Typewriter effect
   useEffect(() => {

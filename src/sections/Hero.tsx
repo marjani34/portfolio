@@ -19,14 +19,14 @@ const Hero = () => {
     "Human-Centered AI Engineer & Web Creator"
   ];
 
-  // Scroll animations for different elements
-  const greetingAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
-  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
-  const badgeAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
-  const quoteAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
-  const researchAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false });
-  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
-  const imageAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
+  // Scroll animations for different elements with delays
+  const greetingAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 200 });
+  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 400 });
+  const badgeAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 600 });
+  const quoteAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
+  const researchAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 800 });
+  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 1000 });
+  const imageAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
 
   // Typewriter effect
   useEffect(() => {
