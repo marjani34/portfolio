@@ -77,77 +77,154 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-gray-50 dark:from-secondary-900 dark:to-secondary-800 py-20"
+      className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden bg-gradient-to-b from-secondary-900 via-secondary-800 to-secondary-900"
     >
-      <div className="container-custom">
+      {/* Smooth Transition from Parallax - Vertical Gradient */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary-900 via-secondary-900/80 to-transparent"></div>
+      
+      {/* Background Layers with Enhanced Dark Blue Dominance */}
+      <div className="absolute inset-0 bg-gradient-to-br from-secondary-900/90 via-secondary-800/70 to-secondary-900/90"></div>
+      
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-accent-900/10 to-secondary-900/20 opacity-40"></div>
+
+      {/* Enhanced Floating Blur Circles with Dark Blue Focus */}
+      <div className={`absolute top-20 left-20 w-96 h-96 bg-secondary-500/15 dark:bg-secondary-400/15 rounded-full blur-3xl transition-all duration-1000 delay-200 ${
+        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+      }`}></div>
+      <div className={`absolute bottom-20 right-20 w-80 h-80 bg-primary-500/10 dark:bg-primary-400/10 rounded-full blur-3xl transition-all duration-1000 delay-400 ${
+        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+      }`}></div>
+      <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent-500/8 dark:bg-accent-400/8 rounded-full blur-3xl transition-all duration-1000 delay-600 ${
+        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+      }`}></div>
+
+      {/* Purple Accent Glows for Highlights */}
+      <div className={`absolute top-1/4 right-1/4 w-48 h-48 bg-accent-500/5 rounded-full blur-2xl transition-all duration-1000 delay-800 ${
+        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+      }`}></div>
+      <div className={`absolute bottom-1/4 left-1/4 w-32 h-32 bg-accent-500/8 rounded-full blur-2xl transition-all duration-1000 delay-1000 ${
+        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+      }`}></div>
+
+      {/* AI-themed Floating SVG Images */}
+      <div className={`absolute top-20 left-10 opacity-15 md:opacity-20 transition-all duration-1000 delay-300 ${
+        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <svg className="w-16 h-16 md:w-20 md:h-20 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+
+      <div className={`absolute top-32 right-20 opacity-15 md:opacity-20 transition-all duration-1000 delay-500 ${
+        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <svg className="w-12 h-12 md:w-16 md:h-16 text-accent-300 dark:text-accent-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+        </svg>
+      </div>
+
+      <div className={`absolute bottom-32 left-20 opacity-15 md:opacity-20 transition-all duration-1000 delay-700 ${
+        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <svg className="w-14 h-14 md:w-18 md:h-18 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+      </div>
+
+      <div className={`absolute bottom-20 right-10 opacity-15 md:opacity-20 transition-all duration-1000 delay-900 ${
+        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <svg className="w-10 h-10 md:w-14 md:h-14 text-primary-300 dark:text-primary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      </div>
+
+      <div className={`absolute top-1/2 left-1/4 opacity-15 md:opacity-20 transition-all duration-1000 delay-1100 ${
+        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <svg className="w-8 h-8 md:w-12 md:h-12 text-accent-300 dark:text-accent-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+        </svg>
+      </div>
+
+      <div className={`absolute top-1/3 right-1/4 opacity-15 md:opacity-20 transition-all duration-1000 delay-1300 ${
+        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <svg className="w-6 h-6 md:w-10 md:h-10 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+
+      {/* Main Content */}
+      <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side - Content */}
           <div className="text-left space-y-8">
-            {/* Greeting with Animation */}
+            {/* Greeting with Enhanced Animation */}
             <div
-              className={`transition-all duration-1000 delay-200 ${
+              className={`transition-all duration-1200 delay-300 ease-out ${
                 isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-8"
+                  ? "opacity-100 translate-x-0 scale-100"
+                  : "opacity-0 -translate-x-12 scale-95"
               }`}
             >
-              <p className="text-primary-600 dark:text-primary-400 font-medium text-lg md:text-xl">
+              <p className="text-secondary-300 dark:text-secondary-200 font-medium text-lg md:text-xl">
                 Welcome to my portfolio
               </p>
             </div>
 
-            {/* Title with Typewriter Animation */}
+            {/* Title with Enhanced Typewriter Animation and Scroll Reveal */}
             <div
-              className={`transition-all duration-1000 delay-600 ${
+              className={`transition-all duration-1200 delay-600 ease-out ${
                 isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-8"
+                  ? "opacity-100 translate-x-0 scale-100"
+                  : "opacity-0 -translate-x-12 scale-95"
               }`}
             >
               <div className="h-16 md:h-20 lg:h-24 flex items-center">
-                <h2 className="text-xl md:text-2xl lg:text-3xl text-secondary-600 dark:text-secondary-300 font-medium flex items-center">
+                <h2 className="text-xl md:text-2xl lg:text-3xl text-white dark:text-white font-medium flex items-center">
                   <span className="mr-2">{currentText}</span>
-                  <span className={`inline-block w-0.5 h-6 md:h-8 lg:h-10 bg-secondary-600 dark:bg-secondary-300 animate-pulse`}></span>
+                  <span className={`inline-block w-0.5 h-6 md:h-8 lg:h-10 bg-accent-400 dark:bg-accent-300 animate-pulse`}></span>
                 </h2>
               </div>
             </div>
 
-            {/* PhD Badge with Animation */}
+            {/* PhD Badge with Enhanced Animation */}
             <div
-              className={`transition-all duration-1000 delay-800 ${
+              className={`transition-all duration-1200 delay-800 ease-out ${
                 isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-8"
+                  ? "opacity-100 translate-x-0 scale-100"
+                  : "opacity-0 -translate-x-12 scale-95"
               }`}
             >
-              <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-600 text-white rounded-full text-base font-semibold shadow-lg">
+              <div className="inline-flex items-center px-6 py-3 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 text-white rounded-full text-base font-semibold shadow-lg">
                 <span className="mr-3 text-xl">🎓</span>
                 PhD in Artificial Intelligence
               </div>
             </div>
 
-            {/* Quote Box with Animation */}
+            {/* Quote Box with Enhanced Animation */}
             <div
-              className={`transition-all duration-1000 delay-700 ${
+              className={`transition-all duration-1200 delay-700 ease-out ${
                 isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-8"
+                  ? "opacity-100 translate-x-0 scale-100"
+                  : "opacity-0 -translate-x-12 scale-95"
               }`}
             >
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+              <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-2xl p-6 md:p-8 shadow-lg">
                 <div className="text-center space-y-4">
                   {/* Quote */}
-                  <blockquote className="text-lg md:text-xl text-secondary-700 dark:text-secondary-300 italic font-medium leading-relaxed">
+                  <blockquote className="text-lg md:text-xl text-white dark:text-white italic font-medium leading-relaxed">
                     "Not everything that counts can be counted."
                   </blockquote>
                   
                   {/* Author */}
-                  <cite className="text-sm md:text-base text-secondary-600 dark:text-secondary-400 font-medium not-italic">
+                  <cite className="text-sm md:text-base text-secondary-200 dark:text-secondary-100 font-medium not-italic">
                     – Albert Einstein
                   </cite>
                   
                   {/* Subtitle */}
-                  <p className="text-base md:text-lg text-secondary-600 dark:text-secondary-400 leading-relaxed max-w-2xl mx-auto">
+                  <p className="text-base md:text-lg text-secondary-200 dark:text-secondary-100 leading-relaxed max-w-2xl mx-auto">
                     In a world of surveillance and algorithms, here are the things that remain truly human.
                   </p>
                   
@@ -155,7 +232,7 @@ const Hero = () => {
                   <div className="pt-4">
                     <button 
                       onClick={() => document.getElementById('untrackable')?.scrollIntoView({ behavior: 'smooth' })}
-                      className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                      className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-secondary-600 to-accent-600 hover:from-secondary-700 hover:to-accent-700 dark:from-secondary-500 dark:to-accent-500 dark:hover:from-secondary-600 dark:hover:to-accent-600 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                     >
                       Explore the Untrackable
                       <svg 
@@ -177,20 +254,20 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* University Research Focus */}
+            {/* University Research Focus with Enhanced Animation */}
             <div
-              className={`transition-all duration-1000 delay-1000 ${
+              className={`transition-all duration-1200 delay-1000 ease-out ${
                 isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-8"
+                  ? "opacity-100 translate-x-0 scale-100"
+                  : "opacity-0 -translate-x-12 scale-95"
               }`}
             >
-              <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-900/30 dark:via-indigo-900/20 dark:to-purple-900/30 rounded-3xl p-8 border border-blue-200/50 dark:border-blue-700/50 shadow-xl">
+              <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-3xl p-8 shadow-xl">
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl md:text-3xl font-bold text-blue-900 dark:text-blue-100 mb-2">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white dark:text-white mb-2">
                     🧠 AI Research Focus Areas
                   </h3>
-                  <p className="text-blue-700 dark:text-blue-300 text-sm md:text-base">
+                  <p className="text-secondary-200 dark:text-secondary-100 text-sm md:text-base">
                     Comprehensive expertise in artificial intelligence and
                     machine learning
                   </p>
@@ -199,120 +276,120 @@ const Hero = () => {
                 {/* Research Categories Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Mathematics for AI */}
-                  <div className="bg-white/60 dark:bg-blue-900/20 rounded-2xl p-5 border border-blue-200/50 dark:border-blue-700/50 hover:shadow-lg transition-all duration-300">
+                  <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-2xl p-5 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
+                      <div className="w-8 h-8 bg-gradient-to-br from-secondary-500 to-secondary-600 rounded-lg flex items-center justify-center mr-3">
                         <span className="text-white text-sm font-bold">∑</span>
                       </div>
-                      <h4 className="font-bold text-blue-900 dark:text-blue-100 text-lg">
+                      <h4 className="font-bold text-white dark:text-white text-lg">
                         Mathematics for AI
                       </h4>
                     </div>
-                    <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-2">
+                    <ul className="text-sm text-secondary-200 dark:text-secondary-100 space-y-2">
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         Linear Algebra & Matrix Operations
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         Calculus & Gradient Descent
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         Probability & Statistics
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         Optimization & Information Theory
                       </li>
                     </ul>
                   </div>
 
                   {/* Machine Learning */}
-                  <div className="bg-white/60 dark:bg-indigo-900/20 rounded-2xl p-5 border border-indigo-200/50 dark:border-indigo-700/50 hover:shadow-lg transition-all duration-300">
+                  <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-2xl p-5 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center mr-3">
+                      <div className="w-8 h-8 bg-gradient-to-br from-accent-500 to-accent-600 rounded-lg flex items-center justify-center mr-3">
                         <span className="text-white text-sm font-bold">🤖</span>
                       </div>
-                      <h4 className="font-bold text-indigo-900 dark:text-indigo-100 text-lg">
+                      <h4 className="font-bold text-white dark:text-white text-lg">
                         Machine Learning & Deep Learning
                       </h4>
                     </div>
-                    <ul className="text-sm text-indigo-800 dark:text-indigo-200 space-y-2">
+                    <ul className="text-sm text-secondary-200 dark:text-secondary-100 space-y-2">
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-accent-400 rounded-full mr-3"></span>
                         Supervised & Unsupervised Learning
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-accent-400 rounded-full mr-3"></span>
                         Neural Networks & Backpropagation
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-accent-400 rounded-full mr-3"></span>
                         CNNs, RNNs, Transformers
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-accent-400 rounded-full mr-3"></span>
                         Dimensionality Reduction
                       </li>
                     </ul>
                   </div>
 
                   {/* Theoretical Foundations */}
-                  <div className="bg-white/60 dark:bg-purple-900/20 rounded-2xl p-5 border border-purple-200/50 dark:border-purple-700/50 hover:shadow-lg transition-all duration-300">
+                  <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-2xl p-5 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                      <div className="w-8 h-8 bg-gradient-to-br from-secondary-500 to-secondary-600 rounded-lg flex items-center justify-center mr-3">
                         <span className="text-white text-sm font-bold">📚</span>
                       </div>
-                      <h4 className="font-bold text-purple-900 dark:text-purple-100 text-lg">
+                      <h4 className="font-bold text-white dark:text-white text-lg">
                         Theoretical Foundations
                       </h4>
                     </div>
-                    <ul className="text-sm text-purple-800 dark:text-purple-200 space-y-2">
+                    <ul className="text-sm text-secondary-200 dark:text-secondary-100 space-y-2">
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         Computational Learning Theory
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         PAC Learning & VC Dimension
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         Bayesian Methods & Networks
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         Statistical Learning Theory
                       </li>
                     </ul>
                   </div>
 
                   {/* Practical Engineering */}
-                  <div className="bg-white/60 dark:bg-green-900/20 rounded-2xl p-5 border border-green-200/50 dark:border-green-700/50 hover:shadow-lg transition-all duration-300">
+                  <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-2xl p-5 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-3">
+                      <div className="w-8 h-8 bg-gradient-to-br from-secondary-500 to-accent-500 rounded-lg flex items-center justify-center mr-3">
                         <span className="text-white text-sm font-bold">⚙️</span>
                       </div>
-                      <h4 className="font-bold text-green-900 dark:text-green-100 text-lg">
+                      <h4 className="font-bold text-white dark:text-white text-lg">
                         Practical Engineering
                       </h4>
                     </div>
-                    <ul className="text-sm text-green-800 dark:text-green-200 space-y-2">
+                    <ul className="text-sm text-secondary-200 dark:text-secondary-100 space-y-2">
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         Python, PyTorch, TensorFlow
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         Experiment Tracking & Deployment
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         GPU/TPU Computing
                       </li>
                       <li className="flex items-center">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-secondary-400 rounded-full mr-3"></span>
                         MLOps & Benchmarking
                       </li>
                     </ul>
@@ -321,48 +398,54 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* CTA Buttons with Animation */}
+            {/* CTA Buttons with Enhanced Scroll Reveal Animation */}
             <div
-              className={`flex flex-col sm:flex-row gap-4 pt-6 transition-all duration-1000 delay-1400 ${
+              className={`flex flex-col sm:flex-row gap-4 pt-6 transition-all duration-1200 delay-1400 ease-out ${
                 isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-8"
+                  ? "opacity-100 translate-x-0 scale-100"
+                  : "opacity-0 -translate-x-12 scale-95"
               }`}
             >
-              <Link href="#projects" className="btn-primary text-center">
+              <Link href="#projects" className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-secondary-600 to-accent-600 hover:from-secondary-700 hover:to-accent-700 dark:from-secondary-500 dark:to-accent-500 dark:hover:from-secondary-600 dark:hover:to-accent-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center justify-center">
                 View My Work
+                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Link>
-              <Link href="#contact" className="btn-secondary text-center">
+              <Link href="#contact" className="inline-flex items-center px-8 py-4 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-white/10 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-center justify-center">
                 Get In Touch
+                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
               </Link>
             </div>
           </div>
 
-          {/* Right Side - Profile Image */}
+          {/* Right Side - Profile Image with Enhanced Animation */}
           <div
-            className={`relative transition-all duration-1000 delay-300 ${
+            className={`relative transition-all duration-1200 delay-300 ease-out ${
               isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-8"
+                ? "opacity-100 translate-x-0 scale-100"
+                : "opacity-0 translate-x-12 scale-95"
             }`}
           >
             <div className="relative">
               {/* Background Elements */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary-500/20 to-accent-500/20 rounded-3xl blur-xl"></div>
+              <div className="absolute -inset-4 bg-gradient-to-r from-secondary-500/20 to-accent-500/20 rounded-3xl blur-xl"></div>
               
               {/* Floating Tech Icons */}
-              <div className="absolute -top-4 -left-4 w-12 h-12 bg-white/80 dark:bg-secondary-800/80 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow z-20">
+              <div className="absolute -top-4 -left-4 w-12 h-12 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow z-20">
                 <span className="text-2xl">⚛️</span>
               </div>
-              <div className="absolute -top-2 -right-2 w-10 h-10 bg-white/80 dark:bg-secondary-800/80 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow z-20" style={{ animationDelay: '1s' }}>
+              <div className="absolute -top-2 -right-2 w-10 h-10 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow z-20" style={{ animationDelay: '1s' }}>
                 <span className="text-xl">🅰️</span>
               </div>
-              <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-white/80 dark:bg-secondary-800/80 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow z-20" style={{ animationDelay: '2s' }}>
+              <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-xl flex items-center justify-center shadow-lg animate-bounce-slow z-20" style={{ animationDelay: '2s' }}>
                 <span className="text-xl">⚡</span>
               </div>
               
               {/* Main Image Container */}
-              <div className="relative bg-white dark:bg-secondary-800 rounded-3xl p-4 shadow-2xl z-10">
+              <div className="relative bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-3xl p-4 shadow-2xl z-10">
                 <Image
                   src={profileImage}
                   alt={`${personalInfo.name} - Professional Headshot`}
@@ -371,7 +454,7 @@ const Hero = () => {
                 />
                 
                 {/* Experience Badge */}
-                <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-primary-600 to-accent-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg z-30">
+                <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-secondary-600 to-accent-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg z-30">
                   {personalInfo.experience}
                 </div>
               </div>

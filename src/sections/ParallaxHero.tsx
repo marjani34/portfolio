@@ -284,6 +284,15 @@ const ParallaxHero = () => {
           </div>
         </div>
       </Parallax>
+
+      {/* Smooth Transition Zone to Hero Section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary-900 via-secondary-900/80 to-transparent"></div>
+      
+      {/* Blurred Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent blur-sm"></div>
+      
+      {/* Purple Accent Glow at Bottom */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-accent-500/10 rounded-full blur-3xl"></div>
     </section>
   )
 }
