@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import { personalInfo } from "@/data/portfolio";
 import profileImage from "@/assets/images/profile.png";
 import Image from "next/image";
+import { useScrollAnimation, scrollAnimations } from "@/hooks/useScrollAnimation";
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -19,27 +19,14 @@ const Hero = () => {
     "Human-Centered AI Engineer & Web Creator"
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById("home");
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
-  }, []);
+  // Scroll animations for different elements
+  const greetingAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
+  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
+  const badgeAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
+  const quoteAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
+  const researchAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false });
+  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
+  const imageAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false });
 
   // Typewriter effect
   useEffect(() => {
@@ -88,68 +75,46 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-accent-900/10 to-secondary-900/20 opacity-40"></div>
 
       {/* Enhanced Floating Blur Circles with Dark Blue Focus */}
-      <div className={`absolute top-20 left-20 w-96 h-96 bg-secondary-500/15 dark:bg-secondary-400/15 rounded-full blur-3xl transition-all duration-1000 delay-200 ${
-        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
-      }`}></div>
-      <div className={`absolute bottom-20 right-20 w-80 h-80 bg-primary-500/10 dark:bg-primary-400/10 rounded-full blur-3xl transition-all duration-1000 delay-400 ${
-        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
-      }`}></div>
-      <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent-500/8 dark:bg-accent-400/8 rounded-full blur-3xl transition-all duration-1000 delay-600 ${
-        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
-      }`}></div>
+      <div className="absolute top-20 left-20 w-96 h-96 bg-secondary-500/15 dark:bg-secondary-400/15 rounded-full blur-3xl transition-all duration-1000 delay-200"></div>
+      <div className="absolute bottom-20 right-20 w-80 h-80 bg-primary-500/10 dark:bg-primary-400/10 rounded-full blur-3xl transition-all duration-1000 delay-400"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent-500/8 dark:bg-accent-400/8 rounded-full blur-3xl transition-all duration-1000 delay-600"></div>
 
       {/* Purple Accent Glows for Highlights */}
-      <div className={`absolute top-1/4 right-1/4 w-48 h-48 bg-accent-500/5 rounded-full blur-2xl transition-all duration-1000 delay-800 ${
-        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
-      }`}></div>
-      <div className={`absolute bottom-1/4 left-1/4 w-32 h-32 bg-accent-500/8 rounded-full blur-2xl transition-all duration-1000 delay-1000 ${
-        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
-      }`}></div>
+      <div className="absolute top-1/4 right-1/4 w-48 h-48 bg-accent-500/5 rounded-full blur-2xl transition-all duration-1000 delay-800"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-32 h-32 bg-accent-500/8 rounded-full blur-2xl transition-all duration-1000 delay-1000"></div>
 
       {/* AI-themed Floating SVG Images */}
-      <div className={`absolute top-20 left-10 opacity-15 md:opacity-20 transition-all duration-1000 delay-300 ${
-        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}>
+      <div className="absolute top-20 left-10 opacity-15 md:opacity-20 transition-all duration-1000 delay-300">
         <svg className="w-16 h-16 md:w-20 md:h-20 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
       </div>
 
-      <div className={`absolute top-32 right-20 opacity-15 md:opacity-20 transition-all duration-1000 delay-500 ${
-        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}>
+      <div className="absolute top-32 right-20 opacity-15 md:opacity-20 transition-all duration-1000 delay-500">
         <svg className="w-12 h-12 md:w-16 md:h-16 text-accent-300 dark:text-accent-200" fill="currentColor" viewBox="0 0 24 24">
           <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
         </svg>
       </div>
 
-      <div className={`absolute bottom-32 left-20 opacity-15 md:opacity-20 transition-all duration-1000 delay-700 ${
-        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}>
+      <div className="absolute bottom-32 left-20 opacity-15 md:opacity-20 transition-all duration-1000 delay-700">
         <svg className="w-14 h-14 md:w-18 md:h-18 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
           <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
         </svg>
       </div>
 
-      <div className={`absolute bottom-20 right-10 opacity-15 md:opacity-20 transition-all duration-1000 delay-900 ${
-        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}>
+      <div className="absolute bottom-20 right-10 opacity-15 md:opacity-20 transition-all duration-1000 delay-900">
         <svg className="w-10 h-10 md:w-14 md:h-14 text-primary-300 dark:text-primary-200" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
       </div>
 
-      <div className={`absolute top-1/2 left-1/4 opacity-15 md:opacity-20 transition-all duration-1000 delay-1100 ${
-        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}>
+      <div className="absolute top-1/2 left-1/4 opacity-15 md:opacity-20 transition-all duration-1000 delay-1100">
         <svg className="w-8 h-8 md:w-12 md:h-12 text-accent-300 dark:text-accent-200" fill="currentColor" viewBox="0 0 24 24">
           <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
         </svg>
       </div>
 
-      <div className={`absolute top-1/3 right-1/4 opacity-15 md:opacity-20 transition-all duration-1000 delay-1300 ${
-        isVisible ? 'opacity-15 md:opacity-20 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}>
+      <div className="absolute top-1/3 right-1/4 opacity-15 md:opacity-20 transition-all duration-1000 delay-1300">
         <svg className="w-6 h-6 md:w-10 md:h-10 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
@@ -160,26 +125,20 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side - Content */}
           <div className="text-left space-y-8">
-            {/* Greeting with Enhanced Animation */}
+            {/* Greeting with Scroll Animation */}
             <div
-              className={`transition-all duration-1200 delay-300 ease-out ${
-                isVisible
-                  ? "opacity-100 translate-x-0 scale-100"
-                  : "opacity-0 -translate-x-12 scale-95"
-              }`}
+              ref={greetingAnimation.elementRef}
+              className={`${scrollAnimations.fadeInLeft.initial} ${greetingAnimation.isVisible ? scrollAnimations.fadeInLeft.animate : ''} ${scrollAnimations.fadeInLeft.transition}`}
             >
               <p className="text-secondary-300 dark:text-secondary-200 font-medium text-lg md:text-xl">
                 Welcome to my portfolio
               </p>
             </div>
 
-            {/* Title with Enhanced Typewriter Animation and Scroll Reveal */}
+            {/* Title with Typewriter Animation and Scroll Reveal */}
             <div
-              className={`transition-all duration-1200 delay-600 ease-out ${
-                isVisible
-                  ? "opacity-100 translate-x-0 scale-100"
-                  : "opacity-0 -translate-x-12 scale-95"
-              }`}
+              ref={titleAnimation.elementRef}
+              className={`${scrollAnimations.fadeInLeft.initial} ${titleAnimation.isVisible ? scrollAnimations.fadeInLeft.animate : ''} ${scrollAnimations.fadeInLeft.transition}`}
             >
               <div className="h-16 md:h-20 lg:h-24 flex items-center">
                 <h2 className="text-xl md:text-2xl lg:text-3xl text-white dark:text-white font-medium flex items-center">
@@ -189,13 +148,10 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* PhD Badge with Enhanced Animation */}
+            {/* PhD Badge with Scroll Animation */}
             <div
-              className={`transition-all duration-1200 delay-800 ease-out ${
-                isVisible
-                  ? "opacity-100 translate-x-0 scale-100"
-                  : "opacity-0 -translate-x-12 scale-95"
-              }`}
+              ref={badgeAnimation.elementRef}
+              className={`${scrollAnimations.fadeInLeft.initial} ${badgeAnimation.isVisible ? scrollAnimations.fadeInLeft.animate : ''} ${scrollAnimations.fadeInLeft.transition}`}
             >
               <div className="inline-flex items-center px-6 py-3 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 text-white rounded-full text-base font-semibold shadow-lg">
                 <span className="mr-3 text-xl">🎓</span>
@@ -203,13 +159,10 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Quote Box with Enhanced Animation */}
+            {/* Quote Box with Scroll Animation */}
             <div
-              className={`transition-all duration-1200 delay-700 ease-out ${
-                isVisible
-                  ? "opacity-100 translate-x-0 scale-100"
-                  : "opacity-0 -translate-x-12 scale-95"
-              }`}
+              ref={quoteAnimation.elementRef}
+              className={`${scrollAnimations.fadeInLeft.initial} ${quoteAnimation.isVisible ? scrollAnimations.fadeInLeft.animate : ''} ${scrollAnimations.fadeInLeft.transition}`}
             >
               <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-2xl p-6 md:p-8 shadow-lg">
                 <div className="text-center space-y-4">
@@ -254,13 +207,10 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* University Research Focus with Enhanced Animation */}
+            {/* University Research Focus with Scroll Animation */}
             <div
-              className={`transition-all duration-1200 delay-1000 ease-out ${
-                isVisible
-                  ? "opacity-100 translate-x-0 scale-100"
-                  : "opacity-0 -translate-x-12 scale-95"
-              }`}
+              ref={researchAnimation.elementRef}
+              className={`${scrollAnimations.fadeInLeft.initial} ${researchAnimation.isVisible ? scrollAnimations.fadeInLeft.animate : ''} ${scrollAnimations.fadeInLeft.transition}`}
             >
               <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-3xl p-8 shadow-xl">
                 <div className="text-center mb-6">
@@ -398,13 +348,10 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* CTA Buttons with Enhanced Scroll Reveal Animation */}
+            {/* CTA Buttons with Scroll Animation */}
             <div
-              className={`flex flex-col sm:flex-row gap-4 pt-6 transition-all duration-1200 delay-1400 ease-out ${
-                isVisible
-                  ? "opacity-100 translate-x-0 scale-100"
-                  : "opacity-0 -translate-x-12 scale-95"
-              }`}
+              ref={ctaAnimation.elementRef}
+              className={`flex flex-col sm:flex-row gap-4 pt-6 ${scrollAnimations.fadeInLeft.initial} ${ctaAnimation.isVisible ? scrollAnimations.fadeInLeft.animate : ''} ${scrollAnimations.fadeInLeft.transition}`}
             >
               <Link href="#projects" className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-secondary-600 to-accent-600 hover:from-secondary-700 hover:to-accent-700 dark:from-secondary-500 dark:to-accent-500 dark:hover:from-secondary-600 dark:hover:to-accent-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center justify-center">
                 View My Work
@@ -421,13 +368,10 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right Side - Profile Image with Enhanced Animation */}
+          {/* Right Side - Profile Image with Scroll Animation */}
           <div
-            className={`relative transition-all duration-1200 delay-300 ease-out ${
-              isVisible
-                ? "opacity-100 translate-x-0 scale-100"
-                : "opacity-0 translate-x-12 scale-95"
-            }`}
+            ref={imageAnimation.elementRef}
+            className={`relative ${scrollAnimations.fadeInRight.initial} ${imageAnimation.isVisible ? scrollAnimations.fadeInRight.animate : ''} ${scrollAnimations.fadeInRight.transition}`}
           >
             <div className="relative">
               {/* Background Elements */}
