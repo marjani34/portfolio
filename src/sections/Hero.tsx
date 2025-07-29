@@ -20,13 +20,13 @@ const Hero = () => {
   ];
 
   // Scroll animations for different elements with delays
-  const greetingAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 200 });
-  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 400 });
-  const badgeAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 600 });
-  const quoteAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
-  const researchAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 800 });
-  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 1000 });
-  const imageAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
+  const greetingAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 100 });
+  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
+  const badgeAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 400 });
+  const quoteAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
+  const researchAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 600 });
+  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
+  const imageAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 200 });
 
   // Typewriter effect
   useEffect(() => {
