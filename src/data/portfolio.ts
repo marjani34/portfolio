@@ -252,6 +252,26 @@ export const books: Book[] = [
     rating: 4,
     amazonUrl: 'https://amazon.com/deep-learning',
     goodreadsUrl: 'https://goodreads.com/deep-learning'
+  },
+  {
+    id: '6',
+    title: 'World of Warcraft: Wrath of the Lich King',
+    author: 'Blizzard Entertainment',
+    description: 'The epic expansion that introduced Northrend, the Lich King, and some of the most memorable content in WoW history.',
+    category: 'fiction',
+    rating: 5,
+    amazonUrl: 'https://amazon.com/wow-wotlk',
+    goodreadsUrl: 'https://goodreads.com/wow-wotlk'
+  },
+  {
+    id: '7',
+    title: 'The Hobbit',
+    author: 'J.R.R. Tolkien',
+    description: 'A timeless fantasy adventure following Bilbo Baggins on his journey with thirteen dwarves to reclaim their homeland.',
+    category: 'fiction',
+    rating: 5,
+    amazonUrl: 'https://amazon.com/hobbit',
+    goodreadsUrl: 'https://goodreads.com/hobbit'
   }
 ]
 

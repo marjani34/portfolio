@@ -27,7 +27,7 @@ const Books = () => {
     return Array.from({ length: 5 }, (_, i) => (
       <span
         key={i}
-        className={`text-sm ${i < rating ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'}`}
+        className={`text-sm ${i < rating ? 'text-yellow-400' : 'text-gray-400 dark:text-gray-600'}`}
       >
         ★
       </span>
@@ -59,9 +59,9 @@ const Books = () => {
   return (
     <section id="books" className="section-padding bg-gradient-to-bl from-secondary-800 via-primary-800 to-accent-800 dark:from-secondary-900 dark:via-primary-900 dark:to-accent-900">
       <div className="container-custom">
-                  <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
-            My Library
-          </h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
+          My Library
+        </h2>
         
         <div className="max-w-7xl mx-auto">
           {/* Introduction */}
@@ -75,24 +75,24 @@ const Books = () => {
           {/* Books Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-12">
             {books.map((book, index) => (
-              <div key={book.id} className="group perspective-1000">
+              <div key={book.id} className="group">
                 {/* Book Container */}
-                <div className="relative transform transition-all duration-500 group-hover:rotate-y-12 group-hover:scale-105">
+                <div className="relative transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2">
                   {/* Book Shadow */}
-                  <div className="absolute -bottom-2 left-2 right-2 h-4 bg-black/20 rounded-full blur-md transform rotate-x-45"></div>
+                  <div className="absolute -bottom-4 left-2 right-2 h-6 bg-black/40 rounded-full blur-xl transform rotate-x-45"></div>
                   
                   {/* Book Body */}
-                  <div className="relative bg-white dark:bg-secondary-800 rounded-lg shadow-2xl overflow-hidden">
+                  <div className="relative bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-white/20 dark:border-white/10">
                     {/* Book Cover */}
                     <div className={`relative h-64 ${getBookCoverPattern(book.category)} p-6 flex flex-col justify-between`}>
                       {/* Cover Pattern Overlay */}
-                      <div className="absolute inset-0 opacity-10">
-                        <div className="w-full h-full bg-gradient-to-br from-white/20 to-transparent"></div>
+                      <div className="absolute inset-0 opacity-20">
+                        <div className="w-full h-full bg-gradient-to-br from-white/30 to-transparent"></div>
                       </div>
                       
                       {/* Category Badge */}
                       <div className="relative z-10 flex justify-end">
-                        <div className={`px-3 py-1 rounded-full text-xs font-bold text-white ${getCategoryAccentColor(book.category)} bg-opacity-80 backdrop-blur-sm`}>
+                        <div className={`px-3 py-1 rounded-full text-xs font-bold text-white ${getCategoryAccentColor(book.category)} bg-opacity-90 backdrop-blur-sm shadow-lg`}>
                           {book.category}
                         </div>
                       </div>
@@ -100,48 +100,45 @@ const Books = () => {
                       {/* Book Title and Author */}
                       <div className="relative z-10 text-white">
                         <div className="mb-2">
-                          <span className="text-2xl">{getCategoryIcon(book.category)}</span>
+                          <span className="text-2xl drop-shadow-lg">{getCategoryIcon(book.category)}</span>
                         </div>
-                        <h3 className="text-lg font-bold leading-tight mb-2 line-clamp-2">
+                        <h3 className="text-lg font-bold leading-tight mb-2 line-clamp-2 drop-shadow-lg">
                           {book.title}
                         </h3>
-                        <p className="text-sm opacity-90 font-medium">
+                        <p className="text-sm opacity-95 font-medium drop-shadow-md">
                           by {book.author}
                         </p>
                       </div>
                       
-                      {/* Book Spine Effect */}
-                      <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-black/20 to-transparent"></div>
+                      {/* Subtle Spine Effect */}
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-black/20 to-transparent"></div>
                     </div>
-
-                    {/* Book Pages Effect */}
-                    <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-600 dark:to-gray-700"></div>
                     
                     {/* Book Content */}
-                    <div className="p-6 bg-white dark:bg-secondary-800">
+                    <div className="p-6 bg-white/10 dark:bg-white/5 backdrop-blur-md">
                       {/* Rating */}
                       <div className="flex items-center gap-2 mb-3">
                         <div className="flex">
                           {renderStars(book.rating)}
                         </div>
-                        <span className="text-xs text-secondary-500 dark:text-secondary-400 font-medium">
+                        <span className="text-xs text-secondary-200 dark:text-secondary-100 font-medium">
                           {book.rating}/5
                         </span>
                       </div>
 
                       {/* Description */}
-                      <p className="text-sm text-secondary-600 dark:text-secondary-300 leading-relaxed line-clamp-3 mb-4">
+                      <p className="text-sm text-secondary-200 dark:text-secondary-100 leading-relaxed line-clamp-3 mb-4">
                         {book.description}
                       </p>
 
                       {/* Links */}
-                      <div className="flex gap-3 pt-2 border-t border-gray-100 dark:border-gray-700">
+                      <div className="flex gap-3 pt-2 border-t border-white/20 dark:border-white/10">
                         {book.amazonUrl && (
                           <a
                             href={book.amazonUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 text-center px-3 py-2 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/40 rounded-md text-sm font-medium transition-colors duration-200"
+                            className="flex-1 text-center px-3 py-2 bg-white/20 dark:bg-white/10 text-white hover:bg-white/30 dark:hover:bg-white/20 rounded-md text-sm font-medium transition-colors duration-200 backdrop-blur-sm border border-white/20"
                           >
                             Amazon
                           </a>
@@ -151,34 +148,25 @@ const Books = () => {
                             href={book.goodreadsUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 text-center px-3 py-2 bg-secondary-50 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-700 rounded-md text-sm font-medium transition-colors duration-200"
+                            className="flex-1 text-center px-3 py-2 bg-white/10 dark:bg-white/5 text-white hover:bg-white/20 dark:hover:bg-white/10 rounded-md text-sm font-medium transition-colors duration-200 backdrop-blur-sm border border-white/10"
                           >
                             Goodreads
                           </a>
                         )}
                       </div>
                     </div>
-
-                    {/* Book Binding Effect */}
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-full bg-gradient-to-b from-yellow-600 via-yellow-500 to-yellow-600 opacity-80"></div>
-                    
-                    {/* Page Edges */}
-                    <div className="absolute top-0 right-0 w-2 h-full">
-                      <div className="w-full h-full bg-gradient-to-l from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600"></div>
-                    </div>
                   </div>
 
-                  {/* Floating Elements for 3D Effect */}
-                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-yellow-300 rounded-full opacity-40 group-hover:opacity-80 transition-opacity duration-300"></div>
+                  {/* Subtle Glow Effect */}
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
 
                 {/* Book Title Below */}
                 <div className="mt-4 text-center">
-                  <h4 className="text-sm font-semibold text-secondary-900 dark:text-white line-clamp-1">
+                  <h4 className="text-sm font-semibold text-white line-clamp-1">
                     {book.title}
                   </h4>
-                  <p className="text-xs text-secondary-500 dark:text-secondary-400 mt-1">
+                  <p className="text-xs text-secondary-200 dark:text-secondary-100 mt-1">
                     {book.author}
                   </p>
                 </div>
