@@ -246,33 +246,6 @@ const Hero = () => {
         </Parallax>
       </div>
 
-      {/* Scroll Down Indicator - Moved to bottom right */}
-      <Parallax speed={2} className="absolute bottom-4 md:bottom-8 right-4 md:right-8 hidden md:block">
-        <div
-          ref={scrollIndicatorAnimation.elementRef}
-          className={`group cursor-pointer ${scrollAnimations.fadeInUp.initial} ${scrollIndicatorAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
-          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-        >
-          <div className="relative">
-            {/* Pulsing Rings */}
-            <div className="absolute inset-0 bg-white/20 dark:bg-white/10 rounded-full animate-ping"></div>
-            <div className="absolute inset-2 bg-white/10 dark:bg-white/5 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
-            
-            {/* Main Circle */}
-            <div className="relative w-10 h-10 md:w-12 md:h-12 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 dark:group-hover:bg-white/10 transition-all duration-300">
-              <svg className="w-4 h-4 md:w-6 md:h-6 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </div>
-          </div>
-          
-          {/* Text Label - Hidden on mobile */}
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap hidden md:block">
-            <p className="text-white/80 dark:text-white/70 text-sm font-medium">Scroll Down</p>
-          </div>
-        </div>
-      </Parallax>
-
       {/* Smooth Transition Zone to About Section */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary-900 via-secondary-900/80 to-transparent"></div>
       

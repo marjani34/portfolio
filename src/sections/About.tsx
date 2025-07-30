@@ -179,6 +179,24 @@ const About = () => {
                 </p>
               </div>
 
+              {/* Data Analytics Expertise Highlight */}
+              <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/20 dark:border-white/10">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center mr-4">
+                    <span className="text-white text-xl">📊</span>
+                  </div>
+                  <h4 className="text-2xl font-bold text-white">
+                    Data Analytics & Business Intelligence
+                  </h4>
+                </div>
+                <p className="text-secondary-200 dark:text-secondary-100 leading-relaxed">
+                  With a <strong className="text-green-400 dark:text-green-300">Master of Data Analytics</strong>, 
+                  I excel at transforming raw data into actionable insights. My expertise spans statistical modeling, 
+                  predictive analytics, and business intelligence solutions that drive informed decision-making 
+                  and strategic business outcomes.
+                </p>
+              </div>
+
               {/* Languages */}
               <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 dark:border-white/10">
                 <h4 className="text-xl font-semibold text-white mb-4">
