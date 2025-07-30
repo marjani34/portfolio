@@ -43,7 +43,12 @@ const Skills = () => {
   }
 
   return (
-    <section id="skills" className="section-padding bg-gradient-to-tr from-secondary-700 via-primary-700 to-accent-700 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800">
+    <section id="skills" className="section-padding bg-gradient-to-tr from-secondary-700 via-primary-700 to-accent-700 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800 relative">
+      {/* Top Fade Transition */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-accent-700 via-accent-700/80 to-transparent dark:from-accent-800 dark:via-accent-800/80"></div>
+      
+      {/* Bottom Fade Transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary-600 via-primary-600/80 to-transparent dark:from-primary-700 dark:via-primary-700/80"></div>
       <div className="container-custom">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
           Skills & Technologies

@@ -75,7 +75,9 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-secondary-700 via-primary-700 to-accent-700 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800">
+    <section id="contact" className="section-padding bg-gradient-to-b from-secondary-700 via-primary-700 to-accent-700 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800 relative">
+      {/* Top Fade Transition */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-primary-600 via-primary-600/80 to-transparent dark:from-primary-700 dark:via-primary-700/80"></div>
       <div className="container-custom">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
           Get In Touch
