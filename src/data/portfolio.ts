@@ -64,10 +64,11 @@ export const personalInfo = {
   location: 'Dubai, United Arab Emirates',
   phone: '+971503658040',
   birthDate: '28/06/1992',
-  about: `Experienced Front-End Developer, specializing in cloud-based, scalable solutions for the banking and 
+  about: `Experienced Software Engineer, specializing in cloud-based, scalable solutions for the banking and 
   finance sector. Proficient in Angular, React.js, and Next.js. Leads a team dedicated to clean architecture, 
   quality, and innovation. Committed to fostering team growth, maintaining clean code practices, and 
   creating impactful products.`,
+
   avatar: '/avatar.jpg',
   experience: '8+ Years',
   education: 'Doctor of Science (PhD), Artificial Intelligence - Islamic Azad University',

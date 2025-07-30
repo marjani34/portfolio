@@ -30,8 +30,9 @@ const Header = () => {
   }, [isMenuOpen])
 
   const navItems = [
-    { name: 'Home', href: '#home' },
+    { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
+    { name: 'Gallery', href: '#gallery' },
     { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },
     { name: 'Books', href: '#books' },
@@ -58,9 +59,9 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link 
-            href="#home" 
+            href="#hero" 
             className="text-lg md:text-xl font-bold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200"
-            onClick={() => handleNavClick('#home')}
+            onClick={() => handleNavClick('#hero')}
           >
             {personalInfo.name.split(' ')[0]}
             <span className="text-secondary-600 dark:text-secondary-400 ml-1">
