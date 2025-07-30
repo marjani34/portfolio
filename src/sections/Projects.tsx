@@ -5,9 +5,9 @@ const Projects = () => {
   const otherProjects = projects.filter(project => !project.featured)
 
   return (
-    <section id="projects" className="section-padding bg-secondary-50 dark:bg-secondary-800">
+    <section id="projects" className="section-padding bg-gradient-to-tl from-secondary-800 via-primary-800 to-accent-800 dark:from-secondary-900 dark:via-primary-900 dark:to-accent-900">
       <div className="container-custom">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
           My Projects
         </h2>
         

@@ -75,9 +75,9 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="section-padding bg-secondary-50 dark:bg-secondary-800">
+    <section id="contact" className="section-padding bg-gradient-to-b from-secondary-700 via-primary-700 to-accent-700 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800">
       <div className="container-custom">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
           Get In Touch
         </h2>
         
@@ -86,10 +86,10 @@ const Contact = () => {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-semibold mb-6 text-secondary-900 dark:text-white">
+                <h3 className="text-2xl font-semibold mb-6 text-white">
                   Let&apos;s Connect
                 </h3>
-                <p className="text-lg text-secondary-600 dark:text-secondary-300 leading-relaxed mb-8">
+                <p className="text-lg text-secondary-200 dark:text-secondary-100 leading-relaxed mb-8">
                   I&apos;m always interested in hearing about new opportunities and exciting projects. 
                   Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
                 </p>

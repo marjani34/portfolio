@@ -3,10 +3,10 @@ import Image from 'next/image'
 
 const Gallery = () => {
   return (
-    <section id="gallery" className="section-padding bg-white dark:bg-secondary-900">
+    <section id="gallery" className="section-padding bg-gradient-to-br from-secondary-700 via-primary-700 to-accent-700 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800">
       <div className="container-custom">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
             Gallery
           </h2>
           
@@ -73,7 +73,7 @@ const Gallery = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left Column - Personal Info */}
             <div className="space-y-8">
-              <div className="bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-800/20 p-8 rounded-2xl border border-primary-200 dark:border-primary-800">
+              <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/20 dark:border-white/10">
                 <div className="flex items-center mb-6">
                   <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary-600 rounded-full flex items-center justify-center mr-4">
                     <span className="text-2xl text-white">👨‍💻</span>
@@ -111,8 +111,8 @@ const Gallery = () => {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white dark:bg-secondary-800 p-6 rounded-xl shadow-lg border border-secondary-200 dark:border-secondary-700">
+                              <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 dark:border-white/10">
                   <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
                     {personalInfo.experience}
                   </div>
@@ -120,11 +120,11 @@ const Gallery = () => {
                     Years Experience
                   </div>
                 </div>
-                <div className="bg-white dark:bg-secondary-800 p-6 rounded-xl shadow-lg border border-secondary-200 dark:border-secondary-700">
-                  <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+                <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 dark:border-white/10">
+                  <div className="text-3xl font-bold text-primary-400 dark:text-primary-300 mb-2">
                     PhD
                   </div>
-                  <div className="text-sm text-secondary-600 dark:text-secondary-300">
+                  <div className="text-sm text-secondary-200 dark:text-secondary-100">
                     AI & ML
                   </div>
                 </div>
@@ -134,26 +134,26 @@ const Gallery = () => {
             {/* Right Column - About Content */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-3xl font-bold mb-6 text-secondary-900 dark:text-white">
+                <h3 className="text-3xl font-bold mb-6 text-white">
                   Who I Am
                 </h3>
-                <p className="text-lg text-secondary-600 dark:text-secondary-300 leading-relaxed mb-6">
+                <p className="text-lg text-secondary-200 dark:text-secondary-100 leading-relaxed mb-6">
                   {personalInfo.about}
                 </p>
               </div>
 
               {/* AI Expertise Highlight */}
-              <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 p-8 rounded-2xl border border-purple-200 dark:border-purple-800">
+              <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/20 dark:border-white/10">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
                     <span className="text-white text-xl">🤖</span>
                   </div>
-                  <h4 className="text-2xl font-bold text-secondary-900 dark:text-white">
+                  <h4 className="text-2xl font-bold text-white">
                     AI & Machine Learning Expertise
                   </h4>
                 </div>
-                <p className="text-secondary-600 dark:text-secondary-300 leading-relaxed">
-                  With a <strong className="text-purple-600 dark:text-purple-400">PhD in Artificial Intelligence</strong>, 
+                <p className="text-secondary-200 dark:text-secondary-100 leading-relaxed">
+                  With a <strong className="text-purple-400 dark:text-purple-300">PhD in Artificial Intelligence</strong>, 
                   I bring deep theoretical knowledge and practical AI/ML expertise to every project. 
                   This academic foundation enables me to approach complex technical challenges with innovative, 
                   AI-driven solutions while maintaining the highest standards of software engineering.
@@ -161,15 +161,15 @@ const Gallery = () => {
               </div>
 
               {/* Languages */}
-              <div className="bg-white dark:bg-secondary-800 p-6 rounded-xl shadow-lg border border-secondary-200 dark:border-secondary-700">
-                <h4 className="text-xl font-semibold text-secondary-900 dark:text-white mb-4">
+              <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 dark:border-white/10">
+                <h4 className="text-xl font-semibold text-white mb-4">
                   Languages
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {personalInfo.languages?.map((language, index) => (
                     <span 
                       key={index}
-                      className="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium"
+                      className="px-3 py-1 bg-white/20 dark:bg-white/10 text-white rounded-full text-sm font-medium backdrop-blur-sm"
                     >
                       {language}
                     </span>

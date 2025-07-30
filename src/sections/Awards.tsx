@@ -30,16 +30,16 @@ const Awards = () => {
   }
 
   return (
-    <section id="awards" className="section-padding bg-white dark:bg-secondary-900">
+    <section id="awards" className="section-padding bg-gradient-to-r from-secondary-700 via-primary-700 to-accent-700 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800">
       <div className="container-custom">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
           Awards & Recognition
         </h2>
         
         <div className="max-w-6xl mx-auto">
           {/* Introduction */}
           <div className="text-center mb-12">
-            <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
+            <p className="text-lg text-secondary-200 dark:text-secondary-100 max-w-3xl mx-auto">
               Recognition for my work, achievements in competitions, and contributions to the tech community. 
               These awards represent milestones in my journey as a developer and innovator.
             </p>
@@ -48,7 +48,7 @@ const Awards = () => {
           {/* Awards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {awards.map((award) => (
-              <div key={award.id} className="card p-6 group hover:scale-105 transition-transform duration-300">
+              <div key={award.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/20 dark:border-white/10 group hover:scale-105 transition-transform duration-300">
                 {/* Award Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
@@ -56,10 +56,10 @@ const Awards = () => {
                       <span className="text-xl">{getCategoryIcon(award.category)}</span>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-secondary-900 dark:text-white">
+                      <h3 className="text-lg font-semibold text-white">
                         {award.title}
                       </h3>
-                      <p className="text-secondary-600 dark:text-secondary-400 text-sm">
+                      <p className="text-secondary-200 dark:text-secondary-100 text-sm">
                         {award.organization}
                       </p>
                     </div>
@@ -71,13 +71,13 @@ const Awards = () => {
 
                 {/* Award Details */}
                 <div className="space-y-3">
-                  <p className="text-secondary-600 dark:text-secondary-300 leading-relaxed">
+                  <p className="text-secondary-200 dark:text-secondary-100 leading-relaxed">
                     {award.description}
                   </p>
 
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-secondary-500 dark:text-secondary-400">Awarded:</span>
-                    <span className="text-secondary-900 dark:text-white font-medium">
+                    <span className="text-secondary-200 dark:text-secondary-100">Awarded:</span>
+                    <span className="text-white font-medium">
                       {formatDate(award.date)}
                     </span>
                   </div>

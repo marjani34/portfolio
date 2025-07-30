@@ -64,7 +64,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden bg-gradient-to-b from-secondary-900 via-secondary-800 to-secondary-900"
+      className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden bg-gradient-to-br from-secondary-800 via-primary-800 to-accent-800 dark:from-secondary-900 dark:via-primary-900 dark:to-accent-900"
     >
       {/* Smooth Transition from Parallax - Vertical Gradient */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary-900 via-secondary-900/80 to-transparent"></div>

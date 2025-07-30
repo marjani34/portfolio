@@ -57,16 +57,16 @@ const Books = () => {
   }
 
   return (
-    <section id="books" className="section-padding bg-gradient-to-br from-gray-50 to-gray-100 dark:from-secondary-900 dark:to-secondary-800">
+    <section id="books" className="section-padding bg-gradient-to-bl from-secondary-800 via-primary-800 to-accent-800 dark:from-secondary-900 dark:via-primary-900 dark:to-accent-900">
       <div className="container-custom">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          My Library
-        </h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
+            My Library
+          </h2>
         
         <div className="max-w-7xl mx-auto">
           {/* Introduction */}
           <div className="text-center mb-16">
-            <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
+            <p className="text-lg text-secondary-200 dark:text-secondary-100 max-w-3xl mx-auto">
               A curated collection of books that have shaped my thinking, enhanced my skills, 
               and influenced my approach to technology and life.
             </p>
@@ -188,13 +188,13 @@ const Books = () => {
 
           {/* Call to Action */}
           <div className="text-center mt-16">
-            <div className="bg-white dark:bg-secondary-800 rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-lg max-w-2xl mx-auto border border-white/20 dark:border-white/10">
               <div className="mb-6">
                 <span className="text-4xl mb-4 block">📚</span>
-                <h3 className="text-xl font-bold text-secondary-900 dark:text-white mb-2">
+                <h3 className="text-xl font-bold text-white mb-2">
                   Always Learning
                 </h3>
-                <p className="text-secondary-600 dark:text-secondary-300">
+                <p className="text-secondary-200 dark:text-secondary-100">
                   Knowledge is power, and books are the gateway to endless possibilities.
                 </p>
               </div>

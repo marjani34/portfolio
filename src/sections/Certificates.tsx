@@ -45,16 +45,16 @@ const Certificates = () => {
   }
 
   return (
-    <section id="certificates" className="section-padding bg-secondary-50 dark:bg-secondary-800">
+    <section id="certificates" className="section-padding bg-gradient-to-l from-secondary-700 via-primary-700 to-accent-700 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800">
       <div className="container-custom">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
           Certifications & Achievements
         </h2>
         
         <div className="max-w-6xl mx-auto">
           {/* Introduction */}
           <div className="text-center mb-12">
-            <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
+            <p className="text-lg text-secondary-200 dark:text-secondary-100 max-w-3xl mx-auto">
               Professional certifications and achievements that demonstrate my commitment to continuous learning 
               and expertise in various technologies and methodologies.
             </p>
@@ -63,7 +63,7 @@ const Certificates = () => {
           {/* Certificates Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {certificates.map((cert) => (
-              <div key={cert.id} className="card p-6 group hover:scale-105 transition-transform duration-300">
+              <div key={cert.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/20 dark:border-white/10 group hover:scale-105 transition-transform duration-300">
                 {/* Certificate Icon */}
                 <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center mb-4">
                   <span className="text-2xl">{getCategoryIcon(cert.category)}</span>
@@ -72,7 +72,7 @@ const Certificates = () => {
                 {/* Certificate Info */}
                 <div className="space-y-3">
                   <div className="flex items-start justify-between">
-                    <h3 className="text-lg font-semibold text-secondary-900 dark:text-white line-clamp-2">
+                    <h3 className="text-lg font-semibold text-white line-clamp-2">
                       {cert.title}
                     </h3>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(cert.category)}`}>
@@ -80,14 +80,14 @@ const Certificates = () => {
                     </span>
                   </div>
 
-                  <p className="text-secondary-600 dark:text-secondary-400 text-sm font-medium">
+                  <p className="text-secondary-200 dark:text-secondary-100 text-sm font-medium">
                     {cert.issuer}
                   </p>
 
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-secondary-500 dark:text-secondary-400">Issued:</span>
-                      <span className="text-secondary-900 dark:text-white font-medium">
+                      <span className="text-secondary-200 dark:text-secondary-100">Issued:</span>
+                      <span className="text-white font-medium">
                         {formatDate(cert.issueDate)}
                       </span>
                     </div>
