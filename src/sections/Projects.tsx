@@ -1,23 +1,80 @@
+'use client'
+
 import { projects } from '@/data/portfolio'
+import { Parallax } from 'react-scroll-parallax'
 
 const Projects = () => {
   const featuredProjects = projects.filter(project => project.featured)
   const otherProjects = projects.filter(project => !project.featured)
 
   return (
-    <section id="projects" className="section-padding bg-gradient-to-tl from-secondary-800 via-primary-800 to-accent-800 dark:from-secondary-900 dark:via-primary-900 dark:to-accent-900 relative">
+    <section id="projects" className="section-padding bg-gradient-to-br from-secondary-900 via-primary-900 to-accent-900 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800 relative overflow-hidden">
+      {/* Parallax Background Layers */}
+      <Parallax speed={-20} className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary-900/80 via-primary-900/60 to-accent-900/80 dark:from-secondary-800/80 dark:via-primary-800/60 dark:to-accent-800/80"></div>
+      </Parallax>
+      
+      <Parallax speed={-10} className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/30 via-accent-900/20 to-secondary-900/30 dark:from-primary-800/30 dark:via-accent-800/20 dark:to-secondary-800/30 opacity-30"></div>
+      </Parallax>
+
+      {/* Floating Blur Circles */}
+      <Parallax speed={-5} className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-primary-500/20 dark:bg-primary-400/20 rounded-full blur-3xl transition-all duration-1000 delay-200"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent-500/20 dark:bg-accent-400/20 rounded-full blur-3xl transition-all duration-1000 delay-400"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary-500/20 dark:bg-secondary-400/20 rounded-full blur-3xl transition-all duration-1000 delay-600"></div>
+      </Parallax>
+
+      {/* AI-themed Floating SVG Images */}
+      <Parallax speed={-15} className="absolute top-20 left-10 opacity-20 md:opacity-30 transition-all duration-1000 delay-300">
+        <svg className="w-16 h-16 md:w-20 md:h-20 text-primary-300 dark:text-primary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </Parallax>
+
+      <Parallax speed={-8} className="absolute top-32 right-20 opacity-20 md:opacity-30 transition-all duration-1000 delay-500">
+        <svg className="w-12 h-12 md:w-16 md:h-16 text-accent-300 dark:text-accent-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+        </svg>
+      </Parallax>
+
+      <Parallax speed={-12} className="absolute bottom-32 left-20 opacity-20 md:opacity-30 transition-all duration-1000 delay-700">
+        <svg className="w-14 h-14 md:w-18 md:h-18 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+      </Parallax>
+
+      <Parallax speed={-6} className="absolute bottom-20 right-10 opacity-20 md:opacity-30 transition-all duration-1000 delay-900">
+        <svg className="w-10 h-10 md:w-14 md:h-14 text-primary-300 dark:text-primary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      </Parallax>
+
+      <Parallax speed={-10} className="absolute top-1/2 left-1/4 opacity-20 md:opacity-30 transition-all duration-1000 delay-1100">
+        <svg className="w-8 h-8 md:w-12 md:h-12 text-accent-300 dark:text-accent-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+        </svg>
+      </Parallax>
+
+      <Parallax speed={-7} className="absolute top-1/3 right-1/4 opacity-20 md:opacity-30 transition-all duration-1000 delay-1300">
+        <svg className="w-6 h-6 md:w-10 md:h-10 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </Parallax>
+
       {/* Top Fade Transition */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-primary-700 via-primary-700/80 to-transparent dark:from-primary-800 dark:via-primary-800/80"></div>
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary-900 via-secondary-900/80 to-transparent"></div>
       
       {/* Smooth Transition Zone to Skills Section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-accent-800 via-accent-800/80 to-transparent dark:from-accent-900 dark:via-accent-900/80"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-accent-900 via-accent-900/80 to-transparent"></div>
       
       {/* Blurred Divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent blur-sm"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary-500/50 to-transparent blur-sm"></div>
       
       {/* Purple Accent Glow at Bottom */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-primary-500/10 rounded-full blur-3xl"></div>
-      <div className="container-custom">
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-secondary-500/10 rounded-full blur-3xl"></div>
+      
+      <div className="container-custom relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
           My Projects
         </h2>
@@ -25,29 +82,29 @@ const Projects = () => {
         {/* Featured Projects */}
         {featuredProjects.length > 0 && (
           <div className="mb-16">
-            <h3 className="text-2xl font-semibold text-center mb-8 text-secondary-900 dark:text-white">
+            <h3 className="text-2xl font-semibold text-center mb-8 text-white">
               Featured Projects
             </h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredProjects.map((project) => (
-                <div key={project.id} className="card overflow-hidden group">
+                <div key={project.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-2xl overflow-hidden group hover:scale-105 transition-all duration-300">
                   {/* Project Image Placeholder */}
-                  <div className="h-48 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900 dark:to-secondary-800 flex items-center justify-center">
+                  <div className="h-48 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 dark:from-primary-400/20 dark:to-secondary-400/20 flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-primary-200 dark:bg-primary-800 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <div className="w-16 h-16 bg-primary-500/30 dark:bg-primary-400/30 rounded-full flex items-center justify-center mx-auto mb-3">
                         <span className="text-2xl">🚀</span>
                       </div>
-                      <p className="text-secondary-600 dark:text-secondary-300 text-sm">
+                      <p className="text-white/80 text-sm">
                         Project Preview
                       </p>
                     </div>
                   </div>
                   
                   <div className="p-6">
-                    <h4 className="text-xl font-semibold mb-3 text-secondary-900 dark:text-white">
+                    <h4 className="text-xl font-semibold mb-3 text-white">
                       {project.title}
                     </h4>
-                    <p className="text-secondary-600 dark:text-secondary-300 mb-4 leading-relaxed">
+                    <p className="text-secondary-200 dark:text-secondary-100 mb-4 leading-relaxed">
                       {project.description}
                     </p>
                     
@@ -56,7 +113,7 @@ const Projects = () => {
                       {project.technologies.map((tech) => (
                         <span 
                           key={tech}
-                          className="px-3 py-1 bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200 rounded-full text-sm font-medium"
+                          className="px-3 py-1 bg-primary-500/20 text-primary-200 dark:bg-primary-400/20 dark:text-primary-100 rounded-full text-sm font-medium border border-primary-500/30"
                         >
                           {tech}
                         </span>
@@ -70,7 +127,7 @@ const Projects = () => {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="btn-primary text-sm"
+                          className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
                         >
                           Live Demo
                         </a>
@@ -80,7 +137,7 @@ const Projects = () => {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="btn-secondary text-sm"
+                          className="inline-flex items-center px-4 py-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-white/10 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
                         >
                           View Code
                         </a>
@@ -96,21 +153,21 @@ const Projects = () => {
         {/* Other Projects */}
         {otherProjects.length > 0 && (
           <div>
-            <h3 className="text-2xl font-semibold text-center mb-8 text-secondary-900 dark:text-white">
+            <h3 className="text-2xl font-semibold text-center mb-8 text-white">
               Other Projects
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherProjects.map((project) => (
-                <div key={project.id} className="card p-6 group hover:scale-105 transition-transform duration-300">
+                <div key={project.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-2xl p-6 group hover:scale-105 transition-all duration-300">
                   {/* Project Icon */}
-                  <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-primary-500/30 dark:bg-primary-400/30 rounded-lg flex items-center justify-center mb-4">
                     <span className="text-xl">💻</span>
                   </div>
                   
-                  <h4 className="text-lg font-semibold mb-3 text-secondary-900 dark:text-white">
+                  <h4 className="text-lg font-semibold mb-3 text-white">
                     {project.title}
                   </h4>
-                  <p className="text-secondary-600 dark:text-secondary-300 mb-4 text-sm leading-relaxed">
+                  <p className="text-secondary-200 dark:text-secondary-100 mb-4 text-sm leading-relaxed">
                     {project.description}
                   </p>
                   
@@ -119,13 +176,13 @@ const Projects = () => {
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span 
                         key={tech}
-                        className="px-2 py-1 bg-secondary-100 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 rounded text-xs"
+                        className="px-2 py-1 bg-secondary-500/20 dark:bg-secondary-400/20 text-secondary-200 dark:text-secondary-100 rounded text-xs border border-secondary-500/30"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-secondary-100 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 rounded text-xs">
+                      <span className="px-2 py-1 bg-secondary-500/20 dark:bg-secondary-400/20 text-secondary-200 dark:text-secondary-100 rounded text-xs border border-secondary-500/30">
                         +{project.technologies.length - 3}
                       </span>
                     )}
@@ -138,7 +195,7 @@ const Projects = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200 text-sm font-medium"
+                        className="text-primary-300 dark:text-primary-200 hover:text-primary-100 dark:hover:text-primary-100 text-sm font-medium transition-colors duration-300"
                       >
                         Demo →
                       </a>
@@ -148,7 +205,7 @@ const Projects = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-secondary-600 dark:text-secondary-400 hover:text-secondary-800 dark:hover:text-secondary-200 text-sm font-medium"
+                        className="text-secondary-300 dark:text-secondary-200 hover:text-secondary-100 dark:hover:text-secondary-100 text-sm font-medium transition-colors duration-300"
                       >
                         Code →
                       </a>
@@ -162,16 +219,19 @@ const Projects = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <p className="text-secondary-600 dark:text-secondary-300 mb-6">
+          <p className="text-secondary-200 dark:text-secondary-100 mb-6">
             Want to see more of my work?
           </p>
           <a 
             href="https://github.com/yourusername" 
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 dark:from-primary-500 dark:to-accent-500 dark:hover:from-primary-600 dark:hover:to-accent-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             View All Projects
+            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
           </a>
         </div>
       </div>
