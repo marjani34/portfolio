@@ -151,16 +151,6 @@ const About = () => {
                 </div>
               </div>
 
-              {/* About Content */}
-              <div>
-                <h3 className="text-3xl font-bold mb-6 text-white">
-                  Who I Am
-                </h3>
-                <p className="text-lg text-secondary-200 dark:text-secondary-100 leading-relaxed mb-6">
-                  {personalInfo.about}
-                </p>
-              </div>
-
               {/* AI Expertise Highlight */}
               <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/20 dark:border-white/10">
                 <div className="flex items-center mb-6">
@@ -233,6 +223,15 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      {/* Smooth Transition Zone to Gallery Section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent"></div>
+      
+      {/* Blurred Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-500/50 to-transparent blur-sm"></div>
+      
+      {/* Purple Accent Glow at Bottom */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-accent-500/10 rounded-full blur-3xl"></div>
     </section>
   );
 };

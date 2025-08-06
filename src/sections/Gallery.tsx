@@ -140,6 +140,15 @@ const Gallery = () => {
           </div>
         </div>
       </div>
+
+      {/* Smooth Transition Zone to Projects Section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-accent-900 via-accent-900/80 to-transparent"></div>
+      
+      {/* Blurred Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary-500/50 to-transparent blur-sm"></div>
+      
+      {/* Purple Accent Glow at Bottom */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-secondary-500/10 rounded-full blur-3xl"></div>
     </section>
   )
 }

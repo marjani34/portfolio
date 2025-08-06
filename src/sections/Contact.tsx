@@ -246,6 +246,15 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      {/* Smooth Transition Zone to Footer */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-accent-800 via-accent-800/80 to-transparent dark:from-accent-900 dark:via-accent-900/80"></div>
+      
+      {/* Blurred Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary-500/50 to-transparent blur-sm"></div>
+      
+      {/* Purple Accent Glow at Bottom */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-secondary-500/10 rounded-full blur-3xl"></div>
     </section>
   )
 }
