@@ -6,7 +6,7 @@ import { Parallax } from 'react-scroll-parallax'
 
 const Gallery = () => {
   return (
-    <section id="gallery" className="section-padding bg-gradient-to-br from-secondary-900 via-primary-900 to-accent-900 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800 relative overflow-hidden">
+    <section id="gallery" className="min-h-screen py-20 bg-gradient-to-br from-secondary-900 via-primary-900 to-accent-900 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800 relative overflow-hidden">
       {/* Parallax Background Layers */}
       <Parallax speed={-20} className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary-900/80 via-primary-900/60 to-accent-900/80 dark:from-secondary-800/80 dark:via-primary-800/60 dark:to-accent-800/80"></div>
@@ -60,7 +60,7 @@ const Gallery = () => {
         </svg>
       </Parallax>
 
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10 h-full flex flex-col justify-center">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
             Gallery
@@ -77,7 +77,7 @@ const Gallery = () => {
                     alt="Amir Marjani - Professional Portrait"
                     width={400}
                     height={500}
-                    className="w-full h-[400px] object-cover"
+                    className="w-full h-[300px] md:h-[400px] lg:h-[450px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -95,7 +95,7 @@ const Gallery = () => {
                     alt="Amir Marjani - Tech Environment"
                     width={400}
                     height={500}
-                    className="w-full h-[400px] object-cover"
+                    className="w-full h-[300px] md:h-[400px] lg:h-[450px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -113,7 +113,7 @@ const Gallery = () => {
                     alt="Amir Marjani - Contemplative"
                     width={400}
                     height={500}
-                    className="w-full h-[400px] object-cover"
+                    className="w-full h-[300px] md:h-[400px] lg:h-[450px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
