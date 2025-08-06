@@ -1,3 +1,5 @@
+"use client"
+
 import { personalInfo } from '@/data/portfolio'
 import Image from 'next/image'
 import { Parallax } from 'react-scroll-parallax'

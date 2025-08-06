@@ -1,3 +1,5 @@
+"use client"
+
 import { books } from '@/data/portfolio'
 import { Parallax } from 'react-scroll-parallax'
 
