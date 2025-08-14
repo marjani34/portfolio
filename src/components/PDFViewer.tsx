@@ -9,20 +9,33 @@ interface PDFViewerProps {
 const PDFViewer = ({ file }: PDFViewerProps) => {
   const [isClient, setIsClient] = useState(false)
   const [error, setError] = useState<boolean>(false)
+  const [pdfLoaded, setPdfLoaded] = useState<boolean>(false)
 
   useEffect(() => {
     setIsClient(true)
     console.log('PDFViewer: Client initialized, file path:', file)
-  }, [file])
+    
+    // Set a timeout to detect if PDF loads successfully
+    const timeout = setTimeout(() => {
+      if (!error && !pdfLoaded) {
+        console.log('PDFViewer: Assuming PDF loaded successfully (timeout)')
+        setPdfLoaded(true)
+      }
+    }, 3000) // 3 second timeout
+
+    return () => clearTimeout(timeout)
+  }, [file, error, pdfLoaded])
 
   const handlePdfLoad = () => {
     console.log('PDFViewer: PDF loaded successfully')
+    setPdfLoaded(true)
     setError(false)
   }
 
   const handlePdfError = () => {
     console.log('PDFViewer: PDF failed to load')
     setError(true)
+    setPdfLoaded(false)
   }
 
   if (!isClient) {
@@ -58,15 +71,17 @@ const PDFViewer = ({ file }: PDFViewerProps) => {
 
   return (
     <div className="w-full">
-      {/* Debug Info */}
-      <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-        <p className="text-sm text-blue-800 dark:text-blue-200">
-          <strong>Debug:</strong> PDF path: {file}
-        </p>
-        <p className="text-sm text-blue-600 dark:text-blue-300">
-          Status: {error ? 'Error' : 'Loading...'}
-        </p>
-      </div>
+      {/* Debug Info - Only show while loading */}
+      {!pdfLoaded && !error && (
+        <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <p className="text-sm text-blue-800 dark:text-blue-200">
+            <strong>Debug:</strong> PDF path: {file}
+          </p>
+          <p className="text-sm text-blue-600 dark:text-blue-300">
+            Status: Loading...
+          </p>
+        </div>
+      )}
 
       {/* PDF Display - Multiple approaches for better compatibility */}
       <div className="flex justify-center mb-4">
@@ -97,7 +112,6 @@ const PDFViewer = ({ file }: PDFViewerProps) => {
           </iframe>
         </object>
       </div>
-
     </div>
   )
 }
