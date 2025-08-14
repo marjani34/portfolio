@@ -211,7 +211,7 @@ const Hero = () => {
               {/* Inspirational Quote */}
               <div className="mt-8 pt-8 border-t border-white/20 dark:border-white/10">
                 <p className="text-secondary-200 dark:text-secondary-100 italic text-lg">
-                  "The future belongs to those who believe in the beauty of their dreams." - Eleanor Roosevelt
+                  &ldquo;The future belongs to those who believe in the beauty of their dreams.&rdquo; - Eleanor Roosevelt
                 </p>
               </div>
             </div>

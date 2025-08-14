@@ -3,14 +3,29 @@
 import { Parallax } from 'react-scroll-parallax'
 import { awards } from '@/data/portfolio'
 import { useScrollAnimation, scrollAnimations } from '@/hooks/useScrollAnimation'
+import dynamic from 'next/dynamic'
+
+// Dynamically import react-pdf components to avoid SSR issues
+const PDFViewer = dynamic(() => import('@/components/PDFViewer'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center h-64">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 dark:border-primary-400 mx-auto mb-2"></div>
+        <p className="text-gray-600 dark:text-gray-400">Loading PDF viewer...</p>
+      </div>
+    </div>
+  )
+})
 
 const Awards = () => {
   // Scroll animations for different elements with delays
   const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
   const descriptionAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
-  const awardsGridAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 700 });
-  const statsAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 900 });
-  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 1100 });
+  const pdfAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 700 });
+  const awardsGridAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 900 });
+  const statsAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 1100 });
+  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 1300 });
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -78,7 +93,7 @@ const Awards = () => {
       </Parallax>
 
       <Parallax speed={-6} className="absolute bottom-20 right-10 opacity-20 md:opacity-30 transition-all duration-1000 delay-900">
-        <svg className="w-10 h-10 md:w-14 md:h-14 text-primary-300 dark:text-primary-200" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-10 h-10 md:w-14 md:h-14 text-primary-300 dark:text-primary-300" fill="currentColor" viewBox="0 0 24 24">
           <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
         </svg>
       </Parallax>
@@ -122,67 +137,138 @@ const Awards = () => {
           </div>
         </Parallax>
 
-        {/* Awards Grid */}
-        <Parallax speed={-2}>
-          <div
-            ref={awardsGridAnimation.elementRef}
-            className={`max-w-6xl mx-auto ${scrollAnimations.fadeInScale.initial} ${awardsGridAnimation.isVisible ? scrollAnimations.fadeInScale.animate : ''} ${scrollAnimations.fadeInScale.transition}`}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {awards.map((award) => (
-                <div key={award.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/20 dark:border-white/10 group hover:scale-105 transition-all duration-300 hover:bg-white/15 dark:hover:bg-white/10">
-                  {/* Award Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center">
-                        <span className="text-xl">{getCategoryIcon(award.category)}</span>
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-white">
-                          {award.title}
-                        </h3>
-                        <p className="text-secondary-200 dark:text-secondary-100 text-sm">
-                          {award.organization}
-                        </p>
-                      </div>
+        {/* Two Column Layout: PDF on Left, Awards on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+          
+          {/* Left Column - PDF Display */}
+          <Parallax speed={-2}>
+            <div
+              ref={pdfAnimation.elementRef}
+              className={`${scrollAnimations.fadeInLeft.initial} ${pdfAnimation.isVisible ? scrollAnimations.fadeInLeft.animate : ''} ${scrollAnimations.fadeInLeft.transition}`}
+            >
+              <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/20 dark:border-white/10">
+                {/* PDF Content Display */}
+                <div className="bg-white rounded-lg shadow-lg p-6 mb-4">
+                  <div className="text-center mb-6">
+                    <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
+                      </svg>
                     </div>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(award.category)}`}>
-                      {award.category}
-                    </span>
-                  </div>
-
-                  {/* Award Details */}
-                  <div className="space-y-3">
-                    <p className="text-secondary-200 dark:text-secondary-100 leading-relaxed">
-                      {award.description}
+                    <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                      Recommendation Letter
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      Professional endorsement with signature
                     </p>
+                  </div>
+                  
+                  {/* PDF Viewer */}
+                  <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                    <PDFViewer
+                      file="/awards/Amir Recomendation Letter.pdf"
+                    />
+                  </div>
+                </div>
+                
+                {/* Action Buttons */}
+                <div className="text-center space-y-3">
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <a
+                      href="/awards/Amir Recomendation Letter.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      Open PDF in New Tab
+                    </a>
+                    
+                    <a
+                      href="/awards/Amir Recomendation Letter.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-accent-600 to-secondary-600 hover:from-accent-700 hover:to-secondary-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      Download PDF
+                    </a>
+                  </div>
+                  
+                  <p className="text-secondary-300 dark:text-secondary-400 text-xs">
+                    Use the buttons above to open or download the full PDF document.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Parallax>
 
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-secondary-200 dark:text-secondary-100">Awarded:</span>
-                      <span className="text-white font-medium">
-                        {formatDate(award.date)}
+          {/* Right Column - Awards Grid */}
+          <Parallax speed={-2}>
+            <div
+              ref={awardsGridAnimation.elementRef}
+              className={`${scrollAnimations.fadeInRight.initial} ${awardsGridAnimation.isVisible ? scrollAnimations.fadeInRight.animate : ''} ${scrollAnimations.fadeInRight.transition}`}
+            >
+              <div className="space-y-6">
+                {awards.map((award) => (
+                  <div key={award.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/20 dark:border-white/10 group hover:scale-105 transition-all duration-300 hover:bg-white/15 dark:hover:bg-white/10">
+                    {/* Award Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center">
+                          <span className="text-xl">{getCategoryIcon(award.category)}</span>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-white">
+                            {award.title}
+                          </h3>
+                          <p className="text-secondary-200 dark:text-secondary-100 text-sm">
+                            {award.organization}
+                          </p>
+                        </div>
+                      </div>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(award.category)}`}>
+                        {award.category}
                       </span>
                     </div>
 
-                    {/* View Details Link */}
-                    {award.url && (
-                      <div className="pt-2">
-                        <a
-                          href={award.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200 text-sm font-medium"
-                        >
-                          View Details →
-                        </a>
+                    {/* Award Details */}
+                    <div className="space-y-3">
+                      <p className="text-secondary-200 dark:text-secondary-100 leading-relaxed">
+                        {award.description}
+                      </p>
+
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-secondary-200 dark:text-secondary-100">Awarded:</span>
+                        <span className="text-white font-medium">
+                          {formatDate(award.date)}
+                        </span>
                       </div>
-                    )}
+
+                      {/* View Details Link */}
+                      {award.url && (
+                        <div className="pt-2">
+                          <a
+                            href={award.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200 text-sm font-medium"
+                          >
+                            View Details →
+                          </a>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        </Parallax>
+          </Parallax>
+        </div>
 
         {/* Statistics */}
         <Parallax speed={-1}>
