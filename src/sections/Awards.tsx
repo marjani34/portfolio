@@ -1,6 +1,17 @@
+'use client'
+
+import { Parallax } from 'react-scroll-parallax'
 import { awards } from '@/data/portfolio'
+import { useScrollAnimation, scrollAnimations } from '@/hooks/useScrollAnimation'
 
 const Awards = () => {
+  // Scroll animations for different elements with delays
+  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
+  const descriptionAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
+  const awardsGridAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 700 });
+  const statsAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 900 });
+  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 1100 });
+
   const getCategoryColor = (category: string) => {
     const colors = {
       hackathon: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
@@ -30,90 +41,156 @@ const Awards = () => {
   }
 
   return (
-    <section id="awards" className="section-padding bg-gradient-to-r from-secondary-700 via-primary-700 to-accent-700 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800 relative">
-      {/* Top Fade Transition */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-accent-600 via-accent-600/80 to-transparent dark:from-accent-700 dark:via-accent-700/80"></div>
+    <section id="awards" className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden bg-gradient-to-br from-secondary-900 via-primary-900 to-accent-900 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800">
+      {/* Parallax Background Layers */}
+      <Parallax speed={-20} className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary-900/80 via-primary-900/60 to-accent-900/80 dark:from-secondary-800/80 dark:via-primary-800/60 dark:to-accent-800/80"></div>
+      </Parallax>
       
-      {/* Smooth Transition Zone to Contact Section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary-700 via-primary-700/80 to-transparent dark:from-primary-800 dark:via-primary-800/80"></div>
-      
-      {/* Blurred Divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-500/50 to-transparent blur-sm"></div>
-      
-      {/* Purple Accent Glow at Bottom */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-accent-500/10 rounded-full blur-3xl"></div>
-      <div className="container-custom">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
-          Awards & Recognition
-        </h2>
+      <Parallax speed={-10} className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/30 via-accent-900/20 to-secondary-900/30 dark:from-primary-800/30 dark:via-accent-800/20 dark:to-secondary-800/30 opacity-30"></div>
+      </Parallax>
+
+      {/* Floating Blur Circles */}
+      <Parallax speed={-5} className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-primary-500/20 dark:bg-primary-400/20 rounded-full blur-3xl transition-all duration-1000 delay-200"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent-500/20 dark:bg-accent-400/20 rounded-full blur-3xl transition-all duration-1000 delay-400"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary-500/20 dark:bg-secondary-400/20 rounded-full blur-3xl transition-all duration-1000 delay-600"></div>
+      </Parallax>
+
+      {/* Award-themed Floating SVG Images */}
+      <Parallax speed={-15} className="absolute top-20 left-10 opacity-20 md:opacity-30 transition-all duration-1000 delay-300">
+        <svg className="w-16 h-16 md:w-20 md:h-20 text-primary-300 dark:text-primary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      </Parallax>
+
+      <Parallax speed={-8} className="absolute top-32 right-20 opacity-20 md:opacity-30 transition-all duration-1000 delay-500">
+        <svg className="w-12 h-12 md:w-16 md:h-16 text-accent-300 dark:text-accent-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </Parallax>
+
+      <Parallax speed={-12} className="absolute bottom-32 left-20 opacity-20 md:opacity-30 transition-all duration-1000 delay-700">
+        <svg className="w-14 h-14 md:w-18 md:h-18 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+      </Parallax>
+
+      <Parallax speed={-6} className="absolute bottom-20 right-10 opacity-20 md:opacity-30 transition-all duration-1000 delay-900">
+        <svg className="w-10 h-10 md:w-14 md:h-14 text-primary-300 dark:text-primary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+        </svg>
+      </Parallax>
+
+      <Parallax speed={-10} className="absolute top-1/2 left-1/4 opacity-20 md:opacity-30 transition-all duration-1000 delay-1100">
+        <svg className="w-8 h-8 md:w-12 md:h-12 text-accent-300 dark:text-accent-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </Parallax>
+
+      <Parallax speed={-7} className="absolute top-1/3 right-1/4 opacity-20 md:opacity-30 transition-all duration-1000 delay-1300">
+        <svg className="w-6 h-6 md:w-10 md:h-10 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+        </svg>
+      </Parallax>
+
+      {/* Main Content */}
+      <div className="relative z-10 container-custom">
+        {/* Section Title */}
+        <Parallax speed={-5}>
+          <div
+            ref={titleAnimation.elementRef}
+            className={`text-center mb-12 ${scrollAnimations.fadeInUp.initial} ${titleAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Awards & Recognition
+            </h2>
+          </div>
+        </Parallax>
         
-        <div className="max-w-6xl mx-auto">
-          {/* Introduction */}
-          <div className="text-center mb-12">
+        {/* Section Description */}
+        <Parallax speed={-3}>
+          <div
+            ref={descriptionAnimation.elementRef}
+            className={`text-center mb-12 ${scrollAnimations.fadeInUp.initial} ${descriptionAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
+          >
             <p className="text-lg text-secondary-200 dark:text-secondary-100 max-w-3xl mx-auto">
               Recognition for my work, achievements in competitions, and contributions to the tech community. 
               These awards represent milestones in my journey as a developer and innovator.
             </p>
           </div>
+        </Parallax>
 
-          {/* Awards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {awards.map((award) => (
-              <div key={award.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/20 dark:border-white/10 group hover:scale-105 transition-transform duration-300">
-                {/* Award Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center">
-                      <span className="text-xl">{getCategoryIcon(award.category)}</span>
+        {/* Awards Grid */}
+        <Parallax speed={-2}>
+          <div
+            ref={awardsGridAnimation.elementRef}
+            className={`max-w-6xl mx-auto ${scrollAnimations.fadeInScale.initial} ${awardsGridAnimation.isVisible ? scrollAnimations.fadeInScale.animate : ''} ${scrollAnimations.fadeInScale.transition}`}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {awards.map((award) => (
+                <div key={award.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/20 dark:border-white/10 group hover:scale-105 transition-all duration-300 hover:bg-white/15 dark:hover:bg-white/10">
+                  {/* Award Header */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center">
+                        <span className="text-xl">{getCategoryIcon(award.category)}</span>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">
+                          {award.title}
+                        </h3>
+                        <p className="text-secondary-200 dark:text-secondary-100 text-sm">
+                          {award.organization}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-white">
-                        {award.title}
-                      </h3>
-                      <p className="text-secondary-200 dark:text-secondary-100 text-sm">
-                        {award.organization}
-                      </p>
-                    </div>
-                  </div>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(award.category)}`}>
-                    {award.category}
-                  </span>
-                </div>
-
-                {/* Award Details */}
-                <div className="space-y-3">
-                  <p className="text-secondary-200 dark:text-secondary-100 leading-relaxed">
-                    {award.description}
-                  </p>
-
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-secondary-200 dark:text-secondary-100">Awarded:</span>
-                    <span className="text-white font-medium">
-                      {formatDate(award.date)}
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(award.category)}`}>
+                      {award.category}
                     </span>
                   </div>
 
-                  {/* View Details Link */}
-                  {award.url && (
-                    <div className="pt-2">
-                      <a
-                        href={award.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200 text-sm font-medium"
-                      >
-                        View Details →
-                      </a>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+                  {/* Award Details */}
+                  <div className="space-y-3">
+                    <p className="text-secondary-200 dark:text-secondary-100 leading-relaxed">
+                      {award.description}
+                    </p>
 
-          {/* Statistics */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-secondary-200 dark:text-secondary-100">Awarded:</span>
+                      <span className="text-white font-medium">
+                        {formatDate(award.date)}
+                      </span>
+                    </div>
+
+                    {/* View Details Link */}
+                    {award.url && (
+                      <div className="pt-2">
+                        <a
+                          href={award.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200 text-sm font-medium"
+                        >
+                          View Details →
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Parallax>
+
+        {/* Statistics */}
+        <Parallax speed={-1}>
+          <div
+            ref={statsAnimation.elementRef}
+            className={`mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 ${scrollAnimations.fadeInUp.initial} ${statsAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
+          >
+            <div className="text-center group transition-all duration-300 hover:scale-105">
               <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
                 {awards.length}
               </div>
@@ -121,7 +198,7 @@ const Awards = () => {
                 Awards Won
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center group transition-all duration-300 hover:scale-105">
               <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
                 {awards.filter(a => a.category === 'hackathon').length}
               </div>
@@ -129,7 +206,7 @@ const Awards = () => {
                 Hackathons
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center group transition-all duration-300 hover:scale-105">
               <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
                 {awards.filter(a => a.category === 'competition').length}
               </div>
@@ -137,7 +214,7 @@ const Awards = () => {
                 Competitions
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center group transition-all duration-300 hover:scale-105">
               <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
                 {awards.filter(a => a.category === 'recognition').length}
               </div>
@@ -146,21 +223,38 @@ const Awards = () => {
               </p>
             </div>
           </div>
+        </Parallax>
 
-          {/* Call to Action */}
-          <div className="text-center mt-12">
+        {/* Call to Action */}
+        <Parallax speed={0}>
+          <div
+            ref={ctaAnimation.elementRef}
+            className={`text-center mt-12 ${scrollAnimations.fadeInUp.initial} ${ctaAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
+          >
             <p className="text-secondary-600 dark:text-secondary-300 mb-6">
               Always striving for excellence and pushing the boundaries of what&apos;s possible.
             </p>
             <a 
               href="#contact" 
-              className="btn-primary"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 dark:from-primary-500 dark:to-accent-500 dark:hover:from-primary-600 dark:hover:to-accent-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Let&apos;s Work Together
+              <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </a>
           </div>
-        </div>
+        </Parallax>
       </div>
+
+      {/* Smooth Transition Zone to Contact Section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary-900 via-secondary-900/80 to-transparent"></div>
+      
+      {/* Blurred Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent blur-sm"></div>
+      
+      {/* Purple Accent Glow at Bottom */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-accent-500/10 rounded-full blur-3xl"></div>
     </section>
   )
 }
