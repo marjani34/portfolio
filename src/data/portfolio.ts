@@ -92,7 +92,7 @@ export const projects: Project[] = [
     id: '2',
     title: 'Fintranet Payment Platform',
     description: 'Led the development of a cloud-based payment platform using Angular, integrating PrimeNG and the ABP framework to boost functionality and performance. Provided responsive, knowledgeable customer support and trained a 5-member team.',
-    image: '/projects/fintranet-payment.jpg',
+    image: '/projects/Fintranet/f1.JPG',
     technologies: ['Angular', 'PrimeNG', 'ABP Framework', 'TypeScript', 'RxJS'],
     liveUrl: 'https://fintranet.com',
     githubUrl: 'https://github.com/amir-marjani/fintranet',
@@ -100,6 +100,16 @@ export const projects: Project[] = [
   },
   {
     id: '3',
+    title: 'FintraAccount Financial Platform',
+    description: 'Developed a comprehensive financial management platform for banking operations, featuring advanced reporting, transaction monitoring, and compliance tools. Built with modern web technologies for optimal performance and user experience.',
+    image: '/projects/FintraAccount/1.jpg',
+    technologies: ['Angular', 'TypeScript', 'RxJS', 'PrimeNG', 'Financial APIs'],
+    liveUrl: 'https://fintraaccount.com',
+    githubUrl: 'https://github.com/amir-marjani/fintraaccount',
+    featured: true
+  },
+  {
+    id: '4',
     title: 'Myth Arena E-Sports Platform',
     description: 'Contributed to the development of Myth Arena, a Turkish e-sports platform, using Angular framework with Angular Material and NgRx for state management. Refactored legacy code and participated in the entire SDLC.',
     image: '/projects/myth-arena.jpg',
@@ -109,17 +119,17 @@ export const projects: Project[] = [
     featured: true
   },
   {
-    id: '4',
+    id: '5',
     title: 'Smart Runners Social Network',
     description: 'Developed a bilingual sports-focused social network supporting both Persian and English, delivering a localized and engaging user experience. Built using Angular with Angular Material and NgRx for state management.',
-    image: '/projects/smart-runners.jpg',
+    image: '/projects/smartRunners/Screenshot 2025-08-13 020725.png',
     technologies: ['Angular', 'Angular Material', 'NgRx', 'TypeScript', 'Git'],
     liveUrl: 'https://smartrunners.com',
     githubUrl: 'https://github.com/amir-marjani/smart-runners',
     featured: false
   },
   {
-    id: '5',
+    id: '6',
     title: 'Warehouse Inventory Management PWA',
     description: 'Developed a Windows-based application using Angular Progressive Web App (PWA) technology, designed to streamline warehouse inventory management with real-time tracking and comprehensive reporting.',
     image: '/projects/warehouse-pwa.jpg',
@@ -129,7 +139,7 @@ export const projects: Project[] = [
     featured: false
   },
   {
-    id: '6',
+    id: '7',
     title: 'Emirates Tennis Federation Platform',
     description: 'Built the UI using Angular 7, implementing lazy loading, Angular Universal (SSR), and HTTP interceptors to enhance performance, SEO, and maintainability. Developed cross-platform software compatible with desktop and mobile.',
     image: '/projects/emirates-tennis.jpg',

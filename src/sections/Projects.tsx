@@ -1,11 +1,188 @@
 'use client'
 
-import { projects } from '@/data/portfolio'
+import { projects, Project } from '@/data/portfolio'
 import { Parallax } from 'react-scroll-parallax'
+import { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
+
+// Project image mapping - you can add more projects with their images here
+const projectImages: Record<string, string[]> = {
+  'Fintranet Payment Platform': [
+    '/projects/Fintranet/f1.JPG',
+    '/projects/Fintranet/f2.JPG',
+    '/projects/Fintranet/f3.JPG',
+    '/projects/Fintranet/f4.JPG',
+    '/projects/Fintranet/f5.JPG',
+    '/projects/Fintranet/f6.JPG'
+  ],
+  'FintraAccount Financial Platform': [
+    '/projects/FintraAccount/1.jpg',
+    '/projects/FintraAccount/2.jpg',
+    '/projects/FintraAccount/3.jpg',
+    '/projects/FintraAccount/4.JPG',
+    '/projects/FintraAccount/5.JPG',
+    '/projects/FintraAccount/6.JPG'
+  ],
+  'Myth Arena E-Sports Platform': [
+    '/projects/myth-arena.jpg'
+  ],
+  'Smart Runners Social Network': [
+    '/projects/smartRunners/Screenshot 2025-08-13 020725.png',
+    '/projects/smartRunners/Screenshot 2025-08-13 020824.png',
+    '/projects/smartRunners/Screenshot 2025-08-13 020848.png'
+  ]
+}
 
 const Projects = () => {
+  const [selectedProject, setSelectedProject] = useState<string | null>(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const featuredProjects = projects.filter(project => project.featured)
   const otherProjects = projects.filter(project => !project.featured)
+
+  const openImageGallery = (projectTitle: string) => {
+    setSelectedProject(projectTitle)
+    setCurrentImageIndex(0)
+  }
+
+  const closeImageGallery = () => {
+    setSelectedProject(null)
+    setCurrentImageIndex(0)
+  }
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!selectedProject) return
+      
+      switch (event.key) {
+        case 'Escape':
+          closeImageGallery()
+          break
+        case 'ArrowLeft':
+          prevImage()
+          break
+        case 'ArrowRight':
+          nextImage()
+          break
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [selectedProject])
+
+  const nextImage = useCallback(() => {
+    if (selectedProject && projectImages[selectedProject]) {
+      setCurrentImageIndex((prev) => 
+        (prev + 1) % projectImages[selectedProject].length
+      )
+    }
+  }, [selectedProject])
+
+  const prevImage = useCallback(() => {
+    if (selectedProject && projectImages[selectedProject]) {
+      setCurrentImageIndex((prev) => 
+        prev === 0 ? projectImages[selectedProject].length - 1 : prev - 1
+      )
+    }
+  }, [selectedProject])
+
+  const ProjectCard = ({ project, isFeatured = false }: { project: Project, isFeatured?: boolean }) => {
+    const hasImages = projectImages[project.title] && projectImages[project.title].length > 0
+    const firstImage = hasImages ? projectImages[project.title][0] : null
+
+    return (
+      <div className={`${isFeatured ? 'lg:col-span-2' : ''} bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-2xl overflow-hidden group hover:scale-105 transition-all duration-300`}>
+        {/* Project Image */}
+        {hasImages && firstImage ? (
+          <div className="relative h-48 md:h-64 overflow-hidden cursor-pointer" onClick={() => openImageGallery(project.title)}>
+            <Image
+              src={firstImage}
+              alt={project.title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+              <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                </svg>
+              </div>
+            </div>
+            {projectImages[project.title].length > 1 && (
+              <div className="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                {projectImages[project.title].length} images
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="h-48 md:h-64 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 dark:from-primary-400/20 dark:to-secondary-400/20 flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary-500/30 dark:bg-primary-400/30 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-2xl">🚀</span>
+              </div>
+              <p className="text-white/80 text-sm">
+                Project Preview
+              </p>
+            </div>
+          </div>
+        )}
+        
+        <div className="p-6">
+          <h4 className="text-xl font-semibold mb-3 text-white">
+            {project.title}
+          </h4>
+          <p className="text-secondary-200 dark:text-secondary-100 mb-4 leading-relaxed">
+            {project.description}
+          </p>
+          
+          {/* Technologies */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.technologies.map((tech: string) => (
+              <span 
+                key={tech}
+                className="px-3 py-1 bg-primary-500/20 text-primary-200 dark:bg-primary-400/20 dark:text-primary-100 rounded-full text-sm font-medium border border-primary-500/30"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+          
+          {/* Project Links */}
+          <div className="flex gap-3">
+            {project.liveUrl && (
+              <a 
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
+              >
+                Live Demo
+              </a>
+            )}
+            {project.githubUrl && (
+              <a 
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-white/10 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
+              >
+                View Code
+              </a>
+            )}
+            {hasImages && (
+              <button
+                onClick={() => openImageGallery(project.title)}
+                className="inline-flex items-center px-4 py-2 bg-secondary-600 hover:bg-secondary-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
+              >
+                View Gallery
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <section id="projects" className="section-padding bg-gradient-to-br from-secondary-900 via-primary-900 to-accent-900 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800 relative overflow-hidden">
@@ -87,64 +264,7 @@ const Projects = () => {
             </h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredProjects.map((project) => (
-                <div key={project.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-2xl overflow-hidden group hover:scale-105 transition-all duration-300">
-                  {/* Project Image Placeholder */}
-                  <div className="h-48 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 dark:from-primary-400/20 dark:to-secondary-400/20 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-primary-500/30 dark:bg-primary-400/30 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <span className="text-2xl">🚀</span>
-                      </div>
-                      <p className="text-white/80 text-sm">
-                        Project Preview
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <h4 className="text-xl font-semibold mb-3 text-white">
-                      {project.title}
-                    </h4>
-                    <p className="text-secondary-200 dark:text-secondary-100 mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
-                    
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech) => (
-                        <span 
-                          key={tech}
-                          className="px-3 py-1 bg-primary-500/20 text-primary-200 dark:bg-primary-400/20 dark:text-primary-100 rounded-full text-sm font-medium border border-primary-500/30"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    {/* Project Links */}
-                    <div className="flex gap-3">
-                      {project.liveUrl && (
-                        <a 
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
-                        >
-                          Live Demo
-                        </a>
-                      )}
-                      {project.githubUrl && (
-                        <a 
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center px-4 py-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-white/10 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
-                        >
-                          View Code
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
+                <ProjectCard key={project.id} project={project} isFeatured={true} />
               ))}
             </div>
           </div>
@@ -158,60 +278,7 @@ const Projects = () => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherProjects.map((project) => (
-                <div key={project.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-2xl p-6 group hover:scale-105 transition-all duration-300">
-                  {/* Project Icon */}
-                  <div className="w-12 h-12 bg-primary-500/30 dark:bg-primary-400/30 rounded-lg flex items-center justify-center mb-4">
-                    <span className="text-xl">💻</span>
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-3 text-white">
-                    {project.title}
-                  </h4>
-                  <p className="text-secondary-200 dark:text-secondary-100 mb-4 text-sm leading-relaxed">
-                    {project.description}
-                  </p>
-                  
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <span 
-                        key={tech}
-                        className="px-2 py-1 bg-secondary-500/20 dark:bg-secondary-400/20 text-secondary-200 dark:text-secondary-100 rounded text-xs border border-secondary-500/30"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-secondary-500/20 dark:bg-secondary-400/20 text-secondary-200 dark:text-secondary-100 rounded text-xs border border-secondary-500/30">
-                        +{project.technologies.length - 3}
-                      </span>
-                    )}
-                  </div>
-                  
-                  {/* Project Links */}
-                  <div className="flex gap-2">
-                    {project.liveUrl && (
-                      <a 
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary-300 dark:text-primary-200 hover:text-primary-100 dark:hover:text-primary-100 text-sm font-medium transition-colors duration-300"
-                      >
-                        Demo →
-                      </a>
-                    )}
-                    {project.githubUrl && (
-                      <a 
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-secondary-300 dark:text-secondary-200 hover:text-secondary-100 dark:hover:text-secondary-100 text-sm font-medium transition-colors duration-300"
-                      >
-                        Code →
-                      </a>
-                    )}
-                  </div>
-                </div>
+                <ProjectCard key={project.id} project={project} />
               ))}
             </div>
           </div>
@@ -223,7 +290,7 @@ const Projects = () => {
             Want to see more of my work?
           </p>
           <a 
-            href="https://github.com/yourusername" 
+            href="https://github.com/amir-marjani" 
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 dark:from-primary-500 dark:to-accent-500 dark:hover:from-primary-600 dark:hover:to-accent-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -235,6 +302,69 @@ const Projects = () => {
           </a>
         </div>
       </div>
+
+      {/* Image Gallery Modal */}
+      {selectedProject && (
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="relative max-w-4xl w-full max-h-full">
+            {/* Close Button */}
+            <button
+              onClick={closeImageGallery}
+              className="absolute top-4 right-4 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 transition-all duration-300"
+            >
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Navigation Buttons */}
+            {projectImages[selectedProject] && projectImages[selectedProject].length > 1 && (
+              <>
+                <button
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
+
+            {/* Current Image */}
+            {projectImages[selectedProject] && (
+              <div className="relative w-full h-96 md:h-[600px] rounded-lg overflow-hidden">
+                <Image
+                  src={projectImages[selectedProject][currentImageIndex]}
+                  alt={`${selectedProject} - Image ${currentImageIndex + 1}`}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            )}
+
+            {/* Image Counter */}
+            {projectImages[selectedProject] && projectImages[selectedProject].length > 1 && (
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm">
+                {currentImageIndex + 1} / {projectImages[selectedProject].length}
+              </div>
+            )}
+
+            {/* Project Title */}
+            <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-lg">
+              <h3 className="text-lg font-semibold">{selectedProject}</h3>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
