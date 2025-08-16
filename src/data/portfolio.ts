@@ -60,7 +60,7 @@ export interface Award {
 export const personalInfo = {
   name: 'Amir Marjani',
   title: 'Front End Manager',
-  email: 'amir.marjani@gmail.com',
+  email: 'marjani.code@gmail.com',
   location: 'Dubai, United Arab Emirates',
   phone: '+971503658040',
   birthDate: '28/06/1992',
@@ -207,7 +207,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     name: 'Email',
-    url: 'mailto:amir.marjani@gmail.com',
+    url: 'mailto:marjani.code@gmail.com',
     icon: 'email'
   }
 ]
