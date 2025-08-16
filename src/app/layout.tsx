@@ -4,7 +4,11 @@ import './globals.css'
 import { personalInfo } from '@/data/portfolio'
 import ParallaxWrapper from '@/components/ParallaxWrapper'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter'
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://amirmarjani.com'),
@@ -86,7 +90,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
@@ -101,7 +105,7 @@ export default function RootLayout({
         <meta name="application-name" content={personalInfo.name} />
         <meta name="msapplication-TileImage" content="/favicon.ico" />
       </head>
-      <body className={`${inter.className} bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white scroll-smooth`}>
+      <body className={`${inter.variable} font-sans bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white scroll-smooth`}>
         <ParallaxWrapper>
           {children}
         </ParallaxWrapper>
