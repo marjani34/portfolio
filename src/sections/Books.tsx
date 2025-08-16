@@ -129,18 +129,18 @@ const Books = () => {
           </div>
 
           {/* Books Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-16 items-stretch">
             {books.map((book, index) => (
-              <div key={book.id} className="group">
+              <div key={book.id} className="group h-full">
                 {/* Book Container */}
-                <div className="relative transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2">
+                <div className="relative transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2 h-full">
                   {/* Book Shadow */}
                   <div className="absolute -bottom-4 left-2 right-2 h-6 bg-black/40 rounded-full blur-xl transform rotate-x-45"></div>
                   
                   {/* Book Body */}
-                  <div className="relative bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-white/20 dark:border-white/10">
+                  <div className="relative bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-white/20 dark:border-white/10 h-full flex flex-col">
                     {/* Book Cover */}
-                    <div className={`relative h-64 ${getBookCoverPattern(book.category)} p-6 flex flex-col justify-between`}>
+                    <div className={`relative h-64 ${getBookCoverPattern(book.category)} p-6 flex flex-col justify-between flex-shrink-0`}>
                       {/* Cover Pattern Overlay */}
                       <div className="absolute inset-0 opacity-20">
                         <div className="w-full h-full bg-gradient-to-br from-white/30 to-transparent"></div>
@@ -171,7 +171,7 @@ const Books = () => {
                     </div>
                     
                     {/* Book Content */}
-                    <div className="p-6 bg-white/10 dark:bg-white/5 backdrop-blur-md">
+                    <div className="p-6 pb-8 bg-white/10 dark:bg-white/5 backdrop-blur-md flex-1 flex flex-col">
                       {/* Rating */}
                       <div className="flex items-center gap-2 mb-3">
                         <div className="flex">
@@ -183,12 +183,12 @@ const Books = () => {
                       </div>
 
                       {/* Description */}
-                      <p className="text-sm text-secondary-200 dark:text-secondary-100 leading-relaxed line-clamp-3 mb-4">
+                      <p className="text-sm text-secondary-200 dark:text-secondary-100 leading-relaxed line-clamp-3 mb-4 flex-1">
                         {book.description}
                       </p>
 
                       {/* Links */}
-                      <div className="flex gap-3 pt-2 border-t border-white/20 dark:border-white/10">
+                      <div className="flex gap-3 pt-2 border-t border-white/20 dark:border-white/10 mt-auto">
                         {book.amazonUrl && (
                           <a
                             href={book.amazonUrl}
@@ -218,7 +218,7 @@ const Books = () => {
                 </div>
 
                 {/* Book Title Below */}
-                <div className="mt-4 text-center">
+                <div className="mt-3 text-center">
                   <h4 className="text-sm font-semibold text-white line-clamp-1">
                     {book.title}
                   </h4>
@@ -231,7 +231,7 @@ const Books = () => {
           </div>
 
           {/* Call to Action */}
-          <div className="text-center mt-16">
+          <div className="text-center mt-20">
             <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-lg max-w-2xl mx-auto border border-white/20 dark:border-white/10">
               <div className="mb-6">
                 <span className="text-4xl mb-4 block">📚</span>
