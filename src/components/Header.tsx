@@ -60,13 +60,22 @@ const Header = () => {
           {/* Logo */}
           <Link 
             href="#hero" 
-            className="text-lg md:text-xl font-bold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200"
+            className="group relative text-lg md:text-xl font-bold transition-all duration-300 hover:scale-105 animate-pulse"
             onClick={() => handleNavClick('#hero')}
           >
-            {personalInfo.name.split(' ')[0]}
-            <span className="text-secondary-600 dark:text-secondary-400 ml-1">
+            <span className="bg-gradient-to-r from-primary-600 via-accent-600 to-secondary-600 dark:from-primary-400 dark:via-accent-400 dark:to-secondary-400 bg-clip-text text-transparent hover:animate-bounce transition-all duration-300 font-fantasy-bold tracking-wider drop-shadow-lg">
+              {personalInfo.name.split(' ')[0]}
+            </span>
+            <span className="bg-gradient-to-r from-secondary-600 via-accent-600 to-primary-600 dark:from-secondary-400 dark:via-accent-400 dark:to-primary-400 bg-clip-text text-transparent ml-1 hover:animate-bounce transition-all duration-300 font-fantasy-bold tracking-wider drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
               {personalInfo.name.split(' ')[1]}
             </span>
+            {/* Hover effect underline */}
+            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 via-accent-600 to-secondary-600 dark:from-primary-400 dark:via-accent-400 dark:to-secondary-400 transition-all duration-300 group-hover:w-full rounded-full"></div>
+            {/* Subtle glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 via-accent-600/20 to-secondary-600/20 dark:from-primary-400/20 dark:via-accent-400/20 dark:to-secondary-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+            {/* Floating particles effect */}
+            <div className="absolute -top-2 -right-2 w-2 h-2 bg-accent-500 rounded-full opacity-0 group-hover:opacity-100 animate-ping transition-all duration-500"></div>
+            <div className="absolute -bottom-2 -left-2 w-1.5 h-1.5 bg-primary-500 rounded-full opacity-0 group-hover:opacity-100 animate-ping transition-all duration-500" style={{ animationDelay: '0.2s' }}></div>
           </Link>
 
           {/* Desktop Navigation */}
