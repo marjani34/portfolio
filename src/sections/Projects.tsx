@@ -23,9 +23,7 @@ const projectImages: Record<string, string[]> = {
     '/projects/FintraAccount/5.JPG',
     '/projects/FintraAccount/6.JPG'
   ],
-  'Myth Arena E-Sports Platform': [
-    '/projects/myth-arena.jpg'
-  ],
+
   'Smart Runners Social Network': [
     '/projects/smartRunners/Screenshot 2025-08-13 020725.png',
     '/projects/smartRunners/Screenshot 2025-08-13 020824.png',
@@ -150,26 +148,6 @@ const Projects = () => {
           
           {/* Project Links */}
           <div className="flex gap-3">
-            {project.liveUrl && (
-              <a 
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
-              >
-                Live Demo
-              </a>
-            )}
-            {project.githubUrl && (
-              <a 
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-white/10 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm"
-              >
-                View Code
-              </a>
-            )}
             {hasImages && (
               <button
                 onClick={() => openImageGallery(project.title)}

@@ -101,9 +101,9 @@ export const projects: Project[] = [
   {
     id: '3',
     title: 'FintraAccount Financial Platform',
-    description: 'Developed a comprehensive financial management platform for banking operations, featuring advanced reporting, transaction monitoring, and compliance tools. Built with modern web technologies for optimal performance and user experience.',
+    description: 'Led the development of a comprehensive financial management platform for banking operations using Angular framework. Implemented advanced reporting dashboards, real-time transaction monitoring, compliance tools, and risk assessment modules. Built with Angular, PrimeNG components, and RxJS for reactive state management, delivering a robust and scalable solution for financial institutions with enhanced security features and regulatory compliance.',
     image: '/projects/FintraAccount/1.jpg',
-    technologies: ['Angular', 'TypeScript', 'RxJS', 'PrimeNG', 'Financial APIs'],
+    technologies: ['Angular', 'TypeScript', 'RxJS', 'PrimeNG', 'Financial APIs', 'Compliance Tools', 'Risk Assessment'],
     liveUrl: 'https://fintraaccount.com',
     githubUrl: 'https://github.com/amir-marjani/fintraaccount',
     featured: true
