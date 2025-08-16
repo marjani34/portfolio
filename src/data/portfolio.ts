@@ -169,7 +169,7 @@ export const skills: Skill[] = [
   // Backend - Based on CV experience
   { name: 'Node.js', category: 'backend', level: 4 },
   { name: 'Express.js', category: 'backend', level: 4 },
-  { name: 'Python', category: 'backend', level: 3 },
+  { name: 'Python', category: 'backend', level: 4 },
   { name: 'FastAPI', category: 'backend', level: 3 },
   { name: 'C#', category: 'backend', level: 3 },
   { name: 'WPF', category: 'backend', level: 3 },

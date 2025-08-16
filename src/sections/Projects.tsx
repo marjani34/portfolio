@@ -1,9 +1,15 @@
 'use client'
 
 import { projects, Project } from '@/data/portfolio'
-import { Parallax } from 'react-scroll-parallax'
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
+
+// Dynamically import Parallax to avoid SSR issues
+const Parallax = dynamic(() => import('react-scroll-parallax').then(mod => ({ default: mod.Parallax })), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0" />
+})
 
 // Project image mapping - you can add more projects with their images here
 const projectImages: Record<string, string[]> = {
@@ -34,18 +40,40 @@ const projectImages: Record<string, string[]> = {
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<string | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isClient, setIsClient] = useState(false)
   const featuredProjects = projects.filter(project => project.featured)
   const otherProjects = projects.filter(project => !project.featured)
+
+  // Ensure client-side rendering to prevent hydration mismatches
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const openImageGallery = (projectTitle: string) => {
     setSelectedProject(projectTitle)
     setCurrentImageIndex(0)
   }
 
-  const closeImageGallery = () => {
+  const closeImageGallery = useCallback(() => {
     setSelectedProject(null)
     setCurrentImageIndex(0)
-  }
+  }, [])
+
+  const nextImage = useCallback(() => {
+    if (selectedProject && projectImages[selectedProject]) {
+      setCurrentImageIndex((prev) => 
+        (prev + 1) % projectImages[selectedProject].length
+      )
+    }
+  }, [selectedProject])
+
+  const prevImage = useCallback(() => {
+    if (selectedProject && projectImages[selectedProject]) {
+      setCurrentImageIndex((prev) => 
+        prev === 0 ? projectImages[selectedProject].length - 1 : prev - 1
+      )
+    }
+  }, [selectedProject])
 
   // Keyboard navigation
   useEffect(() => {
@@ -67,23 +95,7 @@ const Projects = () => {
 
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [selectedProject])
-
-  const nextImage = useCallback(() => {
-    if (selectedProject && projectImages[selectedProject]) {
-      setCurrentImageIndex((prev) => 
-        (prev + 1) % projectImages[selectedProject].length
-      )
-    }
-  }, [selectedProject])
-
-  const prevImage = useCallback(() => {
-    if (selectedProject && projectImages[selectedProject]) {
-      setCurrentImageIndex((prev) => 
-        prev === 0 ? projectImages[selectedProject].length - 1 : prev - 1
-      )
-    }
-  }, [selectedProject])
+  }, [selectedProject, closeImageGallery, prevImage, nextImage])
 
   const ProjectCard = ({ project, isFeatured = false }: { project: Project, isFeatured?: boolean }) => {
     const hasImages = projectImages[project.title] && projectImages[project.title].length > 0
@@ -164,14 +176,16 @@ const Projects = () => {
 
   return (
     <section id="projects" className="section-padding bg-gradient-to-br from-secondary-900 via-primary-900 to-accent-900 dark:from-secondary-800 dark:via-primary-800 dark:to-accent-800 relative overflow-hidden">
-      {/* Parallax Background Layers */}
-      <Parallax speed={-20} className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary-900/80 via-primary-900/60 to-accent-900/80 dark:from-secondary-800/80 dark:via-primary-800/60 dark:to-accent-800/80"></div>
-      </Parallax>
-      
-      <Parallax speed={-10} className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/30 via-accent-900/20 to-secondary-900/30 dark:from-primary-800/30 dark:via-accent-800/20 dark:to-secondary-800/30 opacity-30"></div>
-      </Parallax>
+      {/* Parallax Background Layers - Only render on client */}
+      {isClient && (
+        <>
+          <Parallax speed={-20} className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-secondary-900/80 via-primary-900/60 to-accent-900/80 dark:from-secondary-800/80 dark:via-primary-800/60 dark:to-accent-800/80"></div>
+          </Parallax>
+          
+          <Parallax speed={-10} className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-900/30 via-accent-900/20 to-secondary-900/30 dark:from-primary-800/30 dark:via-accent-800/20 dark:to-secondary-800/30 opacity-30"></div>
+          </Parallax>
 
       {/* Floating Blur Circles */}
       <Parallax speed={-5} className="absolute inset-0">
@@ -217,17 +231,19 @@ const Projects = () => {
         </svg>
       </Parallax>
 
-      {/* Top Fade Transition */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary-900 via-secondary-900/80 to-transparent"></div>
-      
-      {/* Smooth Transition Zone to Skills Section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-accent-900 via-accent-900/80 to-transparent"></div>
-      
-      {/* Blurred Divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary-500/50 to-transparent blur-sm"></div>
-      
-      {/* Purple Accent Glow at Bottom */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-secondary-500/10 rounded-full blur-3xl"></div>
+          {/* Top Fade Transition */}
+          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary-900 via-secondary-900/80 to-transparent"></div>
+          
+          {/* Smooth Transition Zone to Skills Section */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-accent-900 via-accent-900/80 to-transparent"></div>
+          
+          {/* Blurred Divider */}
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary-500/50 to-transparent blur-sm"></div>
+          
+          {/* Purple Accent Glow at Bottom */}
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-secondary-500/10 rounded-full blur-3xl"></div>
+        </>
+      )}
       
       <div className="container-custom relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
