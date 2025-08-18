@@ -58,46 +58,97 @@ export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
   };
 };
 
-// Animation variants for different effects with slower durations
+// Animation variants for different effects with faster durations
 export const scrollAnimations = {
+  // Fade animations
   fadeInUp: {
-    initial: 'opacity-0 translate-y-12 scale-95',
+    initial: 'opacity-0 translate-y-8 scale-95',
     animate: 'opacity-100 translate-y-0 scale-100',
-    transition: 'transition-all duration-1200 ease-out'
+    transition: 'transition-all duration-600 ease-out'
+  },
+  fadeInDown: {
+    initial: 'opacity-0 -translate-y-8 scale-95',
+    animate: 'opacity-100 translate-y-0 scale-100',
+    transition: 'transition-all duration-600 ease-out'
   },
   fadeInLeft: {
-    initial: 'opacity-0 -translate-x-12 scale-95',
+    initial: 'opacity-0 -translate-x-8 scale-95',
     animate: 'opacity-100 translate-x-0 scale-100',
-    transition: 'transition-all duration-1200 ease-out'
+    transition: 'transition-all duration-600 ease-out'
   },
   fadeInRight: {
-    initial: 'opacity-0 translate-x-12 scale-95',
+    initial: 'opacity-0 translate-x-8 scale-95',
     animate: 'opacity-100 translate-x-0 scale-100',
-    transition: 'transition-all duration-1200 ease-out'
+    transition: 'transition-all duration-600 ease-out'
+  },
+  
+  // Slide animations
+  slideInLeft: {
+    initial: 'opacity-0 -translate-x-full',
+    animate: 'opacity-100 translate-x-0',
+    transition: 'transition-all duration-700 ease-out'
   },
   slideInRight: {
-    initial: 'transform translate-x-full',
-    animate: 'transform translate-x-0',
-    transition: 'transition-transform duration-1200 ease-out'
-  },
-  fadeInScale: {
-    initial: 'opacity-0 scale-85',
-    animate: 'opacity-100 scale-100',
-    transition: 'transition-all duration-1000 ease-out'
+    initial: 'opacity-0 translate-x-full',
+    animate: 'opacity-100 translate-x-0',
+    transition: 'transition-all duration-700 ease-out'
   },
   slideInUp: {
-    initial: 'opacity-0 translate-y-16',
+    initial: 'opacity-0 translate-y-full',
     animate: 'opacity-100 translate-y-0',
-    transition: 'transition-all duration-1400 ease-out'
+    transition: 'transition-all duration-700 ease-out'
   },
   slideInDown: {
-    initial: 'opacity-0 -translate-y-16',
+    initial: 'opacity-0 -translate-y-full',
     animate: 'opacity-100 translate-y-0',
-    transition: 'transition-all duration-1400 ease-out'
+    transition: 'transition-all duration-700 ease-out'
   },
+  
+  // Scale animations
+  fadeInScale: {
+    initial: 'opacity-0 scale-90',
+    animate: 'opacity-100 scale-100',
+    transition: 'transition-all duration-500 ease-out'
+  },
+  scaleInUp: {
+    initial: 'opacity-0 scale-90 translate-y-8',
+    animate: 'opacity-100 scale-100 translate-y-0',
+    transition: 'transition-all duration-600 ease-out'
+  },
+  
+  // Special effects
   blurIn: {
-    initial: 'opacity-0 blur-md scale-90',
+    initial: 'opacity-0 blur-md scale-95',
     animate: 'opacity-100 blur-0 scale-100',
-    transition: 'transition-all duration-1000 ease-out'
+    transition: 'transition-all duration-500 ease-out'
+  },
+  rotateIn: {
+    initial: 'opacity-0 rotate-12 scale-95',
+    animate: 'opacity-100 rotate-0 scale-100',
+    transition: 'transition-all duration-600 ease-out'
+  },
+  bounceIn: {
+    initial: 'opacity-0 scale-75 translate-y-8',
+    animate: 'opacity-100 scale-100 translate-y-0',
+    transition: 'transition-all duration-600 ease-bounce'
+  },
+  
+  // Stagger animations for lists
+  staggerItem: {
+    initial: 'opacity-0 translate-y-4',
+    animate: 'opacity-100 translate-y-0',
+    transition: 'transition-all duration-400 ease-out'
+  },
+  
+  // Quick entrance animations
+  quickFadeIn: {
+    initial: 'opacity-0',
+    animate: 'opacity-100',
+    transition: 'transition-opacity duration-300 ease-out'
+  },
+  quickSlideUp: {
+    initial: 'opacity-0 translate-y-4',
+    animate: 'opacity-100 translate-y-0',
+    transition: 'transition-all duration-400 ease-out'
   }
 }; 

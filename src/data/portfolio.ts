@@ -282,6 +282,26 @@ export const books: Book[] = [
     rating: 5,
     amazonUrl: 'https://amazon.com/hobbit',
     goodreadsUrl: 'https://goodreads.com/hobbit'
+  },
+  {
+    id: '8',
+    title: 'World of Warcraft: Rise of the Horde',
+    author: 'Christie Golden',
+    description: 'The epic tale of how the orcish Horde came to be, exploring the corruption of the Burning Legion and the fall of Draenor.',
+    category: 'fiction',
+    rating: 5,
+    amazonUrl: 'https://amazon.com/wow-rise-of-the-horde',
+    goodreadsUrl: 'https://goodreads.com/wow-rise-of-the-horde'
+  },
+  {
+    id: '9',
+    title: 'World of Warcraft: Arthas: Rise of the Lich King',
+    author: 'Christie Golden',
+    description: 'The tragic story of Prince Arthas Menethil and his transformation into the Lich King, one of Azeroth\'s most feared villains.',
+    category: 'fiction',
+    rating: 5,
+    amazonUrl: 'https://amazon.com/wow-arthas-rise-of-the-lich-king',
+    goodreadsUrl: 'https://goodreads.com/wow-arthas-rise-of-the-lich-king'
   }
 ]
 

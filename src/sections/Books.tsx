@@ -2,8 +2,16 @@
 
 import { books } from '@/data/portfolio'
 import { Parallax } from 'react-scroll-parallax'
+import { useScrollAnimation, scrollAnimations } from '@/hooks/useScrollAnimation'
 
 const Books = () => {
+  // Scroll animations for different elements with faster timing
+  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 100 });
+  const descriptionAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 200 });
+  const booksGridAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
+  const statsAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 400 });
+  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
+
   const getCategoryColor = (category: string) => {
     const colors = {
       technical: 'from-blue-500 to-blue-700',
@@ -102,169 +110,194 @@ const Books = () => {
         </svg>
       </Parallax>
 
-      <Parallax speed={-10} className="absolute top-1/2 left-1/4 opacity-20 md:opacity-30 transition-all duration-1000 delay-1100">
-        <svg className="w-8 h-8 md:w-12 md:h-12 text-accent-300 dark:text-accent-200" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-        </svg>
-      </Parallax>
-
-      <Parallax speed={-7} className="absolute top-1/3 right-1/4 opacity-20 md:opacity-30 transition-all duration-1000 delay-1300">
-        <svg className="w-6 h-6 md:w-10 md:h-10 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-        </svg>
-      </Parallax>
-
       <div className="container-custom relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
-          My Library
-        </h2>
-        
         <div className="max-w-7xl mx-auto">
-          {/* Introduction */}
-          <div className="text-center mb-16">
-            <p className="text-lg text-secondary-200 dark:text-secondary-100 max-w-3xl mx-auto">
-              A curated collection of books that have shaped my thinking, enhanced my skills, 
-              and influenced my approach to technology and life.
-            </p>
-          </div>
+          {/* Section Title */}
+          <Parallax speed={-5}>
+            <div
+              ref={titleAnimation.elementRef}
+              className={`text-center mb-8 ${scrollAnimations.fadeInScale.initial} ${titleAnimation.isVisible ? scrollAnimations.fadeInScale.animate : ''} ${scrollAnimations.fadeInScale.transition}`}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white">
+                Books & Reading
+              </h2>
+            </div>
+          </Parallax>
+
+          {/* Section Description */}
+          <Parallax speed={-3}>
+            <div
+              ref={descriptionAnimation.elementRef}
+              className={`text-center mb-16 ${scrollAnimations.fadeInUp.initial} ${descriptionAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
+            >
+              <p className="text-lg text-secondary-200 dark:text-secondary-100 max-w-3xl mx-auto">
+                A curated collection of books that have shaped my thinking, expanded my knowledge, 
+                and influenced my approach to technology, business, and life.
+              </p>
+            </div>
+          </Parallax>
 
           {/* Books Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-16 items-stretch">
-            {books.map((book, index) => (
-              <div key={book.id} className="group h-full">
-                {/* Book Container */}
-                <div className="relative transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2 h-full">
-                  {/* Book Shadow */}
-                  <div className="absolute -bottom-4 left-2 right-2 h-6 bg-black/40 rounded-full blur-xl transform rotate-x-45"></div>
-                  
-                  {/* Book Body */}
-                  <div className="relative bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-white/20 dark:border-white/10 h-full flex flex-col">
-                    {/* Book Cover */}
-                    <div className={`relative h-64 ${getBookCoverPattern(book.category)} p-6 flex flex-col justify-between flex-shrink-0`}>
-                      {/* Cover Pattern Overlay */}
-                      <div className="absolute inset-0 opacity-20">
-                        <div className="w-full h-full bg-gradient-to-br from-white/30 to-transparent"></div>
-                      </div>
-                      
-                      {/* Category Badge */}
-                      <div className="relative z-10 flex justify-end">
-                        <div className={`px-3 py-1 rounded-full text-xs font-bold text-white ${getCategoryAccentColor(book.category)} bg-opacity-90 backdrop-blur-sm shadow-lg`}>
-                          {book.category}
+          <Parallax speed={-2}>
+            <div
+              ref={booksGridAnimation.elementRef}
+              className={`mb-16 ${scrollAnimations.slideInUp.initial} ${booksGridAnimation.isVisible ? scrollAnimations.slideInUp.animate : ''} ${scrollAnimations.slideInUp.transition}`}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {books.map((book, index) => (
+                  <div
+                    key={book.id}
+                    className={`h-full ${scrollAnimations.staggerItem.initial} ${booksGridAnimation.isVisible ? scrollAnimations.staggerItem.animate : ''} ${scrollAnimations.staggerItem.transition}`}
+                    style={{ transitionDelay: `${index * 100}ms` }}
+                  >
+                    <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-2xl overflow-hidden group hover:scale-105 transition-all duration-500 hover:bg-white/15 dark:hover:bg-white/10 h-full flex flex-col">
+                      {/* Book Cover */}
+                      <div className={`h-48 ${getBookCoverPattern(book.category)} flex items-center justify-center relative overflow-hidden`}>
+                        <div className="text-6xl opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                          {getCategoryIcon(book.category)}
+                        </div>
+                        <div className="absolute top-4 right-4">
+                          <span className={`px-2 py-1 ${getCategoryAccentColor(book.category)} text-white text-xs rounded-full font-medium`}>
+                            {book.category}
+                          </span>
+                        </div>
+                        <div className="absolute bottom-4 left-4 text-white">
+                          <div className="flex items-center space-x-1">
+                            {renderStars(book.rating)}
+                          </div>
                         </div>
                       </div>
-                      
-                      {/* Book Title and Author */}
-                      <div className="relative z-10 text-white">
-                        <div className="mb-2">
-                          <span className="text-2xl drop-shadow-lg">{getCategoryIcon(book.category)}</span>
-                        </div>
-                        <h3 className="text-lg font-bold leading-tight mb-2 line-clamp-2 drop-shadow-lg">
+
+                      {/* Book Content */}
+                      <div className="p-6 flex-1 flex flex-col">
+                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary-400 transition-colors duration-300">
                           {book.title}
                         </h3>
-                        <p className="text-sm opacity-95 font-medium drop-shadow-md">
+                        <p className="text-secondary-300 dark:text-secondary-200 text-sm mb-3">
                           by {book.author}
                         </p>
-                      </div>
-                      
-                      {/* Subtle Spine Effect */}
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-black/20 to-transparent"></div>
-                    </div>
-                    
-                    {/* Book Content */}
-                    <div className="p-6 pb-8 bg-white/10 dark:bg-white/5 backdrop-blur-md flex-1 flex flex-col">
-                      {/* Rating */}
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="flex">
-                          {renderStars(book.rating)}
+                        <p className="text-secondary-200 dark:text-secondary-100 text-sm leading-relaxed mb-4 line-clamp-3 flex-1">
+                          {book.description}
+                        </p>
+
+                        {/* Action Buttons */}
+                        <div className="flex gap-2 mt-auto">
+                          {book.amazonUrl && (
+                            <a
+                              href={book.amazonUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white text-center py-2 px-3 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105"
+                            >
+                              Amazon
+                            </a>
+                          )}
+                          {book.goodreadsUrl && (
+                            <a
+                              href={book.goodreadsUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 text-white text-center py-2 px-3 rounded-lg text-sm font-medium border border-white/20 dark:border-white/10 transition-all duration-300 transform hover:scale-105"
+                            >
+                              Goodreads
+                            </a>
+                          )}
                         </div>
-                        <span className="text-xs text-secondary-200 dark:text-secondary-100 font-medium">
-                          {book.rating}/5
-                        </span>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-sm text-secondary-200 dark:text-secondary-100 leading-relaxed line-clamp-3 mb-4 flex-1">
-                        {book.description}
-                      </p>
-
-                      {/* Links */}
-                      <div className="flex gap-3 pt-2 border-t border-white/20 dark:border-white/10 mt-auto">
-                        {book.amazonUrl && (
-                          <a
-                            href={book.amazonUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-1 text-center px-3 py-2 bg-white/20 dark:bg-white/10 text-white hover:bg-white/30 dark:hover:bg-white/20 rounded-md text-sm font-medium transition-colors duration-200 backdrop-blur-sm border border-white/20"
-                          >
-                            Amazon
-                          </a>
-                        )}
-                        {book.goodreadsUrl && (
-                          <a
-                            href={book.goodreadsUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-1 text-center px-3 py-2 bg-white/10 dark:bg-white/5 text-white hover:bg-white/20 dark:hover:bg-white/10 rounded-md text-sm font-medium transition-colors duration-200 backdrop-blur-sm border border-white/10"
-                          >
-                            Goodreads
-                          </a>
-                        )}
                       </div>
                     </div>
                   </div>
+                ))}
+              </div>
+            </div>
+          </Parallax>
 
-                  {/* Subtle Glow Effect */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-
-                {/* Book Title Below */}
-                <div className="mt-3 text-center">
-                  <h4 className="text-sm font-semibold text-white line-clamp-1">
-                    {book.title}
-                  </h4>
-                  <p className="text-xs text-secondary-200 dark:text-secondary-100 mt-1">
-                    {book.author}
-                  </p>
+          {/* Reading Statistics */}
+          <Parallax speed={-1}>
+            <div
+              ref={statsAnimation.elementRef}
+              className={`mb-16 ${scrollAnimations.fadeInRight.initial} ${statsAnimation.isVisible ? scrollAnimations.fadeInRight.animate : ''} ${scrollAnimations.fadeInRight.transition}`}
+            >
+              <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-white mb-6 text-center">Reading Insights</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-stretch">
+                  <div className="text-center h-full flex flex-col justify-center">
+                    <div className="text-3xl font-bold text-primary-400 dark:text-primary-300 mb-2">
+                      {books.length}
+                    </div>
+                    <p className="text-secondary-300 dark:text-secondary-200 text-sm">Books Read</p>
+                  </div>
+                  <div className="text-center h-full flex flex-col justify-center">
+                    <div className="text-3xl font-bold text-accent-400 dark:text-accent-300 mb-2">
+                      {books.filter(b => b.category === 'technical').length}
+                    </div>
+                    <p className="text-secondary-300 dark:text-secondary-200 text-sm">Technical</p>
+                  </div>
+                  <div className="text-center h-full flex flex-col justify-center">
+                    <div className="text-3xl font-bold text-secondary-400 dark:text-secondary-300 mb-2">
+                      {books.filter(b => b.category === 'business').length}
+                    </div>
+                    <p className="text-secondary-300 dark:text-secondary-200 text-sm">Business</p>
+                  </div>
+                  <div className="text-center h-full flex flex-col justify-center">
+                    <div className="text-3xl font-bold text-primary-400 dark:text-primary-300 mb-2">
+                      {(books.reduce((acc, book) => acc + book.rating, 0) / books.length).toFixed(1)}
+                    </div>
+                    <p className="text-secondary-300 dark:text-secondary-200 text-sm">Avg Rating</p>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          </Parallax>
 
           {/* Call to Action */}
-          <div className="text-center mt-20">
-            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-lg max-w-2xl mx-auto border border-white/20 dark:border-white/10">
-              <div className="mb-6">
-                <span className="text-4xl mb-4 block">📚</span>
-                <h3 className="text-xl font-bold text-white mb-2">
-                  Always Learning
+          <Parallax speed={0}>
+            <div
+              ref={ctaAnimation.elementRef}
+              className={`text-center ${scrollAnimations.bounceIn.initial} ${ctaAnimation.isVisible ? scrollAnimations.bounceIn.animate : ''} ${scrollAnimations.bounceIn.transition}`}
+            >
+              <div className="bg-gradient-to-r from-primary-600/20 to-accent-600/20 dark:from-primary-500/20 dark:to-accent-500/20 backdrop-blur-md p-8 rounded-2xl border border-primary-500/30 dark:border-primary-400/30">
+                <h3 className="text-2xl font-bold text-white mb-4">
+                  Expand Your Knowledge
                 </h3>
-                <p className="text-secondary-200 dark:text-secondary-100">
-                  Knowledge is power, and books are the gateway to endless possibilities.
+                <p className="text-secondary-200 dark:text-secondary-100 mb-6">
+                  Reading is fundamental to growth. Let's discuss these books or share recommendations for continuous learning.
                 </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a 
+                    href="#contact" 
+                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  >
+                    Discuss Books
+                    <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                  </a>
+                  <a 
+                    href="https://www.goodreads.com/user/show/your-profile" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-8 py-4 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-white/10 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+                  >
+                    My Goodreads
+                    <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
               </div>
-              <a 
-                href="https://goodreads.com/yourusername" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                <span className="mr-2">📖</span>
-                Explore My Reading Journey
-                <span className="ml-2">→</span>
-              </a>
             </div>
-          </div>
+          </Parallax>
         </div>
       </div>
 
       {/* Smooth Transition Zone to Certificates Section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-accent-800 via-accent-800/80 to-transparent dark:from-accent-900 dark:via-accent-900/80"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary-900 via-secondary-900/80 to-transparent"></div>
       
       {/* Blurred Divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary-500/50 to-transparent blur-sm"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-500/50 to-transparent blur-sm"></div>
       
       {/* Purple Accent Glow at Bottom */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-secondary-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-accent-500/10 rounded-full blur-3xl"></div>
     </section>
   )
 }

@@ -17,14 +17,14 @@ const Hero = () => {
     "Human-Centered AI Engineer & Web Creator"
   ];
 
-  // Scroll animations for different elements with delays
-  const nameAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
-  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
-  const educationAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 700 });
-  const aboutAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 900 });
-  const statsAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 1100 });
-  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 1300 });
-  const scrollIndicatorAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 1500 });
+  // Scroll animations for different elements with faster timing
+  const nameAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 100 });
+  const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 200 });
+  const educationAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
+  const aboutAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 400 });
+  const statsAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 500 });
+  const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 600 });
+  const scrollIndicatorAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 700 });
 
   // Typewriter effect
   useEffect(() => {
@@ -102,41 +102,33 @@ const Hero = () => {
         </svg>
       </Parallax>
 
-      <Parallax speed={-10} className="absolute top-1/2 left-1/4 opacity-20 md:opacity-30 transition-all duration-1000 delay-1100">
-        <svg className="w-8 h-8 md:w-12 md:h-12 text-accent-300 dark:text-accent-200" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-        </svg>
-      </Parallax>
-
-      <Parallax speed={-7} className="absolute top-1/3 right-1/4 opacity-20 md:opacity-30 transition-all duration-1000 delay-1300">
-        <svg className="w-6 h-6 md:w-10 md:h-10 text-secondary-300 dark:text-secondary-200" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-        </svg>
-      </Parallax>
-
       {/* Main Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 container-custom text-center">
         {/* Name */}
         <Parallax speed={-5}>
           <div
             ref={nameAnimation.elementRef}
-            className={`mb-6 ${scrollAnimations.fadeInUp.initial} ${nameAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
+            className={`mb-6 ${scrollAnimations.fadeInScale.initial} ${nameAnimation.isVisible ? scrollAnimations.fadeInScale.animate : ''} ${scrollAnimations.fadeInScale.transition}`}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white dark:text-white mb-4 leading-tight">
-              {personalInfo.name}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight">
+              <span className="bg-gradient-to-r from-primary-400 via-accent-400 to-secondary-400 dark:from-primary-300 dark:via-accent-300 dark:to-secondary-300 bg-clip-text text-transparent">
+                {personalInfo.name}
+              </span>
             </h1>
           </div>
         </Parallax>
 
-        {/* Title with Typewriter Animation */}
+        {/* Dynamic Title */}
         <Parallax speed={-3}>
           <div
             ref={titleAnimation.elementRef}
-            className={`mb-8 ${scrollAnimations.fadeInUp.initial} ${titleAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
+            className={`mb-6 ${scrollAnimations.fadeInUp.initial} ${titleAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
           >
-            <h2 className="text-xl md:text-2xl lg:text-3xl text-primary-200 dark:text-primary-100 font-medium min-h-[2.5rem] md:min-h-[3rem] lg:min-h-[3.5rem] flex items-center justify-center">
-              <span className="mr-2">{currentText}</span>
-              <span className={`inline-block w-0.5 h-6 md:h-8 lg:h-10 bg-primary-200 dark:bg-primary-100 animate-pulse`}></span>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-4">
+              <span className="bg-gradient-to-r from-accent-400 via-primary-400 to-secondary-400 dark:from-accent-300 dark:via-primary-300 dark:to-secondary-300 bg-clip-text text-transparent">
+                {currentText}
+                <span className="animate-pulse">|</span>
+              </span>
             </h2>
           </div>
         </Parallax>
@@ -145,12 +137,26 @@ const Hero = () => {
         <Parallax speed={-2}>
           <div
             ref={educationAnimation.elementRef}
-            className={`mb-8 ${scrollAnimations.fadeInUp.initial} ${educationAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
+            className={`mb-8 ${scrollAnimations.fadeInLeft.initial} ${educationAnimation.isVisible ? scrollAnimations.fadeInLeft.animate : ''} ${scrollAnimations.fadeInLeft.transition}`}
           >
-            <div className="inline-flex items-center px-6 py-3 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-full text-white text-base font-semibold">
-              <span className="mr-3 text-xl">🎓</span>
-              PhD in Artificial Intelligence
-            </div>
+                         <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-2xl p-6 max-w-2xl mx-auto">
+               <div className="flex items-center justify-center space-x-4 mb-4">
+                 <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 dark:from-primary-400 dark:to-primary-500 rounded-full flex items-center justify-center">
+                   <span className="text-xl">🎓</span>
+                 </div>
+                 <div className="text-center">
+                   <h3 className="text-lg md:text-xl font-semibold text-white">
+                     PhD in Artificial Intelligence
+                   </h3>
+                   <p className="text-primary-200 dark:text-primary-100">
+                     Islamic Azad University
+                   </p>
+                 </div>
+               </div>
+               <p className="text-secondary-200 dark:text-secondary-100 text-sm md:text-base">
+                 {personalInfo.education}
+               </p>
+             </div>
           </div>
         </Parallax>
 
@@ -158,7 +164,7 @@ const Hero = () => {
         <Parallax speed={-1}>
           <div
             ref={aboutAnimation.elementRef}
-            className={`mb-12 ${scrollAnimations.fadeInUp.initial} ${aboutAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
+            className={`mb-12 ${scrollAnimations.fadeInRight.initial} ${aboutAnimation.isVisible ? scrollAnimations.fadeInRight.animate : ''} ${scrollAnimations.fadeInRight.transition}`}
           >
             <p className="text-lg md:text-xl text-secondary-200 dark:text-secondary-100 leading-relaxed max-w-3xl mx-auto">
               {personalInfo.about}
@@ -170,7 +176,7 @@ const Hero = () => {
         <Parallax speed={0}>
           <div
             ref={statsAnimation.elementRef}
-            className={`mb-16 ${scrollAnimations.fadeInScale.initial} ${statsAnimation.isVisible ? scrollAnimations.fadeInScale.animate : ''} ${scrollAnimations.fadeInScale.transition}`}
+            className={`mb-16 ${scrollAnimations.bounceIn.initial} ${statsAnimation.isVisible ? scrollAnimations.bounceIn.animate : ''} ${scrollAnimations.bounceIn.transition}`}
           >
             <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-3xl p-8 max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -222,7 +228,7 @@ const Hero = () => {
         <Parallax speed={1}>
           <div
             ref={ctaAnimation.elementRef}
-            className={`flex flex-col sm:flex-row gap-4 justify-center ${scrollAnimations.fadeInUp.initial} ${ctaAnimation.isVisible ? scrollAnimations.fadeInUp.animate : ''} ${scrollAnimations.fadeInUp.transition}`}
+            className={`flex flex-col sm:flex-row gap-4 justify-center ${scrollAnimations.slideInUp.initial} ${ctaAnimation.isVisible ? scrollAnimations.slideInUp.animate : ''} ${scrollAnimations.slideInUp.transition}`}
           >
             <a 
               href="#about" 
@@ -239,9 +245,24 @@ const Hero = () => {
             >
               Get In Touch
               <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
             </a>
+          </div>
+        </Parallax>
+
+        {/* Scroll Indicator */}
+        <Parallax speed={2}>
+          <div
+            ref={scrollIndicatorAnimation.elementRef}
+            className={`mt-16 ${scrollAnimations.quickFadeIn.initial} ${scrollIndicatorAnimation.isVisible ? scrollAnimations.quickFadeIn.animate : ''} ${scrollAnimations.quickFadeIn.transition}`}
+          >
+            <div className="flex flex-col items-center space-y-2 text-secondary-300 dark:text-secondary-400">
+              <span className="text-sm">Scroll to explore</span>
+              <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center">
+                <div className="w-1 h-3 bg-current rounded-full mt-2 animate-bounce"></div>
+              </div>
+            </div>
           </div>
         </Parallax>
       </div>
