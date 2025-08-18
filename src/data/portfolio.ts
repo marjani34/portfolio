@@ -220,8 +220,8 @@ export const books: Book[] = [
     description: 'A handbook of agile software craftsmanship that teaches how to write clean, maintainable code.',
     category: 'technical',
     rating: 5,
-    amazonUrl: 'https://amazon.com/clean-code',
-    goodreadsUrl: 'https://goodreads.com/clean-code'
+    amazonUrl: 'https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/3735293-clean-code'
   },
   {
     id: '2',
@@ -230,18 +230,18 @@ export const books: Book[] = [
     description: 'The big ideas behind reliable, scalable, and maintainable systems.',
     category: 'technical',
     rating: 5,
-    amazonUrl: 'https://amazon.com/designing-data-intensive-applications',
-    goodreadsUrl: 'https://goodreads.com/designing-data-intensive-applications'
+    amazonUrl: 'https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/23463205-designing-data-intensive-applications'
   },
   {
     id: '3',
-    title: 'The Pragmatic Programmer',
+    title: 'The Pragmatic Programmer: Your Journey to Mastery (20th Anniversary Edition)',
     author: 'David Thomas & Andrew Hunt',
     description: 'Your journey to mastery in software development.',
     category: 'technical',
     rating: 5,
-    amazonUrl: 'https://amazon.com/pragmatic-programmer',
-    goodreadsUrl: 'https://goodreads.com/pragmatic-programmer'
+    amazonUrl: 'https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer'
   },
   {
     id: '4',
@@ -250,28 +250,18 @@ export const books: Book[] = [
     description: 'A comprehensive guide to building applications with Angular.',
     category: 'technical',
     rating: 5,
-    amazonUrl: 'https://amazon.com/angular-in-action',
-    goodreadsUrl: 'https://goodreads.com/angular-in-action'
+    amazonUrl: 'https://www.amazon.com/Angular-Action-Jeremy-Wilken/dp/1617293318',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/35426011-angular-in-action'
   },
   {
     id: '5',
-    title: 'Deep Learning',
+    title: 'Deep Learning (Adaptive Computation and Machine Learning series)',
     author: 'Ian Goodfellow, Yoshua Bengio, Aaron Courville',
     description: 'A comprehensive introduction to deep learning and neural networks.',
     category: 'technical',
     rating: 4,
-    amazonUrl: 'https://amazon.com/deep-learning',
-    goodreadsUrl: 'https://goodreads.com/deep-learning'
-  },
-  {
-    id: '6',
-    title: 'World of Warcraft: Wrath of the Lich King',
-    author: 'Blizzard Entertainment',
-    description: 'The epic expansion that introduced Northrend, the Lich King, and some of the most memorable content in WoW history.',
-    category: 'fiction',
-    rating: 5,
-    amazonUrl: 'https://amazon.com/wow-wotlk',
-    goodreadsUrl: 'https://goodreads.com/wow-wotlk'
+    amazonUrl: 'https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine/dp/0262035618',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/24072897-deep-learning'
   },
   {
     id: '7',
@@ -280,28 +270,38 @@ export const books: Book[] = [
     description: 'A timeless fantasy adventure following Bilbo Baggins on his journey with thirteen dwarves to reclaim their homeland.',
     category: 'fiction',
     rating: 5,
-    amazonUrl: 'https://amazon.com/hobbit',
-    goodreadsUrl: 'https://goodreads.com/hobbit'
+    amazonUrl: 'https://www.amazon.com/Hobbit-J-R-Tolkien/dp/054792822X',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/2239768.The_Hobbit'
   },
   {
     id: '8',
-    title: 'World of Warcraft: Rise of the Horde',
+    title: 'World of Warcraft: Arthas: Rise of the Lich King',
     author: 'Christie Golden',
-    description: 'The epic tale of how the orcish Horde came to be, exploring the corruption of the Burning Legion and the fall of Draenor.',
+    description: 'The tragic story of Prince Arthas Menethil and his transformation into the Lich King, one of Azeroth\'s most feared villains. Published in 2009.',
     category: 'fiction',
     rating: 5,
-    amazonUrl: 'https://amazon.com/wow-rise-of-the-horde',
-    goodreadsUrl: 'https://goodreads.com/wow-rise-of-the-horde'
+    amazonUrl: 'https://www.amazon.com/World-Warcraft-Arthas-Rise-Lich-ebook/dp/B001NLL6LM',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/6290885-arthas'
   },
   {
     id: '9',
-    title: 'World of Warcraft: Arthas: Rise of the Lich King',
-    author: 'Christie Golden',
-    description: 'The tragic story of Prince Arthas Menethil and his transformation into the Lich King, one of Azeroth\'s most feared villains.',
+    title: 'World of Warcraft: Illidan',
+    author: 'William King',
+    description: 'The epic tale of Illidan Stormrage, the Betrayer, and his quest for power and redemption in the Burning Legion. Published in 2016.',
     category: 'fiction',
     rating: 5,
-    amazonUrl: 'https://amazon.com/wow-arthas-rise-of-the-lich-king',
-    goodreadsUrl: 'https://goodreads.com/wow-arthas-rise-of-the-lich-king'
+    amazonUrl: 'https://www.amazon.com/Illidan-World-Warcraft-William-King/dp/0399177574',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/26721433-illidan'
+  },
+  {
+    id: '10',
+    title: 'World of Warcraft: Sylvanas',
+    author: 'Christie Golden',
+    description: 'The compelling story of Sylvanas Windrunner, from her transformation into the Banshee Queen to her complex journey through Azeroth\'s conflicts. Published in 2022.',
+    category: 'fiction',
+    rating: 5,
+    amazonUrl: 'https://www.amazon.com/Sylvanas-World-Warcraft-Christie-Golden/dp/0399594183',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/57569385-sylvanas'
   }
 ]
 
