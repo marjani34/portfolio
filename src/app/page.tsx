@@ -45,12 +45,12 @@ export default function Home() {
         <Header />
         <Hero />
         <About />
-        <Gallery />
-        <Projects />
         <Skills />
+        <Projects />
         <Books />
         <Certificates />
         <Awards />
+        <Gallery />
         <Contact />
         <Footer />
       </main>

@@ -53,7 +53,7 @@ const Footer = () => {
               </p>
               <p className="text-secondary-300 leading-relaxed max-w-md">
                 Passionate about creating amazing digital experiences and leading teams to build innovative solutions. 
-                Let's create something incredible together!
+                Let&apos;s create something incredible together!
               </p>
             </div>
             

@@ -2,7 +2,7 @@
 
 import { Parallax } from 'react-scroll-parallax'
 import { personalInfo } from '@/data/portfolio'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useScrollAnimation, scrollAnimations } from '@/hooks/useScrollAnimation'
 
 const Hero = () => {
@@ -10,12 +10,12 @@ const Hero = () => {
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const titles = [
+  const titles = useMemo(() => [
     "AI Researcher & Software Engineer",
     "Artificial Intelligence Scientist & Full Stack Developer",
     "AI-Focused Frontend & Full Stack Developer",
     "Human-Centered AI Engineer & Web Creator"
-  ];
+  ], []);
 
   // Scroll animations for different elements with faster timing
   const nameAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 100 });

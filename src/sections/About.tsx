@@ -10,7 +10,7 @@ const About = () => {
   // Scroll animations for different elements with faster timing
   const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 100 });
   const imageAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 200 });
-  const statsAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
+
   const descriptionAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 400 });
   const skillsAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
   const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 600 });
@@ -231,7 +231,7 @@ const About = () => {
                       Ready to Build Something Amazing?
                     </h3>
                     <p className="text-secondary-200 dark:text-secondary-100 mb-6">
-                      Let's collaborate on innovative projects that push the boundaries of technology.
+                      Let&apos;s collaborate on innovative projects that push the boundaries of technology.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <a 

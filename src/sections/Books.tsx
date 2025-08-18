@@ -12,16 +12,7 @@ const Books = () => {
   const statsAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 400 });
   const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
 
-  const getCategoryColor = (category: string) => {
-    const colors = {
-      technical: 'from-blue-500 to-blue-700',
-      business: 'from-green-500 to-green-700',
-      philosophy: 'from-purple-500 to-purple-700',
-      fiction: 'from-pink-500 to-pink-700',
-      biography: 'from-orange-500 to-orange-700'
-    }
-    return colors[category as keyof typeof colors] || 'from-gray-500 to-gray-700'
-  }
+
 
   const getCategoryAccentColor = (category: string) => {
     const colors = {
@@ -260,7 +251,7 @@ const Books = () => {
                   Expand Your Knowledge
                 </h3>
                 <p className="text-secondary-200 dark:text-secondary-100 mb-6">
-                  Reading is fundamental to growth. Let's discuss these books or share recommendations for continuous learning.
+                  Reading is fundamental to growth. Let&apos;s discuss these books or share recommendations for continuous learning.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 

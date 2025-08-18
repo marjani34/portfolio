@@ -371,7 +371,7 @@ const Projects = () => {
               
               {featuredProjects.length > 0 ? (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {featuredProjects.map((project, index) => (
+                  {featuredProjects.map((project) => (
                     <div key={project.id} className="h-full" {...scrollAnimations.fadeInUp}>
                       <ProjectCard project={project} isFeatured={true} />
                     </div>
@@ -414,7 +414,7 @@ const Projects = () => {
                 
                 <h3 className="text-2xl font-bold text-white mb-8 text-center">More Projects</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {otherProjects.map((project, index) => (
+                  {otherProjects.map((project) => (
                     <div key={project.id} className="h-full" {...scrollAnimations.fadeInRight}>
                       <ProjectCard project={project} />
                     </div>
@@ -452,7 +452,7 @@ const Projects = () => {
                 Have a Project in Mind?
               </h3>
               <p className="text-secondary-200 dark:text-secondary-100 mb-6">
-                Let's collaborate to bring your ideas to life with cutting-edge technology and innovative solutions.
+                Let&apos;s collaborate to bring your ideas to life with cutting-edge technology and innovative solutions.
               </p>
               <a 
                 href="#contact" 
