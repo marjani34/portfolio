@@ -148,14 +148,14 @@ const Awards = () => {
             >
               <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/20 dark:border-white/10">
                 {/* PDF Content Display */}
-                <div className="bg-white rounded-lg shadow-lg p-6 mb-4">
-                  <div className="text-center mb-6">
-                    <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 24 24">
+                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-4">
+                  <div className="text-center mb-4 sm:mb-6">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                      <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
                       </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
                       Recommendation Letter
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -164,7 +164,7 @@ const Awards = () => {
                   </div>
                   
                   {/* PDF Viewer */}
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                  <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-2 sm:p-4 border border-gray-200 dark:border-gray-700">
                     <PDFViewer
                       file="/awards/Amir Recomendation Letter.pdf"
                     />

@@ -83,33 +83,37 @@ const PDFViewer = ({ file }: PDFViewerProps) => {
         </div>
       )}
 
-      {/* PDF Display - Multiple approaches for better compatibility */}
+      {/* PDF Display - Mobile-optimized with single fallback */}
       <div className="flex justify-center mb-4">
         {/* Primary: Object tag for PDF display */}
         <object
           data={file}
           type="application/pdf"
-          className="w-full max-w-2xl h-[600px] border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg"
+          className="w-full max-w-2xl h-[400px] md:h-[600px] border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg"
           onLoad={handlePdfLoad}
           onError={handlePdfError}
         >
-          {/* Fallback 1: Iframe for browsers that support it */}
-          <iframe
-            src={file}
-            className="w-full max-w-2xl h-[600px] border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg"
-            title="PDF Viewer"
-          >
-            {/* Fallback 2: Direct link for browsers that don't support iframe */}
-            <div className="w-full max-w-2xl h-[600px] border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
-              <div className="text-center">
-                <svg className="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          {/* Single fallback for unsupported browsers */}
+          <div className="w-full max-w-2xl h-[400px] md:h-[600px] border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
+            <div className="text-center p-6">
+              <svg className="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <p className="text-gray-600 dark:text-gray-400 mb-2 font-medium">PDF Preview Not Available</p>
+              <p className="text-gray-500 dark:text-gray-500 text-sm mb-4">Your browser doesn&apos;t support PDF preview</p>
+              <a 
+                href={file} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-sm"
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
-                <p className="text-gray-600 dark:text-gray-400 mb-2">PDF Preview Not Available</p>
-                <p className="text-gray-500 dark:text-gray-500 text-sm">Your browser doesn&apos;t support PDF preview</p>
-              </div>
+                Open PDF
+              </a>
             </div>
-          </iframe>
+          </div>
         </object>
       </div>
     </div>
