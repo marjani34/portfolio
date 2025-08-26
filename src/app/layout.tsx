@@ -105,7 +105,7 @@ export default function RootLayout({
         <meta name="application-name" content={personalInfo.name} />
         <meta name="msapplication-TileImage" content="/favicon.ico" />
       </head>
-      <body className={`${inter.variable} font-sans bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white scroll-smooth`}>
+      <body className={`${inter.variable} font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-white scroll-smooth`}>
         <ParallaxWrapper>
           {children}
         </ParallaxWrapper>

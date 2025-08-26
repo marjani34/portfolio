@@ -41,7 +41,8 @@ export interface Certificate {
   issueDate: string
   expiryDate?: string
   credentialId?: string
-  image?: string
+  image: string
+  pdf: string
   url?: string
   category: 'development' | 'cloud' | 'design' | 'management' | 'other'
 }
@@ -308,43 +309,47 @@ export const books: Book[] = [
 export const certificates: Certificate[] = [
   {
     id: '1',
-    title: 'Angular Developer Certification',
-    issuer: 'Google',
-    issueDate: '2023-06-15',
+    title: 'Angular (Full App) with Angular Material, Angularfire & NgRx',
+    issuer: 'Udemy',
+    issueDate: '2025-08-19',
     category: 'development',
-    url: 'https://angular.dev/certification'
+    image: '/certificates/Angular (Full App) with Angular Material, Angularfire & NgRx/UC-fc6e19db-6bcf-4fcf-8957-676748f956cf.jpg',
+    pdf: '/certificates/Angular (Full App) with Angular Material, Angularfire & NgRx/UC-fc6e19db-6bcf-4fcf-8957-676748f956cf.pdf',
+    url: 'https://udemy.com',
+    credentialId: 'UC-fc6e19db-6bcf-4fcf-8957-676748f956cf'
   },
   {
     id: '2',
-    title: 'TypeScript Fundamentals',
-    issuer: 'Microsoft',
-    issueDate: '2023-03-20',
+    title: 'Complete React Developer (w Redux, Hooks, GraphQL)',
+    issuer: 'Udemy',
+    issueDate: '2025-08-19',
     category: 'development',
-    url: 'https://typescript.org/'
+    image: '/certificates/Complete React Developer (w Redux, Hooks, GraphQL)/UC-f441cc2b-153a-4271-8c8f-4443e8c39b12.jpg',
+    pdf: '/certificates/Complete React Developer (w Redux, Hooks, GraphQL)/UC-f441cc2b-153a-4271-8c8f-4443e8c39b12.pdf',
+    url: 'https://udemy.com',
+    credentialId: 'UC-f441cc2b-153a-4271-8c8f-4443e8c39b12'
   },
   {
     id: '3',
-    title: 'Next.js Developer Certification',
-    issuer: 'Vercel',
-    issueDate: '2023-01-10',
+    title: 'NgRx (with NgRx Data) - The Complete Guide (Angular 20)',
+    issuer: 'Udemy',
+    issueDate: '2025-08-19',
     category: 'development',
-    url: 'https://nextjs.org/'
+    image: '/certificates/NgRx (with NgRx Data) - The Complete Guide (Angular 20)/UC-dcde2d97-6cc3-4ede-a9d6-65e45c21b1df.jpg',
+    pdf: '/certificates/NgRx (with NgRx Data) - The Complete Guide (Angular 20)/UC-dcde2d97-6cc3-4ede-a9d6-65e45c21b1df.pdf',
+    url: 'https://udemy.com',
+    credentialId: 'UC-dcde2d97-6cc3-4ede-a9d6-65e45c21b1df'
   },
   {
     id: '4',
-    title: 'React Developer Certification',
-    issuer: 'Meta',
-    issueDate: '2022-11-05',
+    title: 'The Complete Prompt Engineering for AI Bootcamp (2025)',
+    issuer: 'Udemy',
+    issueDate: '2025-08-19',
     category: 'development',
-    url: 'https://react.dev/'
-  },
-  {
-    id: '5',
-    title: 'Team Leadership & Management',
-    issuer: 'LinkedIn Learning',
-    issueDate: '2022-08-15',
-    category: 'management',
-    url: 'https://linkedin.com/learning'
+    image: '/certificates/The Complete Prompt Engineering for AI Bootcamp (2025)/UC-4fc23d84-c589-4bdf-b734-bb1e271882ce.jpg',
+    pdf: '/certificates/The Complete Prompt Engineering for AI Bootcamp (2025)/UC-4fc23d84-c589-4bdf-b734-bb1e271882ce.pdf',
+    url: 'https://udemy.com',
+    credentialId: 'UC-4fc23d84-c589-4bdf-b734-bb1e271882ce'
   }
 ]
 

@@ -1,15 +1,82 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { Parallax } from 'react-scroll-parallax'
 import { certificates } from '@/data/portfolio'
 import { useScrollAnimation, scrollAnimations } from '@/hooks/useScrollAnimation'
 
 const Certificates = () => {
+  // State for image modal
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedTitle, setSelectedTitle] = useState<string>('');
+  const [imageLoading, setImageLoading] = useState<{ [key: string]: boolean }>({});
+  const [imageError, setImageError] = useState<{ [key: string]: boolean }>({});
+
   // Scroll animations for different elements with delays
   const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
   const descriptionAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
   const certificatesGridAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 700 });
   const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 900 });
+
+  // Handle image click to open modal
+  const handleImageClick = (image: string, title: string) => {
+    setSelectedImage(image);
+    setSelectedTitle(title);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setSelectedImage(null);
+    setSelectedTitle('');
+  };
+
+  // Handle escape key to close modal
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && selectedImage) {
+        closeModal();
+      }
+    };
+
+    if (selectedImage) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset'; // Restore scrolling
+    };
+  }, [selectedImage]);
+
+  // Handle image loading states
+  const handleImageLoad = (certId: string) => {
+    setImageLoading(prev => ({ ...prev, [certId]: false }));
+  };
+
+  const handleImageError = (certId: string) => {
+    setImageLoading(prev => ({ ...prev, [certId]: false }));
+    setImageError(prev => ({ ...prev, [certId]: true }));
+  };
+
+  // Initialize loading states for all certificates
+  useEffect(() => {
+    const initialLoadingStates: { [key: string]: boolean } = {};
+    certificates.forEach(cert => {
+      initialLoadingStates[cert.id] = true;
+    });
+    setImageLoading(initialLoadingStates);
+  }, []);
+
+  // Handle PDF download with progress indication
+  const handlePdfDownload = (pdfUrl: string, title: string) => {
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = `${title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -143,93 +210,158 @@ const Certificates = () => {
             className={`max-w-6xl mx-auto ${scrollAnimations.fadeInScale.initial} ${certificatesGridAnimation.isVisible ? scrollAnimations.fadeInScale.animate : ''} ${scrollAnimations.fadeInScale.transition}`}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {certificates.map((cert) => (
-                <div key={cert.id} className="bg-white/10 dark:bg-white/5 backdrop-blur-md p-6 rounded-xl border border-white/20 dark:border-white/10 group hover:scale-105 transition-all duration-300 hover:bg-white/15 dark:hover:bg-white/10">
-                  {/* Certificate Icon */}
-                  <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center mb-4">
-                    <span className="text-2xl">{getCategoryIcon(cert.category)}</span>
-                  </div>
-
-                  {/* Certificate Info */}
-                  <div className="space-y-3">
-                    <div className="flex items-start justify-between">
-                      <h3 className="text-lg font-semibold text-white line-clamp-2">
-                        {cert.title}
-                      </h3>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(cert.category)}`}>
+              {certificates.map((cert, index) => (
+                <div 
+                  key={cert.id} 
+                  className={`bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-xl border border-white/20 dark:border-white/10 group hover:scale-105 transition-all duration-300 hover:bg-white/15 dark:hover:bg-white/10 overflow-hidden ${scrollAnimations.staggerItem.initial} ${certificatesGridAnimation.isVisible ? scrollAnimations.staggerItem.animate : ''} ${scrollAnimations.staggerItem.transition}`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  {/* Certificate Image */}
+                  <div 
+                    className="relative h-48 bg-gradient-to-br from-primary-900 to-accent-900 overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-secondary-900 dark:focus:ring-offset-secondary-800"
+                    onClick={() => handleImageClick(cert.image, cert.title)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`View ${cert.title} certificate in full size`}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleImageClick(cert.image, cert.title);
+                      }
+                    }}
+                  >
+                    <img 
+                      src={cert.image} 
+                      alt={`${cert.title} certificate`}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      onLoad={() => handleImageLoad(cert.id)}
+                      onError={() => handleImageError(cert.id)}
+                    />
+                    
+                    {/* Loading spinner - only show while loading */}
+                    {imageLoading[cert.id] && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-900 to-accent-900">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+                      </div>
+                    )}
+                    
+                    {/* Error state - only show if there's an error */}
+                    {imageError[cert.id] && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-900 to-accent-900">
+                        <div className="text-center text-white">
+                          <div className="text-4xl mb-2">📄</div>
+                          <div className="text-sm">Image not available</div>
+                        </div>
+                      </div>
+                    )}
+                    {/* Overlay with category badge */}
+                    <div className="absolute top-4 right-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(cert.category)} backdrop-blur-sm`}>
                         {cert.category}
                       </span>
                     </div>
-
-                    <p className="text-secondary-200 dark:text-secondary-100 text-sm font-medium">
-                      {cert.issuer}
-                    </p>
-
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-secondary-200 dark:text-secondary-100">Issued:</span>
-                        <span className="text-white font-medium">
-                          {formatDate(cert.issueDate)}
-                        </span>
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <div className="text-2xl mb-2">{getCategoryIcon(cert.category)}</div>
+                        <div className="text-sm font-medium">Click to view full size</div>
+                        <div className="text-xs opacity-75 mt-1">Press Enter or Space</div>
                       </div>
+                    </div>
+                  </div>
 
-                      {cert.expiryDate && (
+                  {/* Certificate Info */}
+                  <div className="p-6 space-y-4">
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-semibold text-white line-clamp-2 leading-tight">
+                        {cert.title}
+                      </h3>
+
+                      <p className="text-secondary-200 dark:text-secondary-100 text-sm font-medium">
+                        {cert.issuer}
+                      </p>
+
+                      <div className="space-y-2">
                         <div className="flex justify-between text-sm">
-                          <span className="text-secondary-500 dark:text-secondary-400">Expires:</span>
-                          <span className={`font-medium ${
-                            isExpired(cert.expiryDate) 
-                              ? 'text-red-600 dark:text-red-400' 
-                              : isExpiringSoon(cert.expiryDate)
-                              ? 'text-yellow-600 dark:text-yellow-400'
-                              : 'text-secondary-900 dark:text-white'
-                          }`}>
-                            {formatDate(cert.expiryDate)}
+                          <span className="text-secondary-200 dark:text-secondary-100">Issued:</span>
+                          <span className="text-white font-medium">
+                            {formatDate(cert.issueDate)}
                           </span>
                         </div>
-                      )}
 
-                      {cert.credentialId && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-secondary-500 dark:text-secondary-400">ID:</span>
-                          <span className="text-secondary-900 dark:text-white font-mono text-xs">
-                            {cert.credentialId}
-                          </span>
+                        {cert.expiryDate && (
+                          <div className="flex justify-between text-sm">
+                            <span className="text-secondary-500 dark:text-secondary-400">Expires:</span>
+                            <span className={`font-medium ${
+                              isExpired(cert.expiryDate) 
+                                ? 'text-red-600 dark:text-red-400' 
+                                : isExpiringSoon(cert.expiryDate)
+                                ? 'text-yellow-600 dark:text-yellow-400'
+                                : 'text-secondary-900 dark:text-white'
+                            }`}>
+                              {formatDate(cert.expiryDate)}
+                            </span>
+                          </div>
+                        )}
+
+                        {cert.credentialId && (
+                          <div className="flex justify-between text-sm">
+                            <span className="text-secondary-500 dark:text-secondary-400">ID:</span>
+                            <span className="text-secondary-900 dark:text-white font-mono text-xs">
+                              {cert.credentialId}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Status Badge */}
+                      {cert.expiryDate && (
+                        <div className="pt-2">
+                          {isExpired(cert.expiryDate) ? (
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                              ⚠️ Expired
+                            </span>
+                          ) : isExpiringSoon(cert.expiryDate) ? (
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                              ⏰ Expiring Soon
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                              ✅ Active
+                            </span>
+                          )}
                         </div>
                       )}
                     </div>
 
-                    {/* Status Badge */}
-                    {cert.expiryDate && (
-                      <div className="pt-2">
-                        {isExpired(cert.expiryDate) ? (
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
-                            ⚠️ Expired
-                          </span>
-                        ) : isExpiringSoon(cert.expiryDate) ? (
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                            ⏰ Expiring Soon
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                            ✅ Active
-                          </span>
-                        )}
-                      </div>
-                    )}
-
-                    {/* View Certificate Link */}
-                    {cert.url && (
-                      <div className="pt-2">
+                    {/* Action Buttons */}
+                    <div className="flex gap-3 pt-2">
+                      {/* Download PDF Button */}
+                      <button
+                        onClick={() => handlePdfDownload(cert.pdf, cert.title)}
+                        className="flex-1 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white text-center py-2 px-3 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Download PDF
+                      </button>
+                      
+                      {/* View Online Button */}
+                      {cert.url && (
                         <a
                           href={cert.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-200 text-sm font-medium"
+                          className="flex-1 bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 text-white text-center py-2 px-3 rounded-lg text-sm font-medium border border-white/20 dark:border-white/10 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                         >
-                          View Certificate →
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          View Online
                         </a>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -267,6 +399,63 @@ const Certificates = () => {
       
       {/* Purple Accent Glow at Bottom */}
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-accent-500/10 rounded-full blur-3xl"></div>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={closeModal}
+        >
+          <div className="relative max-w-4xl max-h-[90vh] mx-4">
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              className="absolute -top-12 right-0 z-10 p-2 text-white hover:text-primary-400 transition-colors duration-200"
+              aria-label="Close modal"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            {/* Modal content */}
+            <div 
+              className="bg-white dark:bg-secondary-900 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal header */}
+              <div className="p-6 border-b border-secondary-200 dark:border-secondary-700">
+                <h3 className="text-xl font-bold text-secondary-900 dark:text-white">
+                  {selectedTitle}
+                </h3>
+              </div>
+              
+              {/* Modal image */}
+              <div className="relative">
+                <img 
+                  src={selectedImage} 
+                  alt={selectedTitle}
+                  className="w-full h-auto max-h-[70vh] object-contain"
+                />
+              </div>
+              
+              {/* Modal footer with download button */}
+              <div className="p-6 border-t border-secondary-200 dark:border-secondary-700 flex justify-center">
+                <a
+                  href={selectedImage}
+                  download
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                  Download Image
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
