@@ -24,7 +24,6 @@ const Hero = () => {
   const aboutAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 400 });
   const statsAnimation = useScrollAnimation({ threshold: 0.1, triggerOnce: false, delay: 500 });
   const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 600 });
-  const scrollIndicatorAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 700 });
 
   // Typewriter effect
   useEffect(() => {
@@ -251,20 +250,7 @@ const Hero = () => {
           </div>
         </Parallax>
 
-        {/* Scroll Indicator */}
-        <Parallax speed={2}>
-          <div
-            ref={scrollIndicatorAnimation.elementRef}
-            className={`mt-16 ${scrollAnimations.quickFadeIn.initial} ${scrollIndicatorAnimation.isVisible ? scrollAnimations.quickFadeIn.animate : ''} ${scrollAnimations.quickFadeIn.transition}`}
-          >
-            <div className="flex flex-col items-center space-y-2 text-secondary-300 dark:text-secondary-400">
-              <span className="text-sm">Scroll to explore</span>
-              <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center">
-                <div className="w-1 h-3 bg-current rounded-full mt-2 animate-bounce"></div>
-              </div>
-            </div>
-          </div>
-        </Parallax>
+
       </div>
 
       {/* Smooth Transition Zone to About Section */}
