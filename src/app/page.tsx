@@ -5,6 +5,7 @@ import About from '@/sections/About'
 import Gallery from '@/sections/Gallery'
 import Projects from '@/sections/Projects'
 import Skills from '@/sections/Skills'
+import LanguageExams from '@/sections/LanguageExams'
 import Books from '@/sections/Books'
 import Certificates from '@/sections/Certificates'
 import Awards from '@/sections/Awards'
@@ -46,6 +47,7 @@ export default function Home() {
         <Hero />
         <About />
         <Skills />
+        <LanguageExams />
         <Projects />
         <Books />
         <Certificates />
