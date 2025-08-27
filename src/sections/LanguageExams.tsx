@@ -156,37 +156,37 @@ const LanguageExams = () => {
                   
                   {/* PDF Viewer */}
                   <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-2 sm:p-4 border border-gray-200 dark:border-gray-700">
-                    <PDFViewer
-                      file="/assets/awards/duolingo/Duolingo English test.pdf"
-                    />
+                                         <PDFViewer
+                       file="/awards/DET.pdf"
+                     />
                   </div>
                 </div>
                 
                 {/* Action Buttons */}
                 <div className="text-center space-y-3">
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <a
-                      href="/assets/awards/duolingo/Duolingo English test.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                    >
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      Open PDF in New Tab
-                    </a>
-                    
-                    <a
-                      href="/assets/awards/duolingo/Duolingo English test.pdf"
-                      download
-                      className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-accent-600 to-secondary-600 hover:from-accent-700 hover:to-secondary-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                    >
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                      Download PDF
-                    </a>
+                                         <a
+                       href="/awards/DET.pdf"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="inline-flex items-center justify-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                     >
+                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                       </svg>
+                       Open PDF in New Tab
+                     </a>
+                     
+                     <a
+                       href="/awards/duolingo/Duolingo English test.pdf"
+                       download
+                       className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-accent-600 to-secondary-600 hover:from-accent-700 hover:to-secondary-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                     >
+                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                       </svg>
+                       Download PDF
+                     </a>
                   </div>
                   
                   <p className="text-secondary-300 dark:text-secondary-400 text-xs">
