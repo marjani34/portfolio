@@ -11,6 +11,7 @@ const Certificates = () => {
   const [selectedTitle, setSelectedTitle] = useState<string>('');
   const [imageLoading, setImageLoading] = useState<{ [key: string]: boolean }>({});
   const [imageError, setImageError] = useState<{ [key: string]: boolean }>({});
+  const [imageLoaded, setImageLoaded] = useState<{ [key: string]: boolean }>({});
 
   // Scroll animations for different elements with delays
   const titleAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 300 });
@@ -52,20 +53,51 @@ const Certificates = () => {
   // Handle image loading states
   const handleImageLoad = (certId: string) => {
     setImageLoading(prev => ({ ...prev, [certId]: false }));
+    setImageLoaded(prev => ({ ...prev, [certId]: true }));
   };
 
   const handleImageError = (certId: string) => {
     setImageLoading(prev => ({ ...prev, [certId]: false }));
     setImageError(prev => ({ ...prev, [certId]: true }));
+    setImageLoaded(prev => ({ ...prev, [certId]: false }));
   };
 
-  // Initialize loading states for all certificates
+  // Initialize loading states for all certificates and preload images
   useEffect(() => {
     const initialLoadingStates: { [key: string]: boolean } = {};
+    const initialLoadedStates: { [key: string]: boolean } = {};
+    const initialErrorStates: { [key: string]: boolean } = {};
+    
     certificates.forEach(cert => {
       initialLoadingStates[cert.id] = true;
+      initialLoadedStates[cert.id] = false;
+      initialErrorStates[cert.id] = false;
     });
+    
     setImageLoading(initialLoadingStates);
+    setImageLoaded(initialLoadedStates);
+    setImageError(initialErrorStates);
+
+    // Preload all images to improve loading experience
+    certificates.forEach(cert => {
+      const img = new Image();
+      img.onload = () => handleImageLoad(cert.id);
+      img.onerror = () => handleImageError(cert.id);
+      img.src = cert.image;
+    });
+
+    // Set a timeout to handle images that take too long to load
+    const timeout = setTimeout(() => {
+      certificates.forEach(cert => {
+        if (imageLoading[cert.id]) {
+          setImageLoading(prev => ({ ...prev, [cert.id]: false }));
+          // If image hasn't loaded after timeout, assume it's available but just slow
+          setImageLoaded(prev => ({ ...prev, [cert.id]: true }));
+        }
+      });
+    }, 3000); // 3 second timeout
+
+    return () => clearTimeout(timeout);
   }, []);
 
   // Handle PDF download with progress indication
@@ -230,36 +262,52 @@ const Certificates = () => {
                       }
                     }}
                   >
+                    {/* Show image immediately when loaded, with fallback */}
                     <img 
                       src={cert.image} 
                       alt={`${cert.title} certificate`}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ${
+                        imageLoaded[cert.id] ? 'opacity-100' : 'opacity-50'
+                      }`}
                       onLoad={() => handleImageLoad(cert.id)}
                       onError={() => handleImageError(cert.id)}
                     />
                     
-                    {/* Loading spinner - only show while loading */}
-                    {imageLoading[cert.id] && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-900 to-accent-900">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+                    {/* Loading spinner - show only when there's a delay */}
+                    {imageLoading[cert.id] && !imageLoaded[cert.id] && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
                       </div>
                     )}
                     
-                    {/* Error state - only show if there's an error */}
+                    {/* Error state - show if there's an error */}
                     {imageError[cert.id] && (
                       <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-900 to-accent-900">
                         <div className="text-center text-white">
                           <div className="text-4xl mb-2">📄</div>
                           <div className="text-sm">Image not available</div>
+                          <div className="text-xs mt-1">Click to view PDF</div>
                         </div>
                       </div>
                     )}
+
+                    {/* Fallback placeholder when image is not loaded yet */}
+                    {!imageLoaded[cert.id] && !imageLoading[cert.id] && !imageError[cert.id] && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/10">
+                        <div className="text-center text-white/70">
+                          <div className="text-2xl mb-1">📋</div>
+                          <div className="text-xs">Loading...</div>
+                        </div>
+                      </div>
+                    )}
+
                     {/* Overlay with category badge */}
                     <div className="absolute top-4 right-4">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(cert.category)} backdrop-blur-sm`}>
                         {cert.category}
                       </span>
                     </div>
+                    
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="text-center text-white">
@@ -307,7 +355,7 @@ const Certificates = () => {
                         {cert.credentialId && (
                           <div className="flex justify-between text-sm">
                             <span className="text-secondary-500 dark:text-secondary-400">ID:</span>
-                            <span className="text-secondary-900 dark:text-white font-mono text-xs">
+                            <span className="text-white font-mono text-xs">
                               {cert.credentialId}
                             </span>
                           </div>
