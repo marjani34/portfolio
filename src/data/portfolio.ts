@@ -383,6 +383,17 @@ export const certificates: Certificate[] = [
     pdf: '/certificates/Network+/network-plus.jpg',
     url: 'https://www.CanDo1.com',
     credentialId: '208104'
+  },
+  {
+    id: '8',
+    title: 'SQL Server 2016 Pack - Admin & Design',
+    issuer: 'CANDO (شرکت کندوی دانش پارسیان)',
+    issueDate: '2017-06-07',
+    category: 'development',
+    image: '/certificates/SQL server Admin and design/sql-server-admin-design.jpg',
+    pdf: '/certificates/SQL server Admin and design/sql-server-admin-design.jpg',
+    url: 'https://www.CanDo1.com',
+    credentialId: '208840'
   }
 ]
 
