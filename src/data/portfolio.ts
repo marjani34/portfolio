@@ -372,6 +372,17 @@ export const certificates: Certificate[] = [
     pdf: '/certificates/HTML5-CSS3-JQuery/html5-css3-jquery.jpg',
     url: 'https://amirmarjani.com',
     credentialId: '10-185'
+  },
+  {
+    id: '7',
+    title: 'Network+',
+    issuer: 'CANDO (شرکت کندوی دانش پارسیان)',
+    issueDate: '2017-02-25',
+    category: 'development',
+    image: '/certificates/Network+/network-plus.jpg',
+    pdf: '/certificates/Network+/network-plus.jpg',
+    url: 'https://www.CanDo1.com',
+    credentialId: '208104'
   }
 ]
 
