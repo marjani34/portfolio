@@ -350,6 +350,17 @@ export const certificates: Certificate[] = [
     pdf: '/certificates/The Complete Prompt Engineering for AI Bootcamp (2025)/UC-4fc23d84-c589-4bdf-b734-bb1e271882ce.pdf',
     url: 'https://udemy.com',
     credentialId: 'UC-4fc23d84-c589-4bdf-b734-bb1e271882ce'
+  },
+  {
+    id: '5',
+    title: 'C# Programming',
+    issuer: 'Data Analysis Institute (آموزشگاه تحلیل داده)',
+    issueDate: '2017-01-24',
+    category: 'development',
+    image: '/certificates/CSharp/csharp.jpg',
+    pdf: '/certificates/CSharp/csharp.jpg',
+    url: 'https://amirmarjani.com',
+    credentialId: '95-144'
   }
 ]
 

@@ -266,9 +266,9 @@ const Certificates = () => {
                     <img 
                       src={cert.image} 
                       alt={`${cert.title} certificate`}
-                      className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ${
+                      className={`w-full h-full object-cover transition-transform duration-500 ${
                         imageLoaded[cert.id] ? 'opacity-100' : 'opacity-50'
-                      }`}
+                      } group-hover:scale-110`}
                       onLoad={() => handleImageLoad(cert.id)}
                       onError={() => handleImageError(cert.id)}
                     />
@@ -454,7 +454,7 @@ const Certificates = () => {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
           onClick={closeModal}
         >
-          <div className="relative max-w-4xl max-h-[90vh] mx-4">
+          <div className="relative max-w-4xl max-h-[90vh] w-full mx-4">
             {/* Close button */}
             <button
               onClick={closeModal}
@@ -468,7 +468,7 @@ const Certificates = () => {
             
             {/* Modal content */}
             <div 
-              className="bg-white dark:bg-secondary-900 rounded-2xl overflow-hidden shadow-2xl"
+              className="bg-white dark:bg-secondary-900 rounded-2xl overflow-hidden shadow-2xl w-full"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal header */}
@@ -479,7 +479,7 @@ const Certificates = () => {
               </div>
               
               {/* Modal image */}
-              <div className="relative">
+              <div className="relative w-full">
                 <img 
                   src={selectedImage} 
                   alt={selectedTitle}
