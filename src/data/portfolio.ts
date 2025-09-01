@@ -265,7 +265,27 @@ export const books: Book[] = [
     goodreadsUrl: 'https://www.goodreads.com/book/show/24072897-deep-learning'
   },
   {
+    id: '6',
+    title: 'Good to Great: Why Some Companies Make the Leap...And Others Don\'t',
+    author: 'Jim Collins',
+    description: 'A groundbreaking study of how companies transition from being good companies to great companies, and why some companies fail to make the transition.',
+    category: 'business',
+    rating: 5,
+    amazonUrl: 'https://www.amazon.com/Good-Great-Companies-Leap-Others/dp/0066620996',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/76865.Good_to_Great'
+  },
+  {
     id: '7',
+    title: 'The Lean Startup: How Today\'s Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses',
+    author: 'Eric Ries',
+    description: 'A revolutionary approach to business that focuses on rapid iteration, customer feedback, and validated learning to build successful startups.',
+    category: 'business',
+    rating: 5,
+    amazonUrl: 'https://www.amazon.com/Lean-Startup-Entrepreneurs-Continuous-Innovation/dp/0307887898',
+    goodreadsUrl: 'https://www.goodreads.com/book/show/10127019-the-lean-startup'
+  },
+  {
+    id: '8',
     title: 'The Hobbit',
     author: 'J.R.R. Tolkien',
     description: 'A timeless fantasy adventure following Bilbo Baggins on his journey with thirteen dwarves to reclaim their homeland.',
@@ -275,7 +295,7 @@ export const books: Book[] = [
     goodreadsUrl: 'https://www.goodreads.com/book/show/2239768.The_Hobbit'
   },
   {
-    id: '8',
+    id: '9',
     title: 'World of Warcraft: Arthas: Rise of the Lich King',
     author: 'Christie Golden',
     description: 'The tragic story of Prince Arthas Menethil and his transformation into the Lich King, one of Azeroth\'s most feared villains. Published in 2009.',
@@ -295,7 +315,7 @@ export const books: Book[] = [
     goodreadsUrl: 'https://www.goodreads.com/book/show/26721433-illidan'
   },
   {
-    id: '10',
+    id: '11',
     title: 'World of Warcraft: Sylvanas',
     author: 'Christie Golden',
     description: 'The compelling story of Sylvanas Windrunner, from her transformation into the Banshee Queen to her complex journey through Azeroth\'s conflicts. Published in 2022.',
@@ -390,7 +410,7 @@ export const certificates: Certificate[] = [
     issuer: 'CANDO (شرکت کندوی دانش پارسیان)',
     issueDate: '2017-06-07',
     category: 'development',
-    image: '/certificates/SQL server Admin and design/sql-server-admin-design.jpg',
+    image: '/certificates/SQL server Admin and design/book',
     pdf: '/certificates/SQL server Admin and design/sql-server-admin-design.jpg',
     url: 'https://www.CanDo1.com',
     credentialId: '208840'
