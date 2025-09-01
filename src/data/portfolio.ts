@@ -410,7 +410,7 @@ export const certificates: Certificate[] = [
     issuer: 'CANDO (شرکت کندوی دانش پارسیان)',
     issueDate: '2017-06-07',
     category: 'development',
-    image: '/certificates/SQL server Admin and design/book',
+    image: '/certificates/SQL server Admin and design/sql-server-admin-design.jpg',
     pdf: '/certificates/SQL server Admin and design/sql-server-admin-design.jpg',
     url: 'https://www.CanDo1.com',
     credentialId: '208840'
