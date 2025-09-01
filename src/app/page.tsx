@@ -25,7 +25,7 @@ export default function Home() {
       "https://linkedin.com/in/amir-marjani"
     ],
     "knowsAbout": [
-      "Front End Development",
+              "Software Engineering",
       "Angular",
       "React",
       "TypeScript",
@@ -33,7 +33,7 @@ export default function Home() {
       "Web Development",
       "UI/UX Design"
     ],
-    "description": "Front End Manager and Full Stack Developer specializing in Angular, React, and modern web technologies."
+            "description": "Software Engineer and Full Stack Developer specializing in Angular, React, and modern web technologies."
   }
 
   return (

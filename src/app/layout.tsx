@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     default: `${personalInfo.name} - ${personalInfo.title} | Portfolio`,
     template: `%s | ${personalInfo.name}`
   },
-  description: 'Front End Manager and Full Stack Developer specializing in Angular, React, and modern web technologies. View my portfolio of projects, skills, and professional experience.',
+          description: 'Software Engineer and Full Stack Developer specializing in Angular, React, and modern web technologies. View my portfolio of projects, skills, and professional experience.',
   keywords: [
-    'Front End Manager',
+            'Software Engineer',
     'Full Stack Developer',
     'Angular Developer',
     'React Developer',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     'UI/UX Design',
     'Portfolio',
     'Software Engineer',
-    'Frontend Development',
+    'Software Engineering',
     'Backend Development'
   ],
   authors: [{ name: personalInfo.name }],
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     url: 'https://amirmarjani.com',
     siteName: `${personalInfo.name} Portfolio`,
     title: `${personalInfo.name} - ${personalInfo.title}`,
-    description: 'Front End Manager and Full Stack Developer specializing in Angular, React, and modern web technologies.',
+    description: 'Software Engineer and Full Stack Developer specializing in Angular, React, and modern web technologies.',
     images: [
       {
         url: '/images/profile.png',
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: `${personalInfo.name} - ${personalInfo.title}`,
-    description: 'Front End Manager and Full Stack Developer specializing in Angular, React, and modern web technologies.',
+    description: 'Software Engineer and Full Stack Developer specializing in Angular, React, and modern web technologies.',
     images: ['/images/profile.png'],
     creator: '@amirmarjani',
   },

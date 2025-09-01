@@ -188,7 +188,7 @@ const About = () => {
                       <div className="bg-white/5 dark:bg-white/5 p-4 rounded-xl border border-white/10 dark:border-white/10 text-center">
                         <div className="text-2xl mb-2">⚛️</div>
                         <div className="text-white font-medium">React & Next.js</div>
-                        <div className="text-secondary-300 text-sm">Frontend Development</div>
+                        <div className="text-secondary-300 text-sm">Software Engineering</div>
                       </div>
                       <div className="bg-white/5 dark:bg-white/5 p-4 rounded-xl border border-white/10 dark:border-white/10 text-center">
                         <div className="text-2xl mb-2">🅰️</div>
