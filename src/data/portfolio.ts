@@ -361,6 +361,17 @@ export const certificates: Certificate[] = [
     pdf: '/certificates/CSharp/csharp.jpg',
     url: 'https://amirmarjani.com',
     credentialId: '95-144'
+  },
+  {
+    id: '6',
+    title: 'HTML5-CSS3-JQuery',
+    issuer: 'Data Analysis Institute (آموزشگاه تحلیل داده)',
+    issueDate: '2017-01-12',
+    category: 'development',
+    image: '/certificates/HTML5-CSS3-JQuery/html5-css3-jquery.jpg',
+    pdf: '/certificates/HTML5-CSS3-JQuery/html5-css3-jquery.jpg',
+    url: 'https://amirmarjani.com',
+    credentialId: '10-185'
   }
 ]
 
