@@ -305,7 +305,7 @@ export const books: Book[] = [
     goodreadsUrl: 'https://www.goodreads.com/book/show/6290885-arthas'
   },
   {
-    id: '9',
+    id: '10',
     title: 'World of Warcraft: Illidan',
     author: 'William King',
     description: 'The epic tale of Illidan Stormrage, the Betrayer, and his quest for power and redemption in the Burning Legion. Published in 2016.',

@@ -109,20 +109,14 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('theme');
-                  var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (theme === 'dark' || (!theme && systemPrefersDark)) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
+                  document.documentElement.classList.add('dark');
                 } catch (e) {}
               })();
             `,
           }}
         />
       </head>
-      <body className={`${inter.variable} font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-white scroll-smooth transition-colors duration-300`}>
+      <body className={`${inter.variable} font-sans bg-gray-900 text-white scroll-smooth transition-colors duration-300`}>
         <ParallaxWrapper>
           {children}
         </ParallaxWrapper>
