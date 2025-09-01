@@ -52,14 +52,7 @@ const Projects = () => {
   const otherProjectsAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 400 });
   const ctaAnimation = useScrollAnimation({ threshold: 0.2, triggerOnce: false, delay: 500 });
 
-  // Debug logging
-  console.log('Projects component state:', { 
-    isClient, 
-    projectsCount: projects.length, 
-    featuredCount: featuredProjects.length, 
-    otherCount: otherProjects.length,
-    projects: projects.map(p => ({ id: p.id, title: p.title, featured: p.featured }))
-  })
+  // Debug logging - removed for production
 
   // Ensure client-side rendering to prevent hydration mismatches
   useEffect(() => {

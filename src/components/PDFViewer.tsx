@@ -13,12 +13,12 @@ const PDFViewer = ({ file }: PDFViewerProps) => {
 
   useEffect(() => {
     setIsClient(true)
-    console.log('PDFViewer: Client initialized, file path:', file)
+    // PDFViewer: Client initialized
     
     // Set a timeout to detect if PDF loads successfully
     const timeout = setTimeout(() => {
       if (!error && !pdfLoaded) {
-        console.log('PDFViewer: Assuming PDF loaded successfully (timeout)')
+        // PDFViewer: Assuming PDF loaded successfully (timeout)
         setPdfLoaded(true)
       }
     }, 3000) // 3 second timeout
@@ -27,13 +27,13 @@ const PDFViewer = ({ file }: PDFViewerProps) => {
   }, [file, error, pdfLoaded])
 
   const handlePdfLoad = () => {
-    console.log('PDFViewer: PDF loaded successfully')
+            // PDFViewer: PDF loaded successfully
     setPdfLoaded(true)
     setError(false)
   }
 
   const handlePdfError = () => {
-    console.log('PDFViewer: PDF failed to load')
+            // PDFViewer: PDF failed to load
     setError(true)
     setPdfLoaded(false)
   }

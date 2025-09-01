@@ -28,7 +28,7 @@ const Contact = () => {
     await new Promise(resolve => setTimeout(resolve, 1000))
     
     // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData)
+    // Form submitted successfully
     
     // Reset form
     setFormData({

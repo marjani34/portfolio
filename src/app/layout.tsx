@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     description: 'Software Engineer and Full Stack Developer specializing in Angular, React, and modern web technologies.',
     images: [
       {
-        url: '/images/profile.png',
+        url: '/images/2.png',
         width: 1200,
         height: 630,
         alt: `${personalInfo.name} - ${personalInfo.title}`,
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${personalInfo.name} - ${personalInfo.title}`,
     description: 'Software Engineer and Full Stack Developer specializing in Angular, React, and modern web technologies.',
-    images: ['/images/profile.png'],
+    images: ['/images/2.png'],
     creator: '@amirmarjani',
   },
   alternates: {

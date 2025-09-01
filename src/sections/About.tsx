@@ -3,7 +3,7 @@
 import { personalInfo } from "@/data/portfolio";
 import { Parallax } from "react-scroll-parallax";
 import Image from "next/image";
-import profileImage from "@/assets/images/profile.png";
+import profileImage from "@/assets/images/2.png";
 import { useScrollAnimation, scrollAnimations } from '@/hooks/useScrollAnimation'
 
 const About = () => {
